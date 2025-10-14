@@ -1,5 +1,6 @@
 'use client';
 import { useState } from 'react';
+import Link from 'next/link';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -38,9 +39,9 @@ const Header = () => {
           {/* MENÚ MÓVIL */}
           {isMenuOpen && (
             <nav className="nav-mobile">
-              <a href="#value-proposition" className="nav-link">Enfoque</a>
-              <a href="#portfolio" className="nav-link">Proyectos</a>
-              <a href="#contact" className="nav-link">Contacto</a>
+              <Link href="#value-proposition" className="nav-link">Enfoque</Link>
+<Link href="#portfolio" className="nav-link">Proyectos</Link>
+<Link href="#contact" className="nav-link">Contacto</Link>
               <button className="btn btn-primary">
                 Cotizar Proyecto
               </button>
