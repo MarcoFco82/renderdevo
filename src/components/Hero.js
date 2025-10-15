@@ -72,7 +72,7 @@ const Hero = () => {
     <div className="hero-content">
       <h1 className="hero-title">
   Estrategias Audiovisuales que 
-  <span className="title-accent"> Convierten Seguidores en Clientes</span>
+  <span className="title-accent-glacial"> Convierten Seguidores en Clientes</span>
 </h1>
       
       <p className="hero-subtitle">

@@ -1,6 +1,15 @@
+import Link from 'next/link';
+
 export default function Terminos() {
     return (
-      <div className="legal-container">
+      <div className="legal-page">
+        <div className="container">
+        <div className="back-button-container">
+          <Link href="/" className="back-button">
+            ← Volver a RenderDevo
+          </Link>
+        </div>
+      </div>
         <div className="legal-content">
           <header className="legal-header">
             <h1>Términos y Condiciones</h1>

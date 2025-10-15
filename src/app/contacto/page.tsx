@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export default function Contacto() {
   return (
-    <div className="contact-page-container">
+    <div className="contact-page-container" style={{ paddingBottom: '100px' }}>
       {/* BOTÓN REGRESAR */}
       <div className="container">
         <div className="back-button-container">

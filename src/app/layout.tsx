@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import ParticleBackground from "@/components/ParticleBackground";
+import Header from "@/components/Header";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -20,9 +21,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className={inter.variable}>
-      <body>
+      <body style={{ position: 'relative', margin: 0, padding: 0, overflowX: 'hidden' }}>
         <ParticleBackground />
-        {children}
+        <Header />
+        <main style={{ position: 'relative', zIndex: 2, minHeight: '100vh' }}>
+          {children}
+        </main>
       </body>
     </html>
   );

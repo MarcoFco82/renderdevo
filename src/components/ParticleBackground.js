@@ -13,27 +13,28 @@ const ParticleBackground = () => {
     let animationFrameId;
     let particles = [];
 
-    // Configuración - HOJAS EN EL VIENTO
+    // DETECTAR SI ES MÓVIL
+    const isMobile = window.innerWidth < 768;
+
+    // CONFIGURACIÓN - GEOMETRÍAS FUTURISTAS (RESPONSIVE)
     const particleConfig = {
-      count: 18,
-      size: 45,
-      color: 'var(--color-primary)',
-      opacity: 0.12,
+      count: isMobile ? 4 : 8, // ← SOLO ESTE CAMBIO: menos partículas en móvil
+      maxSize: isMobile ? 600 : 1135, // ← SOLO ESTE CAMBIO: más pequeñas en móvil
+      minSize: isMobile ? 300 : 2015, // ← SOLO ESTE CAMBIO: más pequeñas en móvil
       
-      // VIENTO PRINCIPAL - dirección y fuerza base
-      windBaseSpeed: 0.8,
-      windDirection: Math.PI * 0.1, // Angulo en radianes (aprox 18°)
+      // COLORES DE LA PALETA (MISMO QUE ORIGINAL)
+      primaryColor: '#3d6eff',    // Cian eléctrico
+      secondaryColor: '#2e2d5f',  // Magenta neón
+      tertiaryColor: '#ff5c8d',   // Púrpura holográfico
       
-      // TURBULENCIA - variaciones del viento
-      turbulenceSpeed: 0.3,
-      turbulenceScale: 0.02,
+      // MOVIMIENTO EN PLANOS 3D (MISMO QUE ORIGINAL)
+      baseSpeed: 0.2,
+      turbulence: 0.2,
+      floatAmplitude: 0.4,
       
-      // FLOTACIÓN - movimiento orgánico adicional
-      floatSpeed: 0.15,
-      floatScale: 0.005,
-      
-      // ROTACIÓN NATURAL
-      rotationSpeed: 0.008,
+      // ROTACIÓN Y ESCALA (MISMO QUE ORIGINAL)
+      rotationSpeed: 0.001,
+      pulseSpeed: 0.001,
     };
 
     const resizeCanvas = () => {
@@ -41,78 +42,166 @@ const ParticleBackground = () => {
       canvas.height = window.innerHeight;
     };
 
-    class WindParticle {
+    class GeometricParticle {
       constructor() {
         this.reset();
-        this.timeOffset = Math.random() * 1000; // Para desfasar animaciones
+        this.timeOffset = Math.random() * 1000;
+        this.shapeType = Math.floor(Math.random() * 3); // 0: triángulo, 1: rombo, 2: hexágono
+        this.color = this.getRandomColor();
+      }
+
+      getRandomColor() {
+        const colors = [
+          particleConfig.primaryColor,
+          particleConfig.secondaryColor, 
+          particleConfig.tertiaryColor
+        ];
+        return colors[Math.floor(Math.random() * colors.length)];
       }
 
       reset() {
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
+        this.size = particleConfig.minSize + Math.random() * (particleConfig.maxSize - particleConfig.minSize);
         this.rotation = Math.random() * Math.PI * 2;
         this.rotationSpeed = (Math.random() - 0.5) * particleConfig.rotationSpeed;
-        this.opacity = Math.random() * particleConfig.opacity + 0.05;
-        this.scale = 0.8 + Math.random() * 0.4; // Variación de tamaño
+        this.opacity = 0.1 + Math.random() * 0.15;
+        this.pulsePhase = Math.random() * Math.PI * 2;
+        this.speedX = (Math.random() - 0.5) * particleConfig.baseSpeed;
+        this.speedY = (Math.random() - 0.5) * particleConfig.baseSpeed;
+        
+        // INICIAR CON FADE IN
+        this.fadeInProgress = true;
+        this.fadeValue = 0;
       }
 
       update(time) {
         const t = time * 0.001 + this.timeOffset;
         
-        // VIENTO PRINCIPAL - dirección constante con fuerza variable
-        const windStrength = particleConfig.windBaseSpeed * (0.8 + Math.sin(t * 0.3) * 0.2);
+        // MOVIMIENTO BASE + TURBULENCIA
+        this.x += this.speedX + Math.sin(t * 0.9) * particleConfig.turbulence;
+        this.y += this.speedY + Math.cos(t * 0.9) * particleConfig.turbulence * 0.5;
         
-        // TURBULENCIA - movimiento lateral orgánico
-        const turbulenceX = Math.sin(t * 1.7) * particleConfig.turbulenceSpeed;
-        const turbulenceY = Math.cos(t * 1.3) * particleConfig.turbulenceSpeed * 0.5;
+        // FLOTACIÓN ORGÁNICA
+        this.y += Math.sin(t * 0.4 + this.x * 0.003) * particleConfig.floatAmplitude;
         
-        // FLOTACIÓN - movimiento suave vertical
-        const floatY = Math.sin(t * 0.5 + this.x * particleConfig.floatScale) * particleConfig.floatSpeed;
+        // ROTACIÓN
+        this.rotation += this.rotationSpeed;
         
-        // MOVIMIENTO COMBINADO
-        this.x += Math.cos(particleConfig.windDirection) * windStrength + turbulenceX;
-        this.y += Math.sin(particleConfig.windDirection) * windStrength * 0.3 + turbulenceY + floatY;
+        // PULSO DE OPACIDAD Y ESCALA
+        this.pulsePhase += particleConfig.pulseSpeed;
+        this.currentOpacity = this.opacity * (0.7 + Math.sin(this.pulsePhase) * 0.3);
+        this.currentScale = 0.8 + Math.sin(this.pulsePhase * 1.5) * 0.2;
+      
+        // FADE IN/FADE OUT CUANDO ESTÁ CERCA DE LOS BORDES
+        const fadeMargin = 200; // Márgenes más grandes para fade suave
+        const canvasWidth = canvas.width;
+        const canvasHeight = canvas.height;
         
-        // ROTACIÓN influenciada por el movimiento
-        this.rotation += this.rotationSpeed + (turbulenceX * 0.01);
+        // CALCULAR FADE EN BORDES
+        let edgeFade = 1.0;
         
-        // REINICIAR si sale completamente de pantalla
-        const margin = 100;
-        if (this.x < -margin) this.x = canvas.width + margin;
-        if (this.x > canvas.width + margin) this.x = -margin;
-        if (this.y < -margin) this.y = canvas.height + margin;
-        if (this.y > canvas.height + margin) this.y = -margin;
+        // FADE EN BORDES IZQUIERDO Y DERECHO
+        if (this.x < fadeMargin) {
+          edgeFade = this.x / fadeMargin;
+        } else if (this.x > canvasWidth - fadeMargin) {
+          edgeFade = (canvasWidth - this.x) / fadeMargin;
+        }
         
-        // OPACIDAD variable sutil
-        this.currentOpacity = this.opacity * (0.7 + Math.sin(t * 0.4) * 0.3);
+        // FADE EN BORDES SUPERIOR E INFERIOR
+        if (this.y < fadeMargin) {
+          edgeFade = Math.min(edgeFade, this.y / fadeMargin);
+        } else if (this.y > canvasHeight - fadeMargin) {
+          edgeFade = Math.min(edgeFade, (canvasHeight - this.y) / fadeMargin);
+        }
+        
+        // APLICAR FADE A LA OPACIDAD FINAL
+        this.currentOpacity *= edgeFade;
+      
+        // REINICIAR SI SALE COMPLETAMENTE DE PANTALLA (CON FADE COMPLETO)
+        const resetMargin = 50;
+        if (this.x < -resetMargin || this.x > canvasWidth + resetMargin || 
+            this.y < -resetMargin || this.y > canvasHeight + resetMargin) {
+          this.reset();
+          // INICIAR CON FADE IN
+          this.fadeInProgress = true;
+          this.fadeValue = 0;
+        }
       }
 
       draw() {
         ctx.save();
         ctx.translate(this.x, this.y);
         ctx.rotate(this.rotation);
-        ctx.scale(this.scale, this.scale);
+        ctx.scale(this.currentScale, this.currentScale);
         
         ctx.globalAlpha = this.currentOpacity;
-        ctx.fillStyle = particleConfig.color;
-        
-        // FORMA DE HOJA/DIAMANTE elegante (más interesante que cuadrado simple)
-        ctx.beginPath();
-        ctx.moveTo(0, -particleConfig.size / 2);
-        ctx.lineTo(particleConfig.size / 2, 0);
-        ctx.lineTo(0, particleConfig.size / 2);
-        ctx.lineTo(-particleConfig.size / 2, 0);
-        ctx.closePath();
-        ctx.fill();
+        ctx.fillStyle = this.color;
+        ctx.strokeStyle = this.color;
+        ctx.lineWidth = 1.5;
+
+        // DIBUJAR FORMA GEOMÉTRICA SEGÚN TIPO
+        switch(this.shapeType) {
+          case 0: // TRIÁNGULO
+            this.drawTriangle();
+            break;
+          case 1: // ROMBO
+            this.drawDiamond();
+            break;
+          case 2: // HEXÁGONO
+            this.drawHexagon();
+            break;
+        }
         
         ctx.restore();
+      }
+
+      drawTriangle() {
+        const size = this.size;
+        ctx.beginPath();
+        ctx.moveTo(0, -size / 2);
+        ctx.lineTo(size / 2, size / 2);
+        ctx.lineTo(-size / 2, size / 2);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+      }
+
+      drawDiamond() {
+        const size = this.size;
+        ctx.beginPath();
+        ctx.moveTo(0, -size / 2);
+        ctx.lineTo(size / 2, 0);
+        ctx.lineTo(0, size / 2);
+        ctx.lineTo(-size / 2, 0);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+      }
+
+      drawHexagon() {
+        const size = this.size;
+        ctx.beginPath();
+        for (let i = 0; i < 6; i++) {
+          const angle = (i * Math.PI) / 3;
+          const x = Math.cos(angle) * size / 2;
+          const y = Math.sin(angle) * size / 2;
+          if (i === 0) {
+            ctx.moveTo(x, y);
+          } else {
+            ctx.lineTo(x, y);
+          }
+        }
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
       }
     }
 
     const initParticles = () => {
       particles = [];
       for (let i = 0; i < particleConfig.count; i++) {
-        particles.push(new WindParticle());
+        particles.push(new GeometricParticle());
       }
     };
 
@@ -121,7 +210,16 @@ const ParticleBackground = () => {
     const animate = () => {
       const currentTime = Date.now() - startTime;
       
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      // FONDO CON DEGRADADO SUTIL
+      const gradient = ctx.createRadialGradient(
+        canvas.width / 2, canvas.height / 2, 0,
+        canvas.width / 2, canvas.height / 2, Math.max(canvas.width, canvas.height) / 2
+      );
+      gradient.addColorStop(0, 'rgba(10, 10, 18, 0.1)');
+      gradient.addColorStop(1, 'rgba(26, 26, 46, 0.3)');
+      
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
       
       particles.forEach(particle => {
         particle.update(currentTime);
@@ -144,17 +242,17 @@ const ParticleBackground = () => {
 
   return (
     <canvas
-  ref={canvasRef}
-  style={{
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%',
-    zIndex: 0,  // ← FONDO
-    pointerEvents: 'none'
-  }}
-/>
+      ref={canvasRef}
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        zIndex: 1,
+        pointerEvents: 'none'
+      }}
+    />
   );
 };
 

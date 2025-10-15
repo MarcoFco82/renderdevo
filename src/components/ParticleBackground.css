@@ -1,14 +1,14 @@
 /* src/components/ParticleBackground.css */
 .school-particle-background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    pointer-events: none;
-    background: transparent;
-  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1; /* ← CAMBIADO de -1 a 1 */
+  pointer-events: none;
+  background: transparent;
+}
   
   /* Efecto de desenfoque muy sutil */
   .school-particle-background {
