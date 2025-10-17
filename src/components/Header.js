@@ -6,7 +6,6 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
 
-  // Efecto para montaje y detectar scroll
   useEffect(() => {
     setIsMounted(true);
     
@@ -18,7 +17,6 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Función para scroll suave a secciones
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -27,7 +25,6 @@ const Header = () => {
     }
   };
 
-  // Evitar hydration - no renderizar menú móvil hasta montaje
   if (!isMounted) {
     return (
       <header className="header">
@@ -38,9 +35,11 @@ const Header = () => {
                 RenderDevo
               </button>
             </div>
-            <div className="nav-desktop">
-              {/* Placeholder para evitar hydration mismatch */}
-            </div>
+            <button className="menu-toggle">
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
           </div>
         </div>
       </header>
@@ -51,7 +50,6 @@ const Header = () => {
     <header className={`header ${isScrolled ? 'scrolled' : ''}`}>
       <div className="container">
         <div className="header-content">
-          {/* LOGO */}
           <div className="logo">
             <button 
               onClick={() => {
@@ -64,7 +62,6 @@ const Header = () => {
             </button>
           </div>
 
-          {/* NAVEGACIÓN DESKTOP */}
           <nav className="nav-desktop">
             <button 
               onClick={() => scrollToSection('value-proposition')} 
@@ -79,22 +76,15 @@ const Header = () => {
               Proyectos
             </button>
             <button 
-              onClick={() => window.location.href = '/contacto'}
+              onClick={() => scrollToSection('contacto')} 
               className="nav-link"
             >
               Contacto
             </button>
-            <button 
-              onClick={() => window.location.href = '/contacto'}
-              className="nav-link nav-cta"
-            >
-              Cotizar Proyecto
-            </button>
           </nav>
 
-          {/* BOTÓN MENÚ MÓVIL */}
           <button 
-            className="menu-toggle"
+            className={`menu-toggle ${isMenuOpen ? 'active' : ''}`}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             <span></span>
@@ -102,7 +92,6 @@ const Header = () => {
             <span></span>
           </button>
 
-          {/* MENÚ MÓVIL */}
           {isMounted && (
             <nav className={`nav-mobile ${isMenuOpen ? 'active' : ''}`}>
               <button 
@@ -118,22 +107,10 @@ const Header = () => {
                 Proyectos
               </button>
               <button 
-                onClick={() => {
-                  window.location.href = '/contacto';
-                  setIsMenuOpen(false);
-                }}
+                onClick={() => scrollToSection('contacto')}
                 className="nav-link"
               >
                 Contacto
-              </button>
-              <button 
-                onClick={() => {
-                  window.location.href = '/contacto';
-                  setIsMenuOpen(false);
-                }}
-                className="nav-link nav-cta"
-              >
-                Cotizar Proyecto
               </button>
             </nav>
           )}
