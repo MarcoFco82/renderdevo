@@ -449,8 +449,19 @@ a:hover {
   font-size: var(--text-4xl);
   font-family: var(--font-title);
   color: var(--color-glacial);
-  margin: 0 0 var(--space-sm) 0;
+  margin-bottom: var(--space-sm);
   font-weight: 600;
+  text-align: center;
+  text-transform: uppercase; /* ← Si el otro lo tiene */
+  letter-spacing: 1px; /* ← Si el otro lo tiene */
+}
+
+@media (max-width: 768px) {
+  .portfolio-header h2 {
+    font-size: var(--text-3xl);
+    font-family: 'Bebas Neue', sans-serif !important;
+    font-weight: 600;
+  }
 }
 
 .portfolio-header p {
@@ -1940,19 +1951,25 @@ a:hover {
 }
 
 /* MÓVIL - CORRECCIONES ESPECÍFICAS */
+/* MÓVIL - CORRECCIONES ESPECÍFICAS */
 @media (max-width: 768px) {
   .hero-title {
-    font-size: 4rem; /* ← CAMBIA ESTE NÚMERO */
+    font-size: 4rem;
+    font-family: 'Bebas Neue', sans-serif !important; /* ← AGREGAR ESTA LÍNEA */
+    font-weight: 400;
     line-height: 0.95;
     margin: 0 0 25px 0;
     white-space: normal;
+    text-transform: uppercase;
+    letter-spacing: 1px;
   }
 }
 
 /* PARA PANTALLAS MUY PEQUEÑAS */
 @media (max-width: 480px) {
   .hero-title {
-    font-size: 4rem; /* ← CAMBIA ESTE TAMBIÉN SI QUIERES */
+    font-size: 3rem;
+    font-family: 'Bebas Neue', sans-serif !important; /* ← AGREGAR AQUÍ TAMBIÉN */
     margin: 0 0 20px 0;
   }
 }

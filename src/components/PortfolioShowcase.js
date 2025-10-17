@@ -90,7 +90,7 @@ const PortfolioShowcase = () => {
     <section id="portfolio" className="portfolio-showcase">
       <div className="container">
         {/* HEADER ACTUALIZADO */}
-        <div className="portfolio-header">
+        <div className="value-header-white">
   <h2>Proyectos con Resultados Comprobados</h2>
   <p>Ejemplos reales de cómo ayudamos a negocios a mejorar su presencia digital</p>
 </div>
