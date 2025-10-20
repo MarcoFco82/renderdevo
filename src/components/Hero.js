@@ -1,5 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
+import emailjs from '@emailjs/browser'; // ← CAMBIA ESTA IMPORTACIÓN
 
 const Hero = () => {
   const [showQuote, setShowQuote] = useState(false);
@@ -13,8 +14,23 @@ const Hero = () => {
   const [contactPhone, setContactPhone] = useState('');
   const [contactName, setContactName] = useState('');
   const [businessType, setBusinessType] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
+
+  // ✅ CONFIGURACIÓN EMAILJS - REEMPLAZA CON TUS CREDENCIALES REALES
+  const EMAILJS_CONFIG = {
+    SERVICE_ID: 'service_8gh747m', // Tu Service ID
+    TEMPLATE_ID: 'template_704ew3d', // Tu Template ID  
+    PUBLIC_KEY: 'MQePSJwFKzy2hW_XK' // Tu Public Key (NO USER_ID)
+  };
+
+  // Inicializar EmailJS
+  useEffect(() => {
+    emailjs.init(EMAILJS_CONFIG.PUBLIC_KEY);
+  }, []);
 
   const services = [
+    // ... (tus servicios se mantienen igual)
     {
       id: 'sitioWeb',
       title: 'Sitio Web Para tu Negocio',
@@ -32,15 +48,6 @@ const Hero = () => {
       price: 4000,
       priceRange: '$4,000 - $6,000 MXN',
       pricingType: 'fixed'
-    },
-    {
-      id: 'infografias',
-      title: 'Infografías',
-      description: 'Diseño de infografías estáticas para redes sociales',
-      icon: '📊',
-      price: 6000,
-      priceRange: '$6,000 MXN por video hasta 3 minutos max.',
-      pricingType: 'perMinute'
     },
     {
       id: 'animacionesRedes',
@@ -74,8 +81,8 @@ const Hero = () => {
       title: 'Animación de presentación Comercial',
       description: 'Presentación comercial de tu negocio de 1-5 minutos',
       icon: '📽️',
-      price: 2500,
-      priceRange: '$2,500 MXN por minuto',
+      price: 3000,
+      priceRange: '$3,000 MXN por minuto',
       pricingType: 'perMinute'
     },
     {
@@ -89,6 +96,7 @@ const Hero = () => {
     }
   ];
 
+  // ... (las funciones toggleService, updateMinutes, useEffect se mantienen igual)
   const toggleService = (serviceId) => {
     setSelectedServices(prev => {
       const newSelection = { ...prev };
@@ -147,34 +155,129 @@ const Hero = () => {
 
   const handleSubmitQuote = async (e) => {
     e.preventDefault();
-    
-    const selectedServicesList = Object.values(selectedServices).map(service => {
-      let serviceDetails = `${service.title} - ${service.priceRange}`;
-      if (service.pricingType === 'perMinute' && serviceMinutes[service.id]) {
-        serviceDetails += ` (${serviceMinutes[service.id]} minuto${serviceMinutes[service.id] > 1 ? 's' : ''})`;
+    setIsSubmitting(true);
+    setSubmitError('');
+
+    // Validación básica
+    if (!contactName || !contactEmail || !contactPhone || !businessType) {
+      setSubmitError('Por favor completa todos los campos requeridos');
+      setIsSubmitting(false);
+      return;
+    }
+
+    try {
+      // Preparar lista de servicios seleccionados
+      const selectedServicesList = Object.values(selectedServices).map(service => {
+        let serviceDetails = `${service.title} - ${service.priceRange}`;
+        if (service.pricingType === 'perMinute' && serviceMinutes[service.id]) {
+          serviceDetails += ` (${serviceMinutes[service.id]} minuto${serviceMinutes[service.id] > 1 ? 's' : ''})`;
+        }
+        return serviceDetails;
+      }).join('\n');
+
+      console.log('Enviando cotización con EmailJS...', {
+        serviceId: EMAILJS_CONFIG.SERVICE_ID,
+        templateId: EMAILJS_CONFIG.TEMPLATE_ID,
+        publicKey: EMAILJS_CONFIG.PUBLIC_KEY
+      });
+
+      // Template parameters
+      const handleSubmitQuote = async (e) => {
+        e.preventDefault();
+        setIsSubmitting(true);
+        setSubmitError('');
+      
+        // Validación básica
+        if (!contactName || !contactEmail || !contactPhone || !businessType) {
+          setSubmitError('Por favor completa todos los campos requeridos');
+          setIsSubmitting(false);
+          return;
+        }
+      
+        try {
+          // Preparar lista de servicios seleccionados
+          const selectedServicesList = Object.values(selectedServices).map(service => {
+            let serviceDetails = `${service.title} - ${service.priceRange}`;
+            if (service.pricingType === 'perMinute' && serviceMinutes[service.id]) {
+              serviceDetails += ` (${serviceMinutes[service.id]} minuto${serviceMinutes[service.id] > 1 ? 's' : ''})`;
+            }
+            return serviceDetails;
+          }).join('\n');
+      
+          console.log('Enviando cotización con EmailJS...');
+      
+          // Template parameters
+          const templateParams = {
+            from_name: contactName,
+            from_email: contactEmail,
+            company: businessType,
+            phone: contactPhone,
+            service: 'Cotización Múltiple de Servicios',
+            message: `
+      INFORMACIÓN DEL CLIENTE:
+      Nombre: ${contactName}
+      Empresa: ${businessType}
+      Email: ${contactEmail}
+      Teléfono: ${contactPhone}
+      
+      SERVICIOS COTIZADOS:
+      ${selectedServicesList}
+      
+      RESUMEN FINANCIERO:
+      Subtotal: $${baseTotal.toLocaleString()} MXN
+      Descuento: ${discountPercentage}% (-$${discount.toLocaleString()} MXN)
+      TOTAL: $${finalTotal.toLocaleString()} MXN
+      
+      *Cotización generada desde renderdevo.com*
+            `,
+            to_email: 'hola@renderdevo.com',
+            subject: `Cotización RenderDevo - ${contactName} - $${finalTotal.toLocaleString()} MXN`
+          };
+      
+          // ✅ CORRECTO: Usar USER_ID en lugar de PUBLIC_KEY
+          const result = await emailjs.send(
+            EMAILJS_CONFIG.SERVICE_ID,
+            EMAILJS_CONFIG.TEMPLATE_ID,
+            templateParams,
+            EMAILJS_CONFIG.USER_ID  // ← CAMBIO CLAVE AQUÍ
+          );
+      
+          console.log('✅ Cotización enviada exitosamente:', result);
+      
+          // Éxito - reset form
+          setShowContactForm(false);
+          setSelectedServices({});
+          setContactName('');
+          setContactEmail('');
+          setContactPhone('');
+          setBusinessType('');
+          setShowQuote(false);
+          
+          // Mostrar mensaje de éxito
+          alert('¡Cotización enviada exitosamente! Te contactaremos dentro de 24 horas.');
+          
+        } catch (error) {
+          console.error('❌ Error enviando cotización:', error);
+          setSubmitError('Error al enviar la cotización. Por favor intenta nuevamente.');
+        } finally {
+          setIsSubmitting(false);
+        }
+      };
+      
+      let errorMessage = 'Error al enviar la cotización. ';
+      
+      if (error.text) {
+        errorMessage += `Detalles: ${error.text}`;
+      } else if (error.status) {
+        errorMessage += `Código de error: ${error.status}`;
+      } else {
+        errorMessage += 'Por favor verifica tu conexión e intenta nuevamente.';
       }
-      return serviceDetails;
-    }).join('\n');
-  
-    const emailBody = `
-  Nueva cotización solicitada:
-  
-  Información del cliente:
-  Nombre: ${contactName}
-  Giro de negocio: ${businessType}
-  Email: ${contactEmail}
-  Teléfono: ${contactPhone}
-  
-  Servicios seleccionados:
-  ${selectedServicesList}
-  
-  Total: $${finalTotal.toLocaleString()} MXN
-  Descuento aplicado: ${discountPercentage}%
-  
-  *Cotización generada desde renderdevo.com*
-    `;
-  
-    window.location.href = `mailto:hola@renderdevo.com?subject=Cotización RenderDevo - ${contactName}&body=${encodeURIComponent(emailBody)}`;
+      
+      setSubmitError(errorMessage);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const scrollToSection = (sectionId) => {
@@ -195,13 +298,14 @@ const Hero = () => {
     }, 100);
   };
 
+  // ... (el resto del código renderHeroNormal y renderQuoteSection se mantiene igual)
   const renderHeroNormal = () => (
     <div className="hero-content">
       <h1 className="hero-title">
-  Estrategias Audiovisuales que Convierten
-  <br />
-  Seguidores en Clientes
-</h1>
+        Estrategias Digitales que Convierten
+        <br />
+        Seguidores en Clientes
+      </h1>
       
       <p className="hero-subtitle">
         Diseño estratégico, animación funcional y desarrollo web orientado a resultados para PyMEs que buscan aumentar engagement y optimizar los procesos de conversión.
@@ -219,7 +323,6 @@ const Hero = () => {
         </button>
       </div>
       
-      {/* SCROLL INDICATOR CORREGIDO */}
       <div className="scroll-indicator">
         <button 
           onClick={() => scrollToSection('value-proposition')}
@@ -351,6 +454,12 @@ const Hero = () => {
               </div>
             ) : (
               <form onSubmit={handleSubmitQuote} className="contact-form-minimal">
+                {submitError && (
+                  <div className="error-message">
+                    ⚠️ {submitError}
+                  </div>
+                )}
+
                 <div className="form-group-minimal">
                   <label>Nombre completo *</label>
                   <input
@@ -358,6 +467,7 @@ const Hero = () => {
                     value={contactName}
                     onChange={(e) => setContactName(e.target.value)}
                     required
+                    disabled={isSubmitting}
                     placeholder="Tu nombre completo"
                   />
                 </div>
@@ -369,6 +479,7 @@ const Hero = () => {
                     value={businessType}
                     onChange={(e) => setBusinessType(e.target.value)}
                     required
+                    disabled={isSubmitting}
                     placeholder="Ej: Restaurante, Consultoría, Tienda online..."
                   />
                 </div>
@@ -380,6 +491,7 @@ const Hero = () => {
                     value={contactEmail}
                     onChange={(e) => setContactEmail(e.target.value)}
                     required
+                    disabled={isSubmitting}
                     placeholder="tu@email.com"
                   />
                 </div>
@@ -391,19 +503,32 @@ const Hero = () => {
                     value={contactPhone}
                     onChange={(e) => setContactPhone(e.target.value)}
                     required
+                    disabled={isSubmitting}
                     placeholder="+52 55 1234 5678"
                   />
                 </div>
 
                 <div className="form-actions-minimal">
-                  <button type="submit" className="btn btn-primary full-width">
-                    📨 Enviar Cotización a hola@renderdevo.com
+                  <button 
+                    type="submit" 
+                    className="btn btn-primary full-width"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <span className="loading-spinner"></span>
+                        Enviando Cotización...
+                      </>
+                    ) : (
+                      '📨 Enviar Cotización'
+                    )}
                   </button>
                   
                   <button 
                     type="button"
                     onClick={() => setShowContactForm(false)}
                     className="btn btn-secondary full-width"
+                    disabled={isSubmitting}
                   >
                     ← Regresar
                   </button>
@@ -424,14 +549,12 @@ const Hero = () => {
 
   return (
     <>
-      {/* HERO SECTION */}
       <section className="hero">
         <div className="container">
           {renderHeroNormal()}
         </div>
       </section>
 
-      {/* COTIZADOR - Se muestra solo cuando se hace click en el botón */}
       {showQuote && renderQuoteSection()}
     </>
   );

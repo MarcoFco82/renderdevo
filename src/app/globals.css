@@ -1,5 +1,6 @@
 /* 1. IMPORTAR FUENTES */
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap&text=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789');
+/* 1. IMPORTAR FUENTES COMPLETAS - CORREGIDO */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
 
 /* 2. VARIABLES CSS - DIGITAL CREATIVITY */
 :root {
@@ -13,7 +14,7 @@
   --color-mist: #ffffff;
   
   /* FUENTES FUTURISTAS */
-  --font-title: 'Bebas Neue', sans-serif;
+  --font-title: 'Bebas Neue', 'Impact', 'Franklin Gothic Bold', 'Arial Black', sans-serif;
   --font-heading: 'Plus Jakarta Sans', sans-serif;
   --font-body: 'Plus Jakarta Sans', sans-serif;
   
@@ -59,7 +60,7 @@ body {
 /* 4. ESTILOS DE TIPOGRAFÍA */
 h1, h2, h3, h4, h5, h6 {
   font-size: var(--text-5xl);
-  font-family: var(--font-title);
+  font-family: var(--font-title) !important;
   font-weight: 400;
   line-height: 0.8;
   margin-bottom: var(--space-sm);
@@ -1950,12 +1951,57 @@ a:hover {
   50% { transform: rotate(45deg) translateY(-10px); }
 }
 
+/* Estados de carga */
+.loading-spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid transparent;
+  border-top: 2px solid currentColor;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-right: 8px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.error-message {
+  background: rgba(255, 0, 0, 0.1);
+  border: 1px solid rgba(255, 0, 0, 0.3);
+  color: #ff6b6b;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.contact-success {
+  text-align: center;
+  padding: 40px 20px;
+  background: rgba(0, 245, 255, 0.1);
+  border: 1px solid rgba(0, 245, 255, 0.3);
+  border-radius: 12px;
+}
+
+.contact-success h3 {
+  color: var(--color-electric-cyan);
+  margin-bottom: 16px;
+}
+
+.contact-success p {
+  margin-bottom: 12px;
+  color: var(--color-mist);
+}
+
 /* MÓVIL - CORRECCIONES ESPECÍFICAS */
 /* MÓVIL - CORRECCIONES ESPECÍFICAS */
 @media (max-width: 768px) {
   .hero-title {
     font-size: 3.5rem; /* Tamaño reducido para mejor ajuste */
-    font-family: 'Bebas Neue', sans-serif !important;
+    font-family: 'Bebas Neue', 'Impact', 'Franklin Gothic Bold', 'Arial Black', sans-serif !important;
     font-weight: 400;
     line-height: 0.95;
     margin: 0 0 25px 0;
@@ -1978,6 +2024,15 @@ a:hover {
     margin: 0 0 20px 0;
   }
 }
+
+  /* FORZAR BEBAS NEUE EN TODOS LOS TÍTULOS DEL PORTFOLIO */
+  .portfolio-header h2,
+  .value-header-white h2,
+  .banner-title-white,
+  .project-title {
+    font-family: 'Bebas Neue', 'Impact', 'Franklin Gothic Bold', 'Arial Black', sans-serif !important;
+    font-weight: 400 !important;
+  }
 
 /* Asegurar que el hero-content tenga posición relativa para el scroll-indicator */
 .hero-content {
