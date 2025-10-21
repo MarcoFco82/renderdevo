@@ -81,6 +81,31 @@ const PortfolioShowcase = () => {
     }
   ];
 
+  // FUNCIÓN PARA COTIZAR PROYECTO SIMILAR
+  const handleSimilarProjectQuote = (project) => {
+    // Mapear categoría del proyecto a servicios del cotizador
+    const serviceMapping = {
+      'web': ['sitioWeb', 'landingPage'],
+      'videos': ['animacionesRedes', 'introsReels', 'presentacionAnimada'],
+      'presentations': ['presentacionAnimada', 'presentacionInteractiva'],
+      'social': ['animacionesRedes', 'introsReels'],
+      'infographics': ['animacionesRedes']
+    };
+
+    // Obtener servicios relacionados
+    const relatedServices = serviceMapping[project.category] || [];
+    
+    // Guardar en sessionStorage para el cotizador
+    sessionStorage.setItem('preselectedServices', JSON.stringify(relatedServices));
+    sessionStorage.setItem('projectReference', project.title);
+    
+    // Cerrar modal
+    setSelectedProject(null);
+    
+    // Forzar recarga de la página para que Hero.js cargue los servicios
+    window.location.reload();
+  };
+
   // FILTRAR PROYECTOS
   const filteredItems = activeFilter === 'all' 
     ? portfolioItems 
@@ -91,9 +116,9 @@ const PortfolioShowcase = () => {
       <div className="container">
         {/* HEADER ACTUALIZADO */}
         <div className="value-header-white">
-  <h2>Proyectos con Resultados Comprobados</h2>
-  <p>Ejemplos reales de cómo ayudamos a negocios a mejorar su presencia digital</p>
-</div>
+          <h2>Proyectos con Resultados Comprobados</h2>
+          <p>Ejemplos reales de cómo ayudamos a negocios a mejorar su presencia digital</p>
+        </div>
 
         {/* FILTROS ACTUALIZADOS */}
         <div className="portfolio-filters">
@@ -202,11 +227,11 @@ const PortfolioShowcase = () => {
                   ))}
                 </div>
                 <button 
-  onClick={() => window.location.href = '/contacto'}
-  className="btn btn-primary"
->
-  Cotizar Proyecto Similar
-</button>
+                  onClick={() => handleSimilarProjectQuote(selectedProject)}
+                  className="btn btn-primary"
+                >
+                  🎬 Cotizar Proyecto Similar
+                </button>
               </div>
             </div>
           </div>

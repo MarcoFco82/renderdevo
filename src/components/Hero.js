@@ -16,6 +16,7 @@ const Hero = () => {
   const [businessType, setBusinessType] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
+  const [projectContext, setProjectContext] = useState('');
 
   // ✅ CONFIGURACIÓN EMAILJS UNIFICADA
   const EMAILJS_CONFIG = {
@@ -27,6 +28,47 @@ const Hero = () => {
   // Inicializar EmailJS
   useEffect(() => {
     emailjs.init(EMAILJS_CONFIG.PUBLIC_KEY);
+  }, []);
+
+  // ✅ EFECTO PARA CARGAR SERVICIOS PRE-SELECCIONADOS
+  useEffect(() => {
+    // Cargar servicios pre-seleccionados si existen
+    const preselectedServices = sessionStorage.getItem('preselectedServices');
+    const projectReference = sessionStorage.getItem('projectReference');
+    
+    if (preselectedServices && projectReference) {
+      try {
+        const serviceIds = JSON.parse(preselectedServices);
+        
+        // Seleccionar automáticamente los servicios
+        const newSelection = {};
+        serviceIds.forEach(serviceId => {
+          const service = services.find(s => s.id === serviceId);
+          if (service) {
+            newSelection[serviceId] = service;
+          }
+        });
+        
+        setSelectedServices(newSelection);
+        setProjectContext(`Basado en: ${projectReference}`);
+        setShowQuote(true);
+        
+        // Limpiar sessionStorage
+        sessionStorage.removeItem('preselectedServices');
+        sessionStorage.removeItem('projectReference');
+        
+        // Scroll al cotizador
+        setTimeout(() => {
+          const quoteSection = document.getElementById('quote-section');
+          if (quoteSection) {
+            quoteSection.scrollIntoView({ behavior: 'smooth' });
+          }
+        }, 500);
+        
+      } catch (error) {
+        console.log('Error cargando servicios pre-seleccionados:', error);
+      }
+    }
   }, []);
 
   const services = [
@@ -151,7 +193,6 @@ const Hero = () => {
   const selectedCount = Object.keys(selectedServices).length;
   const discountPercentage = Math.max(0, (selectedCount - 1) * 5);
 
-  // ✅ FUNCIÓN CORREGIDA - SIN DUPLICADOS
   const handleSubmitQuote = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -189,6 +230,7 @@ Nombre: ${contactName}
 Empresa: ${businessType}
 Email: ${contactEmail}
 Teléfono: ${contactPhone}
+${projectContext ? `Proyecto de referencia: ${projectContext}` : ''}
 
 SERVICIOS COTIZADOS:
 ${selectedServicesList}
@@ -222,6 +264,7 @@ TOTAL: $${finalTotal.toLocaleString()} MXN
       setContactPhone('');
       setBusinessType('');
       setShowQuote(false);
+      setProjectContext('');
       
       // Mostrar mensaje de éxito
       alert('¡Cotización enviada exitosamente! Te contactaremos dentro de 24 horas.');
@@ -229,7 +272,6 @@ TOTAL: $${finalTotal.toLocaleString()} MXN
     } catch (error) {
       console.error('❌ Error enviando cotización:', error);
       
-      // ✅ MANEJO DE ERRORES CORREGIDO
       let errorMessage = 'Error al enviar la cotización. ';
       
       if (error.text) {
@@ -255,6 +297,7 @@ TOTAL: $${finalTotal.toLocaleString()} MXN
 
   const handleStartQuote = () => {
     setShowQuote(true);
+    setProjectContext('');
     setTimeout(() => {
       const element = document.getElementById('quote-section');
       if (element) {
@@ -266,9 +309,9 @@ TOTAL: $${finalTotal.toLocaleString()} MXN
   const renderHeroNormal = () => (
     <div className="hero-content">
       <h1 className="hero-title">
-        Estrategias Digitales que Convierten
+        Estrategias Digitales que Conectan
         <br />
-        Seguidores en Clientes
+        y Posicionan tu Negocio.
       </h1>
       
       <p className="hero-subtitle">
@@ -306,6 +349,13 @@ TOTAL: $${finalTotal.toLocaleString()} MXN
           <h2>Selecciona los servicios que necesitas</h2>
           <p><strong>5% de descuento por cada servicio adicional (a partir del segundo)</strong></p>
         </div>
+
+        {/* CONTEXTO DEL PROYECTO SIMILAR */}
+        {projectContext && (
+          <div className="project-context-banner">
+            <span>📋 {projectContext}</span>
+          </div>
+        )}
 
         <div className="services-list-minimal">
           {services.map(service => (
@@ -410,7 +460,10 @@ TOTAL: $${finalTotal.toLocaleString()} MXN
                 </button>
                 
                 <button 
-                  onClick={() => setSelectedServices({})}
+                  onClick={() => {
+                    setSelectedServices({});
+                    setProjectContext('');
+                  }}
                   className="btn btn-secondary full-width"
                 >
                   Limpiar Selección

@@ -15,7 +15,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://renderdevo.com'),
-  title: "RenderDevo - Videos Profesionales y Marketing para PyMEs",
+  title: "RenderDevo - Estrategias Digitales que conectan y posicionan tu negocio",
   description: "Servicios profesionales de video marketing y contenido audiovisual para pequeñas y medianas empresas. Videos corporativos, animaciones para redes y sitios web que convierten.",
   keywords: ["video marketing", "PyMEs", "contenido redes sociales", "video corporativo", "animaciones", "diseño web", "agencia digital"],
   authors: [{ name: "RenderDevo" }],
@@ -24,21 +24,21 @@ export const metadata: Metadata = {
     locale: 'es_MX',
     url: 'https://renderdevo.com',
     siteName: 'RenderDevo',
-    title: 'RenderDevo - Videos Profesionales y Marketing para PyMEs',
-    description: 'Agencia especializada en video marketing y contenido audiovisual para pequeñas y medianas empresas.',
+    title: 'RenderDevo - Estrategias Digitales que conectan y posicionan tu negocio',
+    description: 'Servicios profesionales de video diseño y creación audiovisual para pequeñas y medianas empresas.',
     images: [
       {
         url: '/og_image.png',
         width: 1200,
         height: 630,
-        alt: 'RenderDevo - Agencia de Video Marketing para PyMEs',
+        alt: 'RenderDevo - Estrategias Digitales que conectan y posicionan tu negocio',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'RenderDevo - Videos Profesionales para PyMEs',
-    description: 'Especialistas en video marketing y contenido audiovisual para pequeñas empresas.',
+    title: 'RenderDevo - RenderDevo - Estrategias Digitales que conectan y posicionan tu negocio',
+    description: 'servicios profesionales de diseño web, video marketing y contenido audiovisual para pequeñas empresas.',
     images: ['/og_image.png'],
   },
 };
