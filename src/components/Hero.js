@@ -1,6 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
-import emailjs from '@emailjs/browser'; // ← CAMBIA ESTA IMPORTACIÓN
+import emailjs from '@emailjs/browser';
 
 const Hero = () => {
   const [showQuote, setShowQuote] = useState(false);
@@ -17,11 +17,11 @@ const Hero = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
 
-  // ✅ CONFIGURACIÓN EMAILJS - REEMPLAZA CON TUS CREDENCIALES REALES
+  // ✅ CONFIGURACIÓN EMAILJS UNIFICADA
   const EMAILJS_CONFIG = {
-    SERVICE_ID: 'service_8gh747m', // Tu Service ID
-    TEMPLATE_ID: 'template_704ew3d', // Tu Template ID  
-    PUBLIC_KEY: 'MQePSJwFKzy2hW_XK' // Tu Public Key (NO USER_ID)
+    SERVICE_ID: 'service_8gh747m',
+    TEMPLATE_ID: 'template_704ew3d',  
+    PUBLIC_KEY: 'MQePSJwFKzy2hW_XK'
   };
 
   // Inicializar EmailJS
@@ -30,7 +30,6 @@ const Hero = () => {
   }, []);
 
   const services = [
-    // ... (tus servicios se mantienen igual)
     {
       id: 'sitioWeb',
       title: 'Sitio Web Para tu Negocio',
@@ -96,7 +95,6 @@ const Hero = () => {
     }
   ];
 
-  // ... (las funciones toggleService, updateMinutes, useEffect se mantienen igual)
   const toggleService = (serviceId) => {
     setSelectedServices(prev => {
       const newSelection = { ...prev };
@@ -153,6 +151,7 @@ const Hero = () => {
   const selectedCount = Object.keys(selectedServices).length;
   const discountPercentage = Math.max(0, (selectedCount - 1) * 5);
 
+  // ✅ FUNCIÓN CORREGIDA - SIN DUPLICADOS
   const handleSubmitQuote = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -175,95 +174,62 @@ const Hero = () => {
         return serviceDetails;
       }).join('\n');
 
-      console.log('Enviando cotización con EmailJS...', {
-        serviceId: EMAILJS_CONFIG.SERVICE_ID,
-        templateId: EMAILJS_CONFIG.TEMPLATE_ID,
-        publicKey: EMAILJS_CONFIG.PUBLIC_KEY
-      });
+      console.log('Enviando cotización con EmailJS...');
 
       // Template parameters
-      const handleSubmitQuote = async (e) => {
-        e.preventDefault();
-        setIsSubmitting(true);
-        setSubmitError('');
-      
-        // Validación básica
-        if (!contactName || !contactEmail || !contactPhone || !businessType) {
-          setSubmitError('Por favor completa todos los campos requeridos');
-          setIsSubmitting(false);
-          return;
-        }
-      
-        try {
-          // Preparar lista de servicios seleccionados
-          const selectedServicesList = Object.values(selectedServices).map(service => {
-            let serviceDetails = `${service.title} - ${service.priceRange}`;
-            if (service.pricingType === 'perMinute' && serviceMinutes[service.id]) {
-              serviceDetails += ` (${serviceMinutes[service.id]} minuto${serviceMinutes[service.id] > 1 ? 's' : ''})`;
-            }
-            return serviceDetails;
-          }).join('\n');
-      
-          console.log('Enviando cotización con EmailJS...');
-      
-          // Template parameters
-          const templateParams = {
-            from_name: contactName,
-            from_email: contactEmail,
-            company: businessType,
-            phone: contactPhone,
-            service: 'Cotización Múltiple de Servicios',
-            message: `
-      INFORMACIÓN DEL CLIENTE:
-      Nombre: ${contactName}
-      Empresa: ${businessType}
-      Email: ${contactEmail}
-      Teléfono: ${contactPhone}
-      
-      SERVICIOS COTIZADOS:
-      ${selectedServicesList}
-      
-      RESUMEN FINANCIERO:
-      Subtotal: $${baseTotal.toLocaleString()} MXN
-      Descuento: ${discountPercentage}% (-$${discount.toLocaleString()} MXN)
-      TOTAL: $${finalTotal.toLocaleString()} MXN
-      
-      *Cotización generada desde renderdevo.com*
-            `,
-            to_email: 'hola@renderdevo.com',
-            subject: `Cotización RenderDevo - ${contactName} - $${finalTotal.toLocaleString()} MXN`
-          };
-      
-          // ✅ CORRECTO: Usar USER_ID en lugar de PUBLIC_KEY
-          const result = await emailjs.send(
-            EMAILJS_CONFIG.SERVICE_ID,
-            EMAILJS_CONFIG.TEMPLATE_ID,
-            templateParams,
-            EMAILJS_CONFIG.USER_ID  // ← CAMBIO CLAVE AQUÍ
-          );
-      
-          console.log('✅ Cotización enviada exitosamente:', result);
-      
-          // Éxito - reset form
-          setShowContactForm(false);
-          setSelectedServices({});
-          setContactName('');
-          setContactEmail('');
-          setContactPhone('');
-          setBusinessType('');
-          setShowQuote(false);
-          
-          // Mostrar mensaje de éxito
-          alert('¡Cotización enviada exitosamente! Te contactaremos dentro de 24 horas.');
-          
-        } catch (error) {
-          console.error('❌ Error enviando cotización:', error);
-          setSubmitError('Error al enviar la cotización. Por favor intenta nuevamente.');
-        } finally {
-          setIsSubmitting(false);
-        }
+      const templateParams = {
+        from_name: contactName,
+        from_email: contactEmail,
+        company: businessType,
+        phone: contactPhone,
+        service: 'Cotización Múltiple de Servicios',
+        message: `
+INFORMACIÓN DEL CLIENTE:
+Nombre: ${contactName}
+Empresa: ${businessType}
+Email: ${contactEmail}
+Teléfono: ${contactPhone}
+
+SERVICIOS COTIZADOS:
+${selectedServicesList}
+
+RESUMEN FINANCIERO:
+Subtotal: $${baseTotal.toLocaleString()} MXN
+Descuento: ${discountPercentage}% (-$${discount.toLocaleString()} MXN)
+TOTAL: $${finalTotal.toLocaleString()} MXN
+
+*Cotización generada desde renderdevo.com*
+        `,
+        to_email: 'hola@renderdevo.com',
+        subject: `Cotización RenderDevo - ${contactName} - $${finalTotal.toLocaleString()} MXN`
       };
+
+      // ✅ ENVÍO CORRECTO
+      const result = await emailjs.send(
+        EMAILJS_CONFIG.SERVICE_ID,
+        EMAILJS_CONFIG.TEMPLATE_ID,
+        templateParams,
+        EMAILJS_CONFIG.PUBLIC_KEY
+      );
+
+      console.log('✅ Cotización enviada exitosamente:', result);
+
+      // Éxito - reset form
+      setShowContactForm(false);
+      setSelectedServices({});
+      setContactName('');
+      setContactEmail('');
+      setContactPhone('');
+      setBusinessType('');
+      setShowQuote(false);
       
+      // Mostrar mensaje de éxito
+      alert('¡Cotización enviada exitosamente! Te contactaremos dentro de 24 horas.');
+      
+    } catch (error) {
+      console.error('❌ Error enviando cotización:', error);
+      
+      // ✅ MANEJO DE ERRORES CORREGIDO
       let errorMessage = 'Error al enviar la cotización. ';
       
       if (error.text) {
@@ -289,7 +255,6 @@ const Hero = () => {
 
   const handleStartQuote = () => {
     setShowQuote(true);
-    // Scroll suave al cotizador
     setTimeout(() => {
       const element = document.getElementById('quote-section');
       if (element) {
@@ -298,7 +263,6 @@ const Hero = () => {
     }, 100);
   };
 
-  // ... (el resto del código renderHeroNormal y renderQuoteSection se mantiene igual)
   const renderHeroNormal = () => (
     <div className="hero-content">
       <h1 className="hero-title">
@@ -427,12 +391,12 @@ const Hero = () => {
               {discountPercentage > 0 && (
                 <div className="breakdown-row-minimal discount">
                   <span>Descuento ({discountPercentage}%):</span>
-                  <span>-${discount.toLocaleString()} MXN</span>
+                  <span>-$${discount.toLocaleString()} MXN</span>
                 </div>
               )}
               <div className="breakdown-row-minimal total">
                 <span>Total:</span>
-                <span>${finalTotal.toLocaleString()} MXN</span>
+                <span>$${finalTotal.toLocaleString()} MXN</span>
               </div>
             </div>
 
