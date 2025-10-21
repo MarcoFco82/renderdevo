@@ -1,0 +1,17 @@
+// public/robots.txt
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://renderdevo.com/sitemap.xml
+
+# No indexar páginas de administración
+Disallow: /admin/
+Disallow: /api/
+
+# Optimizado para México
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10

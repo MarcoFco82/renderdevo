@@ -1,10 +1,12 @@
-// app/layout.tsx - VERSIÓN CORREGIDA
+// app/layout.tsx - COMPLETO CON ANALYTICS
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import ParticleBackground from "@/components/ParticleBackground";
 import Header from "@/components/Header";
-import FontOptimization from "@/components/FontOptimization"; // ← Nuevo componente
+import FontOptimization from "@/components/FontOptimization";
+import StructuredData from "@/components/StructuredData";
+import GoogleAnalytics from '@/components/GoogleAnalytics'; // ← NUEVO IMPORT
 
 const inter = Inter({
   subsets: ["latin"],
@@ -12,8 +14,33 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "RenderDevo - Implementación de Estrategias Audiovisuales para presencia en redes de PyMEs",
-  description: "Diseño estratégico, animación funcional y desarrollo web orientado a resultados para PyMEs que buscan destacar en redes y convertir.",
+  metadataBase: new URL('https://renderdevo.com'),
+  title: "RenderDevo - Videos Profesionales y Marketing para PyMEs",
+  description: "Servicios profesionales de video marketing y contenido audiovisual para pequeñas y medianas empresas. Videos corporativos, animaciones para redes y sitios web que convierten.",
+  keywords: ["video marketing", "PyMEs", "contenido redes sociales", "video corporativo", "animaciones", "diseño web", "agencia digital"],
+  authors: [{ name: "RenderDevo" }],
+  openGraph: {
+    type: 'website',
+    locale: 'es_MX',
+    url: 'https://renderdevo.com',
+    siteName: 'RenderDevo',
+    title: 'RenderDevo - Videos Profesionales y Marketing para PyMEs',
+    description: 'Agencia especializada en video marketing y contenido audiovisual para pequeñas y medianas empresas.',
+    images: [
+      {
+        url: '/og_image.png',
+        width: 1200,
+        height: 630,
+        alt: 'RenderDevo - Agencia de Video Marketing para PyMEs',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'RenderDevo - Videos Profesionales para PyMEs',
+    description: 'Especialistas en video marketing y contenido audiovisual para pequeñas empresas.',
+    images: ['/og_image.png'],
+  },
 };
 
 export default function RootLayout({
@@ -24,7 +51,6 @@ export default function RootLayout({
   return (
     <html lang="es" className={inter.variable}>
       <head>
-        {/* PRELOAD OPTIMIZADO - SIN onLoad */}
         <link
           rel="preload"
           href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
@@ -40,7 +66,9 @@ export default function RootLayout({
         />
       </head>
       <body style={{ position: 'relative', margin: 0, padding: 0, overflowX: 'hidden' }}>
-      <FontOptimization />
+        <GoogleAnalytics /> {/* ← NUEVO COMPONENTE AGREGADO */}
+        <StructuredData />
+        <FontOptimization />
         <ParticleBackground />
         <Header />
         <main style={{ position: 'relative', zIndex: 2, minHeight: '100vh' }}>
