@@ -136,12 +136,11 @@ a:hover {
 
 .btn-primary:hover {
   background: linear-gradient(135deg, 
-    #00d4e0 0%, 
-    #e000e0 100%);
-  transform: translateY(-2px);
+    color-mix(in srgb, var(--color-electric-cyan) 80%, black) 0%,
+    color-mix(in srgb, var(--color-neon-magenta) 80%, black) 100%);
   box-shadow: 
-    0 8px 25px rgba(0, 245, 255, 0.5),
-    0 0 30px rgba(255, 0, 255, 0.3);
+    0 8px 25px color-mix(in srgb, var(--color-electric-cyan) 50%, transparent),
+    0 0 30px color-mix(in srgb, var(--color-neon-magenta) 30%, transparent);
 }
 
 .btn-secondary {
@@ -153,9 +152,9 @@ a:hover {
 
 .btn-secondary:hover {
   background: rgba(255, 255, 255, 0.15);
-  border-color: var(--color-neon-magenta);
+  border-color: var(--color-neon-magenta); /* ← USA VARIABLE */
   transform: translateY(-2px);
-  box-shadow: 0 0 15px rgba(255, 0, 255, 0.2);
+  box-shadow: 0 0 15px var(--color-neon-magenta); /* ← USA VARIABLE */
 }
 
 /* 7. CONTENEDORES RESPONSIVE */
@@ -213,7 +212,9 @@ a:hover {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(135deg, #00d4e0 0%, #e000e0 100%);
+  background: linear-gradient(135deg, 
+    color-mix(in srgb, var(--color-electric-cyan) 80%, black) 0%,
+    color-mix(in srgb, var(--color-neon-magenta) 80%, black) 100%);
 }
 
 /* Para Firefox */
@@ -322,8 +323,8 @@ a:hover {
 .arrow-down {
   width: 20px;
   height: 20px;
-  border-right: 2px solid var(--color-electric-cyan);
-  border-bottom: 2px solid var(--color-electric-cyan);
+  border-right: 1px solid var(--color-electric-cyan);
+  border-bottom: 1px solid var(--color-electric-cyan);
   transform: rotate(45deg);
   animation: bounce 2s infinite;
 }
@@ -333,17 +334,13 @@ a:hover {
   50% { transform: rotate(45deg) translateY(-10px); }
 }
 
-/* ===== ELIMINADO: TODOS LOS ESTILOS DEL COTIZADOR ANTIGUO ===== */
-/* Se removieron: .quote-slide, .progress-bar, .slide-content, .service-icon, 
-   .slide-title, .slide-description, .selection-buttons, .btn-yes, .btn-no,
-   .slide-navigation, .btn-back, .btn-restart, .quote-result, .selected-services,
-   .service-item, .total-section, .total-price, .result-actions */
+
 
 /* VALUE PROPOSITION STYLES */
 .value-proposition-horizontal {
-  background: rgba(26, 26, 46, 0.8);
+  background: color-mix(in srgb, var(--color-neural-gray) 80%, transparent);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(0, 245, 255, 0.1);
+  border: 1px solid color-mix(in srgb, var(--color-electric-cyan) 100%, transparent);
   color: var(--color-glacial);
   padding: var(--space-xl) 0;
   margin: var(--space-xl) 0;
@@ -702,7 +699,7 @@ a:hover {
 /* ===== ESTILOS ACTUALES DEL COTIZADOR ===== */
 /* COTIZADOR MINIMAL */
 .quote-section-minimal {
-  background: rgba(26, 26, 46, 0.6);
+  background: color-mix(in srgb, var(--color-neural-gray) 100%, transparent);
   backdrop-filter: blur(10px);
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   padding: 30px 0;
@@ -1053,7 +1050,7 @@ a:hover {
 
 /* FOOTER STYLES */
 .footer {
-  background: rgba(26, 26, 46, 0.8);
+  background: color-mix(in srgb, var(--color-neural-gray) 80%, transparent);
   backdrop-filter: blur(20px);
   color: var(--color-glacial);
   padding: var(--space-xl) 0;
@@ -1160,9 +1157,9 @@ a:hover {
   top: 0;
   left: 0;
   width: 100%;
-  background: rgba(26, 26, 46, 0.85);
+  background: color-mix(in srgb, var(--color-neural-gray) 85%, transparent);
   backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(0, 245, 255, 0.15);
+  border-bottom: 1px solid color-mix(in srgb, var(--color-electric-cyan) 100%, transparent);
   z-index: 1000;
   transition: all 0.3s ease;
 }
@@ -2382,3 +2379,157 @@ a:hover {
   }
 }
 
+/* ===== ESTILOS PARA DECORACIONES DE TEMPORADA ===== */
+.seasonal-decorations {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10000; /* MÁXIMO Z-INDEX */
+}
+
+.header-graphics {
+  position: absolute;
+  top: 70px;
+  left: 0;
+  width: 100%;
+  height: 30px;
+  opacity: 0.6;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 10001;
+}
+
+.header-graphics svg {
+  width: 100%;
+  height: 100%;
+  min-width: 1200px;
+}
+
+.dynamic-decorations-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  border: 4px dashed #00ff00 !important; /* BORDE VERDE MUY VISIBLE */
+  background: rgba(0,255,0,0.1) !important; /* FONDO VERDE CLARO */
+}
+
+/* RESPONSIVE PARA HEADER GRAPHICS */
+@media (max-width: 768px) {
+  .header-graphics {
+    top: 60px;
+    height: 25px;
+  }
+  
+  .header-graphics svg {
+    min-width: 768px;
+    height: 25px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-graphics {
+    top: 55px;
+    height: 20px;
+  }
+  
+  .header-graphics svg {
+    min-width: 480px;
+    height: 20px;
+  }
+}
+
+/* ===== ESTILOS PARA DECORACIONES DE TEMPORADA ===== */
+.seasonal-decorations {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10000; /* MÁXIMO Z-INDEX */
+}
+
+.header-graphics {
+  position: absolute;
+  top: 70px;
+  left: 0;
+  width: 100%;
+  height: 30px;
+  opacity: 0.6;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 10001;
+}
+
+.header-graphics svg {
+  width: 100%;
+  height: 100%;
+  min-width: 1200px;
+}
+
+.dynamic-decorations-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  border: 4px dashed #00ff00 !important; /* BORDE VERDE MUY VISIBLE */
+  background: rgba(0,255,0,0.1) !important; /* FONDO VERDE CLARO */
+}
+
+/* ===== ESTILOS PARA DECORACIONES DINÁMICAS (FALTANTES) ===== */
+.container-decoration {
+  position: absolute !important;
+  pointer-events: none !important;
+  z-index: 9999 !important;
+  opacity: 1 !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  overflow: hidden !important;
+  background: rgba(255, 0, 0, 0.5) !important; /* ROJO FUERTE PARA DEBUG */
+  border: 3px solid blue !important; /* BORDE AZUL GRUESO */
+}
+
+.container-decoration svg {
+  width: 100% !important;
+  height: 100% !important;
+  min-width: 400px !important;
+  min-height: 200px !important;
+}
+
+/* RESPONSIVE PARA HEADER GRAPHICS */
+@media (max-width: 768px) {
+  .header-graphics {
+    top: 60px;
+    height: 25px;
+  }
+  
+  .header-graphics svg {
+    min-width: 768px;
+    height: 25px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-graphics {
+    top: 55px;
+    height: 20px;
+  }
+  
+  .header-graphics svg {
+    min-width: 480px;
+    height: 20px;
+  }
+}

@@ -1,4 +1,4 @@
-// app/layout.tsx - COMPLETO CON ANALYTICS
+// app/layout.tsx - VERSIÓN CORREGIDA (sin wrappers)
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -6,7 +6,10 @@ import ParticleBackground from "@/components/ParticleBackground";
 import Header from "@/components/Header";
 import FontOptimization from "@/components/FontOptimization";
 import StructuredData from "@/components/StructuredData";
-import GoogleAnalytics from '@/components/GoogleAnalytics'; // ← NUEVO IMPORT
+import GoogleAnalytics from '@/components/GoogleAnalytics';
+import SeasonalTheme from '@/components/SeasonalTheme';
+import SeasonalDecorations from '@/components/SeasonalDecorations';
+import SeasonalParticles from '@/components/SeasonalParticles'; 
 
 const inter = Inter({
   subsets: ["latin"],
@@ -66,12 +69,18 @@ export default function RootLayout({
         />
       </head>
       <body style={{ position: 'relative', margin: 0, padding: 0, overflowX: 'hidden' }}>
-        <GoogleAnalytics /> {/* ← NUEVO COMPONENTE AGREGADO */}
+        <GoogleAnalytics />
         <StructuredData />
         <FontOptimization />
+        <SeasonalTheme />
+        
+        {/* COMPONENTES DE FONDO SIN WRAPPERS */}
         <ParticleBackground />
+        <SeasonalParticles />
+        <SeasonalDecorations />
+        
         <Header />
-        <main style={{ position: 'relative', zIndex: 2, minHeight: '100vh' }}>
+        <main style={{ position: 'relative', zIndex: 10, minHeight: '100vh' }}>
           {children}
         </main>
       </body>

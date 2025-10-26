@@ -1,0 +1,21 @@
+<svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad2" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#D3273F;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#F2AC33;stop-opacity:0.1" />
+    </linearGradient>
+  </defs>
+  
+  <path d="M80,0 L80,80 L0,0 Z" fill="url(#grad2)"/>
+  
+  <!-- Calavera decorativa -->
+  <g transform="translate(50,20) scale(0.7)">
+    <circle cx="25" cy="20" r="15" fill="#FFFFFF"/>
+    <circle cx="18" cy="15" r="3" fill="#38263C"/>
+    <circle cx="32" cy="15" r="3" fill="#38263C"/>
+    <path d="M15,25 Q25,32 35,25" stroke="#38263C" stroke-width="2" fill="none"/>
+    <!-- Detalles florales -->
+    <circle cx="10" cy="10" r="4" fill="#F2AC33" opacity="0.8"/>
+    <circle cx="40" cy="10" r="4" fill="#F2AC33" opacity="0.8"/>
+  </g>
+</svg>

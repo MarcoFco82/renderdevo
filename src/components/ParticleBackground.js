@@ -1,13 +1,42 @@
 // src/components/ParticleBackground.js
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react'; // ← useState agregado
 import './ParticleBackground.css';
 
 const ParticleBackground = () => {
   const canvasRef = useRef(null);
+  const [colors, setColors] = useState({}); // ← Estado para colores dinámicos
+
+  // OBTENER COLORES DE VARIABLES CSS
+  useEffect(() => {
+    const getCSSColors = () => {
+      const root = document.documentElement;
+      return {
+        primary: getComputedStyle(root).getPropertyValue('--color-electric-cyan').trim() || '#00f5ff',
+        secondary: getComputedStyle(root).getPropertyValue('--color-neon-magenta').trim() || '#ff00ff',
+        tertiary: getComputedStyle(root).getPropertyValue('--color-holographic').trim() || '#8a2be2'
+      };
+    };
+
+    setColors(getCSSColors());
+
+    // Escuchar cambios en las variables CSS
+    const observer = new MutationObserver(() => {
+      setColors(getCSSColors());
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['style']
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
+    if (!colors.primary || !canvasRef.current) return; // ← Esperar a tener colores
+
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
     let animationFrameId;
@@ -18,14 +47,14 @@ const ParticleBackground = () => {
 
     // CONFIGURACIÓN - GEOMETRÍAS FUTURISTAS (RESPONSIVE)
     const particleConfig = {
-      count: isMobile ? 4 : 8, // ← SOLO ESTE CAMBIO: menos partículas en móvil
-      maxSize: isMobile ? 600 : 1135, // ← SOLO ESTE CAMBIO: más pequeñas en móvil
-      minSize: isMobile ? 300 : 2015, // ← SOLO ESTE CAMBIO: más pequeñas en móvil
+      count: isMobile ? 4 : 8,
+      maxSize: isMobile ? 600 : 1135,
+      minSize: isMobile ? 300 : 2015,
       
-      // COLORES DE LA PALETA (MISMO QUE ORIGINAL)
-      primaryColor: '#3d6eff',    // Cian eléctrico
-      secondaryColor: '#2e2d5f',  // Magenta neón
-      tertiaryColor: '#ff5c8d',   // Púrpura holográfico
+      // ✅ COLORES DINÁMICOS - USAR LOS DE CSS
+      primaryColor: colors.primary,
+      secondaryColor: colors.secondary,
+      tertiaryColor: colors.tertiary,
       
       // MOVIMIENTO EN PLANOS 3D (MISMO QUE ORIGINAL)
       baseSpeed: 0.2,
@@ -94,36 +123,32 @@ const ParticleBackground = () => {
         this.currentScale = 0.8 + Math.sin(this.pulsePhase * 1.5) * 0.2;
       
         // FADE IN/FADE OUT CUANDO ESTÁ CERCA DE LOS BORDES
-        const fadeMargin = 200; // Márgenes más grandes para fade suave
+        const fadeMargin = 200;
         const canvasWidth = canvas.width;
         const canvasHeight = canvas.height;
         
         // CALCULAR FADE EN BORDES
         let edgeFade = 1.0;
         
-        // FADE EN BORDES IZQUIERDO Y DERECHO
         if (this.x < fadeMargin) {
           edgeFade = this.x / fadeMargin;
         } else if (this.x > canvasWidth - fadeMargin) {
           edgeFade = (canvasWidth - this.x) / fadeMargin;
         }
         
-        // FADE EN BORDES SUPERIOR E INFERIOR
         if (this.y < fadeMargin) {
           edgeFade = Math.min(edgeFade, this.y / fadeMargin);
         } else if (this.y > canvasHeight - fadeMargin) {
           edgeFade = Math.min(edgeFade, (canvasHeight - this.y) / fadeMargin);
         }
         
-        // APLICAR FADE A LA OPACIDAD FINAL
         this.currentOpacity *= edgeFade;
       
-        // REINICIAR SI SALE COMPLETAMENTE DE PANTALLA (CON FADE COMPLETO)
+        // REINICIAR SI SALE COMPLETAMENTE DE PANTALLA
         const resetMargin = 50;
         if (this.x < -resetMargin || this.x > canvasWidth + resetMargin || 
             this.y < -resetMargin || this.y > canvasHeight + resetMargin) {
           this.reset();
-          // INICIAR CON FADE IN
           this.fadeInProgress = true;
           this.fadeValue = 0;
         }
@@ -140,15 +165,14 @@ const ParticleBackground = () => {
         ctx.strokeStyle = this.color;
         ctx.lineWidth = 1.5;
 
-        // DIBUJAR FORMA GEOMÉTRICA SEGÚN TIPO
         switch(this.shapeType) {
-          case 0: // TRIÁNGULO
+          case 0:
             this.drawTriangle();
             break;
-          case 1: // ROMBO
+          case 1:
             this.drawDiamond();
             break;
-          case 2: // HEXÁGONO
+          case 2:
             this.drawHexagon();
             break;
         }
@@ -210,7 +234,6 @@ const ParticleBackground = () => {
     const animate = () => {
       const currentTime = Date.now() - startTime;
       
-      // FONDO CON DEGRADADO SUTIL
       const gradient = ctx.createRadialGradient(
         canvas.width / 2, canvas.height / 2, 0,
         canvas.width / 2, canvas.height / 2, Math.max(canvas.width, canvas.height) / 2
@@ -238,7 +261,7 @@ const ParticleBackground = () => {
       cancelAnimationFrame(animationFrameId);
       window.removeEventListener('resize', resizeCanvas);
     };
-  }, []);
+  }, [colors]); // ← Ejecutar cuando colors cambie
 
   return (
     <canvas

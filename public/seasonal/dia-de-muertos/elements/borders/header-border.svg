@@ -1,0 +1,14 @@
+<svg width="1200" height="30" viewBox="0 0 1200 30" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+  <defs>
+    <pattern id="papelPicado" x="0" y="0" width="100" height="30" patternUnits="userSpaceOnUse">
+      <!-- Base del papel picado -->
+      <path d="M0,15 Q25,0 50,15 T100,15 L100,30 L0,30 Z" fill="#D3273F" opacity="0.6"/>
+      <!-- Agujeros decorativos -->
+      <circle cx="20" cy="10" r="3" fill="#032839"/>
+      <circle cx="40" cy="8" r="2" fill="#F2AC33"/>
+      <circle cx="60" cy="12" r="2.5" fill="#FFFFFF"/>
+      <circle cx="80" cy="10" r="3" fill="#032839"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="30" fill="url(#papelPicado)"/>
+</svg>

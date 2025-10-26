@@ -1,0 +1,16 @@
+<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+  <g transform="translate(20,20)">
+    <!-- Alas -->
+    <path d="M-12,-5 C-18,-12 -8,-18 0,-12 C8,-18 18,-12 12,-5 C18,8 12,18 0,20 C-12,18 -18,8 -12,-5Z" 
+          fill="#F2AC33" stroke="#D3273F" stroke-width="0.5"/>
+    
+    <!-- Cuerpo -->
+    <ellipse cx="0" cy="0" rx="2" ry="8" fill="#38263C"/>
+    
+    <!-- Detalles de alas -->
+    <circle cx="-6" cy="-6" r="1.5" fill="#D3273F"/>
+    <circle cx="6" cy="-6" r="1.5" fill="#D3273F"/>
+    <circle cx="-8" cy="4" r="1" fill="#FFFFFF"/>
+    <circle cx="8" cy="4" r="1" fill="#FFFFFF"/>
+  </g>
+</svg>
