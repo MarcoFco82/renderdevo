@@ -77,8 +77,8 @@ const Hero = () => {
       title: 'Sitio Web Para tu Negocio',
       description: 'Página corporativa con 4-8 secciones, responsive y optimizada',
       icon: '🌐',
-      price: 6000,
-      priceRange: '$6,000 - $12,000 MXN',
+      price: 8000,
+      priceRange: '$8,000 - $12,000 MXN',
       pricingType: 'fixed'
     },
     {
@@ -104,8 +104,8 @@ const Hero = () => {
       title: 'Intros para Reels',
       description: 'Animaciones de 5-8s para videos de redes',
       icon: '⚡',
-      price: 2000,
-      priceRange: '$2,000 - $4,000 MXN',
+      price: 3000,
+      priceRange: '$3,000 - $4,000 MXN',
       pricingType: 'fixed'
     },
     {
@@ -122,8 +122,8 @@ const Hero = () => {
       title: 'Animación de presentación Comercial',
       description: 'Presentación comercial de tu negocio de 1-5 minutos',
       icon: '📽️',
-      price: 3000,
-      priceRange: '$3,000 MXN por minuto',
+      price: 4000,
+      priceRange: '$4,000 MXN por minuto',
       pricingType: 'perMinute'
     },
     {
