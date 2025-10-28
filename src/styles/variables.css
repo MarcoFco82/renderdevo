@@ -1,0 +1,44 @@
+/* styles/variables.css - VERSIÓN DINÁMICA */
+:root {
+  /* PALETA PRINCIPAL - ESTAS SERÁN SOBREESCRITAS POR SeasonalTheme */
+  --color-deep-space: #0a0a12;
+  --color-neural-gray: #1a1a2e;
+  --color-electric-cyan: #00f5ff;
+  --color-neon-magenta: #ff00ff;
+  --color-holographic: #8a2be2;
+  --color-glacial: #ffffff;
+  --color-mist: #ffffff;
+  
+  /* FUENTES FUTURISTAS */
+  --font-title: 'Bebas Neue', 'Impact', 'Franklin Gothic Bold', 'Arial Black', sans-serif;
+  --font-heading: 'Plus Jakarta Sans', sans-serif;
+  --font-body: 'Plus Jakarta Sans', sans-serif;
+  
+  /* ESPACIADO */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 2rem;
+  --space-lg: 4rem;
+  --space-xl: 8rem;
+  
+  /* TAMAÑOS DE TEXTO */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --space-lg: 2rem;
+    --space-xl: 4rem;
+    --text-5xl: 2.5rem;
+    --text-4xl: 2rem;
+    --text-3xl: 1.5rem;
+  }
+}

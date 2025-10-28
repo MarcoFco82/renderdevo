@@ -1,0 +1,82 @@
+/* styles/utilities.css */
+/* CONTENEDORES RESPONSIVE */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--space-md);
+  }
+  
+  @media (max-width: 768px) {
+    .container {
+      padding: 0 var(--space-sm);
+    }
+  }
+  
+  /* UTILIDADES DE TEXTO */
+  .text-center { text-align: center; }
+  .text-left { text-align: left; }
+  .text-right { text-align: right; }
+  
+  /* UTILIDADES FLEX */
+  .flex { display: flex; }
+  .flex-col { flex-direction: column; }
+  .items-center { align-items: center; }
+  .justify-center { justify-content: center; }
+  .justify-between { justify-content: space-between; }
+  
+  /* UTILIDADES DE TAMAÑO */
+  .w-full { width: 100%; }
+  .h-full { height: 100%; }
+  .min-h-screen { min-height: 100vh; }
+  
+  /* BOTONES BASE */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-xs) var(--space-md);
+    border: none;
+    border-radius: 12px;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: var(--text-base);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .btn-primary {
+    background: linear-gradient(135deg, 
+      var(--color-electric-cyan) 0%, 
+      var(--color-neon-magenta) 100%);
+    color: var(--color-deep-space) !important;
+    box-shadow: 
+      0 4px 15px rgba(0, 245, 255, 0.3),
+      0 0 20px rgba(255, 0, 255, 0.2);
+  }
+  
+  .btn-primary:hover {
+    background: linear-gradient(135deg, 
+      color-mix(in srgb, var(--color-electric-cyan) 80%, black) 0%,
+      color-mix(in srgb, var(--color-neon-magenta) 80%, black) 100%);
+    box-shadow: 
+      0 8px 25px color-mix(in srgb, var(--color-electric-cyan) 50%, transparent),
+      0 0 30px color-mix(in srgb, var(--color-neon-magenta) 30%, transparent);
+  }
+  
+  .btn-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--color-glacial);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+  }
+  
+  .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: var(--color-neon-magenta);
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px var(--color-neon-magenta);
+  }

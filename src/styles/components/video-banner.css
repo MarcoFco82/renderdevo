@@ -1,0 +1,131 @@
+/* styles/components/video-banner.css */
+/* ===== BANNERS MP4 RESPONSIVE ===== */
+.video-banner-container {
+    position: relative;
+    width: 100%;
+    height: var(--desktop-height, 250px);
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--color-neural-gray) 0%, var(--color-deep-space) 100%);
+    border-radius: 12px;
+    margin: var(--space-md) 0;
+  }
+  
+  .video-banner {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: opacity 0.5s ease;
+  }
+  
+  .video-banner.loading {
+    opacity: 0;
+  }
+  
+  .video-banner.loaded {
+    opacity: 1;
+  }
+  
+  .video-banner.error {
+    display: none;
+  }
+  
+  /* Overlay para mejor legibilidad si hay texto */
+  .video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      135deg,
+      rgba(10, 10, 18, 0.3) 0%,
+      transparent 50%,
+      rgba(10, 10, 18, 0.3) 100%
+    );
+    pointer-events: none;
+  }
+  
+  /* Estados de carga y error */
+  .video-loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(26, 26, 46, 0.8);
+    color: var(--color-mist);
+    gap: var(--space-sm);
+  }
+  
+  .video-loading .loading-spinner {
+    width: 30px;
+    height: 30px;
+    border: 3px solid transparent;
+    border-top: 3px solid var(--color-electric-cyan);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  
+  .video-fallback {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--color-electric-cyan) 0%, var(--color-neon-magenta) 100%);
+    color: var(--color-deep-space);
+  }
+  
+  .fallback-content {
+    text-align: center;
+    padding: var(--space-md);
+  }
+  
+  .fallback-content span {
+    font-size: 2rem;
+    margin-bottom: var(--space-sm);
+    display: block;
+  }
+  
+  .fallback-content p {
+    font-weight: 600;
+    margin: 0;
+    font-size: var(--text-lg);
+  }
+  
+  /* Efectos hover opcionales */
+  .video-banner-container:hover .video-banner {
+    transform: scale(1.02);
+    transition: transform 0.3s ease;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .video-banner-container {
+      height: var(--mobile-height, 180px);
+      border-radius: 8px;
+      margin: var(--space-sm) 0;
+    }
+    
+    .fallback-content span {
+      font-size: 1.5rem;
+    }
+    
+    .fallback-content p {
+      font-size: var(--text-base);
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .video-banner-container {
+      height: var(--mobile-height, 150px);
+    }
+  }

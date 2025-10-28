@@ -1,4 +1,4 @@
-/* app/globals.css - VERSIÓN OPTIMIZADA (SOLO IMPORTS) */
+/* src/app/globals-new.css - CONTENIDO COMPLETO */
 /* 1. IMPORTAR FUENTES */
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
 
@@ -7,7 +7,7 @@
 @import '../styles/variables.css';
 @import '../styles/utilities.css';
 
-/* 3. IMPORTAR COMPONENTES */
+/* 3. IMPORTAR COMPONENTES (los crearemos después) */
 @import '../styles/components/header.css';
 @import '../styles/components/hero.css';
 @import '../styles/components/value-proposition.css';
@@ -16,6 +16,6 @@
 @import '../styles/components/quote-generator.css';
 @import '../styles/components/video-banner.css';
 
-/* 4. IMPORTAR SECCIONES */
+/* 4. IMPORTAR SECCIONES (los crearemos después) */
 @import '../styles/sections/contact.css';
 @import '../styles/sections/legal.css';

@@ -81,29 +81,16 @@ const PortfolioShowcase = () => {
     }
   ];
 
-  // FUNCIÓN PARA COTIZAR PROYECTO SIMILAR
+  // FUNCIÓN SIMPLIFICADA - SOLO LLEVAR AL COTIZADOR
   const handleSimilarProjectQuote = (project) => {
-    // Mapear categoría del proyecto a servicios del cotizador
-    const serviceMapping = {
-      'web': ['sitioWeb', 'landingPage'],
-      'videos': ['animacionesRedes', 'introsReels', 'presentacionAnimada'],
-      'presentations': ['presentacionAnimada', 'presentacionInteractiva'],
-      'social': ['animacionesRedes', 'introsReels'],
-      'infographics': ['animacionesRedes']
-    };
-
-    // Obtener servicios relacionados
-    const relatedServices = serviceMapping[project.category] || [];
-    
-    // Guardar en sessionStorage para el cotizador
-    sessionStorage.setItem('preselectedServices', JSON.stringify(relatedServices));
+    // Solo guardar referencia para mostrar contexto
     sessionStorage.setItem('projectReference', project.title);
     
     // Cerrar modal
     setSelectedProject(null);
     
-    // Forzar recarga de la página para que Hero.js cargue los servicios
-    window.location.reload();
+    // Navegar directamente a la página principal
+    window.location.href = '/';
   };
 
   // FILTRAR PROYECTOS
@@ -197,7 +184,7 @@ const PortfolioShowcase = () => {
         </div>
       </section>
 
-      {/* MODAL DE DETALLE - VERSIÓN QUE SÍ FUNCIONA */}
+      {/* MODAL DE DETALLE */}
       {selectedProject && (
         <div className="project-modal">
           <div 
@@ -257,7 +244,7 @@ const PortfolioShowcase = () => {
           left: 0;
           width: 100%;
           height: 100%;
-          z-index: 100; /* POR ENCIMA DEL CONTENIDO */
+          z-index: 100;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -270,12 +257,12 @@ const PortfolioShowcase = () => {
           left: 0;
           width: 100%;
           height: 100%;
-          background: rgba(10, 10, 18, 0.1); /* CASI INVISIBLE */
+          background: rgba(10, 10, 18, 0.1);
           z-index: 1;
         }
 
         .modal-content {
-          background: rgba(26, 26, 46, 0.85); /* TRANSLÚCIDO */
+          background: rgba(26, 26, 46, 0.85);
           backdrop-filter: blur(8px);
           border: 1px solid rgba(0, 245, 255, 0.3);
           border-radius: 16px;
