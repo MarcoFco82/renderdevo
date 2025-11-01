@@ -1,5 +1,5 @@
 // lib/seasonal-config.js
-export const CURRENT_SEASON = 'halloween'; // ← CAMBIA A 'christmas' PARA PROBAR
+export const CURRENT_SEASON = 'halloween'; // ← CAMBIAS SOLO ESTA LÍNEA
 
 export const COLOR_PALETTES = {
   default: {
@@ -13,24 +13,14 @@ export const COLOR_PALETTES = {
     mist: '#ffffff'
   },
   halloween: {
-    // PALETA HALLOWEEN
+    // PALETA HALLOWEEN (PRUEBA)
     deepSpace: '#032839',
-    neuralGray: '#38263C',
+    neuralGray: '##38263C',
     electricCyan: '#F2AC33',
     neonMagenta: '#D3273F',
     holographic: '#D22840',
     glacial: '#ffffff',
     mist: '#f8f8f8'
-  },
-  christmas: {
-    // 🎄 PALETA NAVIDEÑA - ROJOS, VERDES, DORADOS
-    deepSpace: '#0C1A1A',        // Verde oscuro navideño
-    neuralGray: '#1E2A2A',       // Verde grisáceo
-    electricCyan: '#FF6B6B',     // Rojo navideño vibrante
-    neonMagenta: '#2ECC71',      // Verde esmeralda
-    holographic: '#F1C40F',      // Dorado navideño
-    glacial: '#FFFFFF',          // Blanco nieve
-    mist: '#ECF0F1'              // Blanco humo
   }
 };
 

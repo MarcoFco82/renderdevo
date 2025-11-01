@@ -1,7 +1,7 @@
 // app/layout.tsx - VERSIÓN CORREGIDA (sin wrappers)
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
+import "./globals_new.css";
 import ParticleBackground from "@/components/ParticleBackground";
 import Header from "@/components/Header";
 import FontOptimization from "@/components/FontOptimization";

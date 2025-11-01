@@ -1,5 +1,5 @@
 // app/page.tsx - IMPORTS CORRECTOS
-import Hero from '@/components/Hero/Hero';
+import Hero from '@/components/Hero';
 import ValueProposition from '@/components/ValueProposition';
 import PortfolioShowcase from '@/components/PortfolioShowcase';
 import Footer from '@/components/Footer';
