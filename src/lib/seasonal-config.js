@@ -1,5 +1,5 @@
 // lib/seasonal-config.js
-export const CURRENT_SEASON = 'halloween'; // ← CAMBIAS SOLO ESTA LÍNEA
+export const CURRENT_SEASON = 'default'; // ← CAMBIAS SOLO ESTA LÍNEA
 
 export const COLOR_PALETTES = {
   default: {

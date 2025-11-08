@@ -5,85 +5,23 @@ const PortfolioShowcase = () => {
   const [activeFilter, setActiveFilter] = useState('all');
   const [selectedProject, setSelectedProject] = useState(null);
 
-  // DATOS ACTUALIZADOS - SERVICIOS PARA PyMEs
+  // SOLO EL PRIMER PROYECTO - PRESENTACIÓN PROFESIONAL
   const portfolioItems = [
     {
       id: 1,
-      title: 'Sitio Web - Restaurante Gourmet',
-      category: 'web',
-      description: 'Landing page elegante con reservaciones online y menú digital.',
-      image: '/portfolio/web-restaurant-placeholder.jpg',
-      video: null,
-      tags: ['Web Design', 'Reservaciones', 'Responsive']
-    },
-    {
-      id: 2,
-      title: 'Presentación Ejecutiva - Startup Tech',
+      title: 'Presentación Profesional - Diseñador Motion',
       category: 'presentations',
-      description: 'Deck de inversión profesional para ronda de financiamiento.',
+      description: 'Presentación corporativa de alto impacto para diseñador motion graphics, combinando elegancia visual con narrativa fluida para destacar habilidades creativas y experiencia profesional.',
       image: null,
-      video: '/portfolio/presentation-tech-placeholder.jpg',
-      tags: ['Presentaciones', 'Pitch Deck', 'Corporativo']
-    },
-    {
-      id: 3,
-      title: 'E-commerce - Moda Local',
-      category: 'web',
-      description: 'Tienda online con catálogo amplio y proceso de checkout optimizado.',
-      image: '/portfolio/web-fashion-placeholder.jpg',
-      video: null,
-      tags: ['E-commerce', 'Tienda Online', 'Marketing']
-    },
-    {
-      id: 4,
-      title: 'Video Corporativo - Consultoría',
-      category: 'videos',
-      description: 'Video institucional para página web y redes sociales.',
-      image: null,
-      video: '/portfolio/video-corporate-placeholder.jpg',
-      tags: ['Video', 'Corporativo', 'Branding']
-    },
-    {
-      id: 5,
-      title: 'Contenido Redes - Cafetería Artesanal',
-      category: 'social',
-      description: 'Serie de posts y stories para Instagram y Facebook.',
-      image: '/portfolio/social-cafe-placeholder.jpg',
-      video: null,
-      tags: ['Redes Sociales', 'Instagram', 'Contenido']
-    },
-    {
-      id: 6,
-      title: 'Infográfico - Consultora Financiera',
-      category: 'infographics',
-      description: 'Infográficos explicativos para blog y redes sociales.',
-      image: '/portfolio/infographic-finance-placeholder.jpg',
-      video: null,
-      tags: ['Infográficos', 'Educativo', 'Visual']
-    },
-    {
-      id: 7,
-      title: 'Video Tutorial - Software SaaS',
-      category: 'videos',
-      description: 'Video demostrativo para onboarding de usuarios.',
-      image: null,
-      video: '/portfolio/video-tutorial-placeholder.jpg',
-      tags: ['Tutorial', 'Educativo', 'Producto']
-    },
-    {
-      id: 8,
-      title: 'Presentación - Resultados Trimestrales',
-      category: 'presentations',
-      description: 'Deck ejecutivo para junta directiva y stakeholders.',
-      image: '/portfolio/presentation-results-placeholder.jpg',
-      video: null,
-      tags: ['Ejecutivo', 'Reportes', 'Corporativo']
+      video: 'https://vimeo.com/1115649422',
+      tags: ['Motion Graphics', 'Presentación Corporativa', 'Branding Personal', 'Video Profesional'],
+      price: '$18,000 MXN',
+      complexity: 'Media-Alta'
     }
   ];
 
   // FUNCIÓN PARA COTIZAR PROYECTO SIMILAR
   const handleSimilarProjectQuote = (project) => {
-    // Mapear categoría del proyecto a servicios del cotizador
     const serviceMapping = {
       'web': ['sitioWeb', 'landingPage'],
       'videos': ['animacionesRedes', 'introsReels', 'presentacionAnimada'],
@@ -92,21 +30,15 @@ const PortfolioShowcase = () => {
       'infographics': ['animacionesRedes']
     };
 
-    // Obtener servicios relacionados
     const relatedServices = serviceMapping[project.category] || [];
     
-    // Guardar en sessionStorage para el cotizador
     sessionStorage.setItem('preselectedServices', JSON.stringify(relatedServices));
     sessionStorage.setItem('projectReference', project.title);
     
-    // Cerrar modal
     setSelectedProject(null);
-    
-    // Forzar recarga de la página para que Hero.js cargue los servicios
     window.location.reload();
   };
 
-  // FILTRAR PROYECTOS
   const filteredItems = activeFilter === 'all' 
     ? portfolioItems 
     : portfolioItems.filter(item => item.category === activeFilter);
@@ -115,13 +47,11 @@ const PortfolioShowcase = () => {
     <>
       <section id="portfolio" className="portfolio-showcase">
         <div className="container">
-          {/* HEADER ACTUALIZADO */}
           <div className="value-header-white">
             <h2>Proyectos con Resultados Comprobados</h2>
             <p>Ejemplos reales de cómo ayudamos a negocios a mejorar su presencia digital</p>
           </div>
 
-          {/* FILTROS ACTUALIZADOS */}
           <div className="portfolio-filters">
             <button 
               className={`filter-btn ${activeFilter === 'all' ? 'active' : ''}`}
@@ -161,7 +91,6 @@ const PortfolioShowcase = () => {
             </button>
           </div>
 
-          {/* GRID DE PROYECTOS */}
           <div className="portfolio-grid">
             {filteredItems.map((project) => (
               <div 
@@ -197,7 +126,6 @@ const PortfolioShowcase = () => {
         </div>
       </section>
 
-      {/* MODAL DE DETALLE - VERSIÓN QUE SÍ FUNCIONA */}
       {selectedProject && (
         <div className="project-modal">
           <div 
@@ -215,9 +143,15 @@ const PortfolioShowcase = () => {
             
             <div className="modal-media">
               {selectedProject.video ? (
-                <div className="video-placeholder large">
-                  <div className="play-icon">▶</div>
-                  <span>Video Preview: {selectedProject.title}</span>
+                <div className="video-wrapper">
+                  <iframe
+                    src={`https://player.vimeo.com/video/${selectedProject.video.split('/').pop().split('?')[0]}?title=0&byline=0&portrait=0`}
+                    width="100%"
+                    height="100%"
+                    frameBorder="0"
+                    allow="autoplay; fullscreen; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
                 </div>
               ) : (
                 <div className="image-placeholder large">
@@ -229,6 +163,12 @@ const PortfolioShowcase = () => {
             <div className="modal-info">
               <h3>{selectedProject.title}</h3>
               <p>{selectedProject.description}</p>
+              
+              <div className="project-meta">
+                <span className="price-tag">{selectedProject.price}</span>
+                <span className="complexity-badge">{selectedProject.complexity}</span>
+              </div>
+              
               <div className="modal-tags">
                 {selectedProject.tags.map((tag, index) => (
                   <span key={index} className="modal-tag">{tag}</span>
@@ -257,11 +197,11 @@ const PortfolioShowcase = () => {
           left: 0;
           width: 100%;
           height: 100%;
-          z-index: 100; /* POR ENCIMA DEL CONTENIDO */
+          z-index: 10000; /* MUCHO MÁS ALTO PARA ESTAR POR ENCIMA DEL MENÚ */
           display: flex;
           align-items: center;
           justify-content: center;
-          padding: 20px;
+          padding: 10px;
         }
 
         .modal-backdrop {
@@ -270,21 +210,21 @@ const PortfolioShowcase = () => {
           left: 0;
           width: 100%;
           height: 100%;
-          background: rgba(10, 10, 18, 0.1); /* CASI INVISIBLE */
+          background: rgba(10, 10, 18, 0.95); /* MÁS OSCURO PARA MEJOR CONTRASTE */
           z-index: 1;
         }
 
         .modal-content {
-          background: rgba(26, 26, 46, 0.85); /* TRANSLÚCIDO */
-          backdrop-filter: blur(8px);
-          border: 1px solid rgba(0, 245, 255, 0.3);
-          border-radius: 16px;
-          max-width: 900px;
+          background: rgba(26, 26, 46, 0.95);
+          backdrop-filter: blur(12px);
+          border: 1px solid rgba(0, 245, 255, 0.4);
+          border-radius: 12px;
+          max-width: 500px; /* MUCHO MÁS PEQUEÑO EN MÓVIL */
           width: 100%;
-          max-height: 90vh;
+          max-height: 85vh; /* REDUCIDO PARA DEJAR ESPACIO */
           overflow-y: auto;
           position: relative;
-          box-shadow: 0 20px 60px rgba(0, 245, 255, 0.3);
+          box-shadow: 0 20px 60px rgba(0, 245, 255, 0.4);
           animation: modalSlideUp 0.3s ease forwards;
           z-index: 2;
         }
@@ -302,129 +242,213 @@ const PortfolioShowcase = () => {
 
         .modal-close {
           position: absolute;
-          top: 20px;
-          right: 20px;
-          background: rgba(255, 255, 255, 0.1);
-          border: 1px solid rgba(255, 255, 255, 0.2);
+          top: 15px;
+          right: 15px;
+          background: rgba(255, 0, 255, 0.3);
+          border: 1px solid var(--color-neon-magenta);
           border-radius: 50%;
-          width: 40px;
-          height: 40px;
+          width: 35px;
+          height: 35px;
           color: var(--color-glacial);
-          font-size: 1.5rem;
+          font-size: 1.25rem;
           cursor: pointer;
           z-index: 10001;
           display: flex;
           align-items: center;
           justify-content: center;
           transition: all 0.3s ease;
+          font-weight: bold;
         }
 
         .modal-close:hover {
-          background: rgba(255, 0, 255, 0.3);
-          border-color: var(--color-neon-magenta);
+          background: rgba(255, 0, 255, 0.5);
           transform: scale(1.1);
         }
 
         .modal-media {
-          height: 300px;
-          background: linear-gradient(135deg, var(--color-electric-cyan) 0%, var(--color-neon-magenta) 100%);
+          height: 200px; /* REDUCIDO PARA MÓVIL */
+          background: #000;
           display: flex;
           align-items: center;
           justify-content: center;
-          border-radius: 16px 16px 0 0;
+          border-radius: 12px 12px 0 0;
           position: relative;
           overflow: hidden;
         }
 
+        .video-wrapper {
+          width: 100%;
+          height: 100%;
+        }
+
+        .video-wrapper iframe {
+          width: 100%;
+          height: 100%;
+        }
+
         .modal-info {
-          padding: 2rem;
+          padding: 1.5rem;
         }
 
         .modal-info h3 {
-          font-size: var(--text-3xl);
+          font-size: 1.25rem; /* REDUCIDO */
           font-family: var(--font-title);
           color: var(--color-glacial);
-          margin-bottom: 1rem;
+          margin-bottom: 0.75rem;
           font-weight: 600;
+          line-height: 1.3;
         }
 
         .modal-info p {
           color: var(--color-mist);
-          line-height: 1.6;
-          margin-bottom: 1.5rem;
-          font-size: var(--text-lg);
+          line-height: 1.4;
+          margin-bottom: 1rem;
+          font-size: 0.875rem; /* MUCHO MÁS PEQUEÑO */
+        }
+
+        .project-meta {
+          display: flex;
+          gap: 0.75rem;
+          margin-bottom: 1rem;
+          align-items: center;
+          flex-wrap: wrap;
+        }
+
+        .price-tag {
+          background: rgba(0, 245, 255, 0.15);
+          color: var(--color-electric-cyan);
+          padding: 0.4rem 0.8rem;
+          border-radius: 16px;
+          font-size: 0.8rem;
+          font-weight: 600;
+          border: 1px solid rgba(0, 245, 255, 0.4);
+        }
+
+        .complexity-badge {
+          background: rgba(255, 0, 255, 0.15);
+          color: var(--color-neon-magenta);
+          padding: 0.4rem 0.8rem;
+          border-radius: 16px;
+          font-size: 0.8rem;
+          font-weight: 600;
+          border: 1px solid rgba(255, 0, 255, 0.4);
         }
 
         .modal-tags {
           display: flex;
           flex-wrap: wrap;
-          gap: 0.5rem;
-          margin-bottom: 2rem;
+          gap: 0.4rem;
+          margin-bottom: 1.5rem;
         }
 
         .modal-tag {
-          background: rgba(0, 245, 255, 0.15);
-          color: var(--color-electric-cyan);
-          padding: 0.5rem 1rem;
-          border-radius: 20px;
-          font-size: var(--text-sm);
+          background: rgba(138, 43, 226, 0.15);
+          color: var(--color-holographic);
+          padding: 0.35rem 0.7rem;
+          border-radius: 16px;
+          font-size: 0.75rem;
           font-weight: 500;
-          border: 1px solid rgba(0, 245, 255, 0.3);
+          border: 1px solid rgba(138, 43, 226, 0.3);
         }
 
         .modal-info .btn {
           width: 100%;
-          padding: 1rem 2rem;
-          font-size: var(--text-lg);
+          padding: 0.875rem 1.5rem;
+          font-size: 0.9rem;
+          border-radius: 8px;
         }
 
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-          .project-modal {
-            padding: 10px;
-          }
-          
+        /* VERSIÓN DESKTOP - MANTIENE TAMAÑOS ORIGINALES */
+        @media (min-width: 769px) {
           .modal-content {
-            max-height: 95vh;
+            max-width: 900px;
+            max-height: 90vh;
           }
-          
+
           .modal-media {
-            height: 200px;
+            height: 400px;
           }
-          
-          .modal-info {
-            padding: 1.5rem;
-          }
-          
+
           .modal-info h3 {
-            font-size: var(--text-2xl);
+            font-size: var(--text-3xl);
           }
-          
+
+          .modal-info p {
+            font-size: var(--text-lg);
+            line-height: 1.6;
+          }
+
           .modal-close {
-            top: 10px;
-            right: 10px;
-            width: 35px;
-            height: 35px;
-            font-size: 1.25rem;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            font-size: 1.5rem;
           }
         }
 
+        /* VERSIÓN MÓVIL PEQUEÑA - AÚN MÁS COMPACTO */
         @media (max-width: 480px) {
-          .modal-media {
-            height: 150px;
+          .project-modal {
+            padding: 5px;
           }
-          
+
+          .modal-content {
+            max-width: 95%;
+            max-height: 80vh;
+            border-radius: 10px;
+          }
+
+          .modal-media {
+            height: 150px; /* AÚN MÁS PEQUEÑO */
+          }
+
           .modal-info {
             padding: 1rem;
           }
-          
-          .modal-tags {
-            gap: 0.25rem;
+
+          .modal-info h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
           }
-          
+
+          .modal-info p {
+            font-size: 0.8rem;
+            margin-bottom: 0.75rem;
+          }
+
+          .project-meta {
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+          }
+
+          .price-tag,
+          .complexity-badge {
+            padding: 0.3rem 0.6rem;
+            font-size: 0.75rem;
+          }
+
+          .modal-tags {
+            gap: 0.3rem;
+            margin-bottom: 1rem;
+          }
+
           .modal-tag {
-            padding: 0.375rem 0.75rem;
-            font-size: var(--text-xs);
+            padding: 0.25rem 0.5rem;
+            font-size: 0.7rem;
+          }
+
+          .modal-info .btn {
+            padding: 0.75rem 1rem;
+            font-size: 0.85rem;
+          }
+
+          .modal-close {
+            top: 10px;
+            right: 10px;
+            width: 30px;
+            height: 30px;
+            font-size: 1rem;
           }
         }
       `}</style>

@@ -1,24 +1,25 @@
-// components/SeasonalDecorations.js - CON GLOW PERrón
+// components/SeasonalDecorations.js - MINIMAL TECH TRIANGLES ANIMATED
 'use client';
 import { useEffect, useState } from 'react';
 
 const SeasonalDecorations = () => {
   const [isMounted, setIsMounted] = useState(false);
 
-  // CONFIGURACIÓN DE GLOW - AJUSTA ESTOS VALORES
+  // CONFIGURACIÓN MINIMAL TECH
   const glowConfig = {
-    intensity: 0.8,           // ← Intensidad del glow (0.1 a 2.0)
-    blur: 3,                  // ← Desenfoque del glow (1 a 10)
-    color: 'rgba(255, 140, 0, 0.8)',  // ← Color del glow (naranja cempasúchil)
-    innerGlow: 0.4            // ← Glow interior (0.1 a 1.0)
+    intensity: 0.6,
+    blur: 4,
+    cyan: 'rgba(0, 245, 255, 0.7)',
+    magenta: 'rgba(255, 0, 255, 0.5)',
+    purple: 'rgba(138, 43, 226, 0.4)'
   };
 
-  // PATTERN CENTRADO - Flor de Cempasúchil + Velita CON GLOW
+  // PATTERN MINIMAL - Triángulos animados
   const headerGraphics = `
-    <svg width="100%" height="40" viewBox="0 0 1200 40" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMin meet">
+    <svg width="100%" height="24" viewBox="0 0 1200 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMin meet">
       <defs>
-        <!-- FILTROS DE GLOW -->
-        <filter id="flowerGlow" x="-50%" y="-50%" width="200%" height="200%">
+        <!-- FILTROS DE GLOW MINIMAL -->
+        <filter id="cyanGlow" x="-50%" y="-50%" width="200%" height="200%">
           <feGaussianBlur stdDeviation="${glowConfig.blur}" result="coloredBlur"/>
           <feMerge> 
             <feMergeNode in="coloredBlur"/>
@@ -26,120 +27,129 @@ const SeasonalDecorations = () => {
           </feMerge>
         </filter>
         
-        <filter id="candleGlow" x="-50%" y="-50%" width="200%" height="200%">
-          <feGaussianBlur stdDeviation="${glowConfig.blur * 1.5}" result="coloredBlur"/>
-          <feMerge> 
-            <feMergeNode in="coloredBlur"/>
-            <feMergeNode in="SourceGraphic"/>
-          </feMerge>
-        </filter>
-        
-        <filter id="flameGlow" x="-100%" y="-100%" width="300%" height="300%">
-          <feGaussianBlur stdDeviation="${glowConfig.blur * 2}" result="coloredBlur"/>
+        <filter id="magentaGlow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="${glowConfig.blur}" result="coloredBlur"/>
           <feMerge> 
             <feMergeNode in="coloredBlur"/>
             <feMergeNode in="SourceGraphic"/>
           </feMerge>
         </filter>
 
-        <pattern id="flowerCandlePattern" x="0" y="0" width="80" height="40" patternUnits="userSpaceOnUse">
-          <!-- Flor de Cempasúchil CON GLOW -->
-          <g transform="translate(20, 20)">
-            <!-- Glow exterior de la flor -->
-            <g opacity="${glowConfig.intensity * 0.6}">
-              <circle cx="0" cy="0" r="8" fill="${glowConfig.color}" filter="url(#flowerGlow)"/>
-            </g>
-            
-            <!-- Centro de la flor CON GLOW -->
-            <circle cx="0" cy="0" r="4" fill="#D35400" stroke="#B03A2E" stroke-width="0.5" 
-                    opacity="${0.8 + glowConfig.innerGlow * 0.2}"/>
-            
-            <!-- 12 PÉTALOS CON GLOW -->
-            <g fill="#FF8C00" stroke="#E67E22" stroke-width="0.3" 
-               opacity="${0.9 + glowConfig.intensity * 0.1}" 
-               filter="url(#flowerGlow)">
-              <!-- Pétalos horizontales y verticales -->
-              <ellipse cx="-9" cy="0" rx="2.8" ry="4.4"/>
-              <ellipse cx="9" cy="0" rx="2.8" ry="4.4"/>
-              <ellipse cx="0" cy="-9" rx="2.8" ry="4.4"/>
-              <ellipse cx="0" cy="9" rx="2.8" ry="4.4"/>
-              
-              <!-- Pétalos diagonales -->
-              <ellipse cx="-6.4" cy="-6.4" rx="2.8" ry="4.4" transform="rotate(45)"/>
-              <ellipse cx="6.4" cy="-6.4" rx="2.8" ry="4.4" transform="rotate(-45)"/>
-              <ellipse cx="6.4" cy="6.4" rx="2.8" ry="4.4" transform="rotate(45)"/>
-              <ellipse cx="-6.4" cy="6.4" rx="2.8" ry="4.4" transform="rotate(-45)"/>
-              
-              <!-- Pétalos intermedios -->
-              <ellipse cx="-8.2" cy="-3.5" rx="2.8" ry="4.4" transform="rotate(22.5)"/>
-              <ellipse cx="-8.2" cy="3.5" rx="2.8" ry="4.4" transform="rotate(-22.5)"/>
-              <ellipse cx="8.2" cy="-3.5" rx="2.8" ry="4.4" transform="rotate(-22.5)"/>
-              <ellipse cx="8.2" cy="3.5" rx="2.8" ry="4.4" transform="rotate(22.5)"/>
-            </g>
-            
-            <!-- Detalles del centro CON GLOW INTENSO -->
-            <circle cx="0" cy="0" r="1.5" fill="#F39C12" 
-                    opacity="${0.9 + glowConfig.innerGlow * 0.3}" 
-                    filter="url(#flowerGlow)"/>
+        <pattern id="techPattern" x="0" y="0" width="120" height="24" patternUnits="userSpaceOnUse">
+          <!-- Línea horizontal sutil -->
+          <line x1="0" y1="12" x2="120" y2="12" stroke="rgba(255, 255, 255, 0.1)" stroke-width="0.5"/>
+          
+          <!-- Triángulos tecnológicos animados -->
+          <g transform="translate(30, 12)">
+            <path d="M-2,-2 L2,-2 L0,2 Z" fill="${glowConfig.cyan.split(')')[0]})" 
+                  filter="url(#cyanGlow)" opacity="0.8">
+              <!-- Animación de rotación sutil -->
+              <animateTransform 
+                attributeName="transform"
+                type="rotate"
+                from="0 0 0"
+                to="360 0 0"
+                dur="8s"
+                repeatCount="indefinite"/>
+              <!-- Animación de pulso -->
+              <animate 
+                attributeName="opacity"
+                values="0.6;0.9;0.6"
+                dur="3s"
+                repeatCount="indefinite"/>
+            </path>
           </g>
-
-          <!-- VELITA CON GLOW ANIMADO -->
-          <g transform="translate(60, 20)">
-            <!-- Glow de la llama -->
-            <g opacity="${glowConfig.intensity}">
-              <circle cx="0" cy="-11" r="6" fill="#FFD700" filter="url(#flameGlow)"/>
-            </g>
-            
-            <!-- Llama principal -->
-            <circle cx="0" cy="-11" r="3" fill="#FFD700" 
-                    opacity="${0.9 + glowConfig.innerGlow * 0.3}"/>
-            <path d="M-2,-11 L2,-11 L0,-14 Z" fill="#FF6B00" 
-                  opacity="${0.8 + glowConfig.intensity * 0.2}"/>
-            
-            <!-- Glow de la vela -->
-            <g opacity="${glowConfig.intensity * 0.4}">
-              <rect x="-4.5" y="-8" width="9" height="16" fill="#FFFFFF" filter="url(#candleGlow)"/>
-            </g>
-            
-            <!-- Vela (más alta y ancha) -->
-            <rect x="-3.5" y="-8" width="7" height="16" fill="#FFFFFF" stroke="#FF8C00" stroke-width="0.5"
-                  opacity="${0.8 + glowConfig.innerGlow * 0.2}"/>
-            
-            <!-- Base con glow -->
-            <g opacity="${0.7 + glowConfig.intensity * 0.3}">
-              <rect x="-4.5" y="8" width="9" height="2" fill="#8A2BE2" filter="url(#candleGlow)"/>
-            </g>
+          
+          <g transform="translate(60, 12)">
+            <path d="M-1.5,-1.5 L1.5,-1.5 L0,1.5 Z" fill="${glowConfig.magenta.split(')')[0]})" 
+                  filter="url(#magentaGlow)" opacity="0.7">
+              <!-- Animación de rotación inversa -->
+              <animateTransform 
+                attributeName="transform"
+                type="rotate"
+                from="0 0 0"
+                to="-360 0 0"
+                dur="6s"
+                repeatCount="indefinite"/>
+              <!-- Animación de pulso desfasada -->
+              <animate 
+                attributeName="opacity"
+                values="0.5;0.8;0.5"
+                dur="4s"
+                begin="1s"
+                repeatCount="indefinite"/>
+            </path>
+          </g>
+          
+          <g transform="translate(90, 12)">
+            <path d="M-1.8,-1.8 L1.8,-1.8 L0,1.8 Z" fill="${glowConfig.purple.split(')')[0]})" 
+                  filter="url(#cyanGlow)" opacity="0.6">
+              <!-- Animación de escala sutil -->
+              <animate 
+                attributeName="transform"
+                attributeType="XML"
+                type="scale"
+                values="1;1.2;1"
+                dur="5s"
+                repeatCount="indefinite"/>
+              <!-- Animación de pulso -->
+              <animate 
+                attributeName="opacity"
+                values="0.4;0.7;0.4"
+                dur="3.5s"
+                begin="0.5s"
+                repeatCount="indefinite"/>
+            </path>
           </g>
         </pattern>
 
-        <!-- PATTERN ANIMADO PARA EFECTO PULSANTE -->
-        <pattern id="animatedGlow" x="0" y="0" width="80" height="40" patternUnits="userSpaceOnUse">
-          <!-- Copia del pattern principal con animación -->
-          <g opacity="0.3">
-            <circle cx="20" cy="20" r="6" fill="${glowConfig.color}"/>
-            <circle cx="60" cy="20" r="5" fill="#FFD700"/>
+        <!-- PATTERN PARA EFECTO PULSANTE MUY SUTIL -->
+        <pattern id="pulsePattern" x="0" y="0" width="120" height="24" patternUnits="userSpaceOnUse">
+          <g opacity="0.2">
+            <path d="M-1.2,-1.2 L1.2,-1.2 L0,1.2 Z" transform="translate(30, 12)" 
+                  fill="${glowConfig.cyan.split(')')[0]})">
+              <animate 
+                attributeName="opacity"
+                values="0.1;0.3;0.1"
+                dur="4s"
+                repeatCount="indefinite"/>
+            </path>
+            <path d="M-0.9,-0.9 L0.9,-0.9 L0,0.9 Z" transform="translate(60, 12)" 
+                  fill="${glowConfig.magenta.split(')')[0]})">
+              <animate 
+                attributeName="opacity"
+                values="0.1;0.3;0.1"
+                dur="4s"
+                begin="1s"
+                repeatCount="indefinite"/>
+            </path>
+            <path d="M-1,-1 L1,-1 L0,1 Z" transform="translate(90, 12)" 
+                  fill="${glowConfig.purple.split(')')[0]})">
+              <animate 
+                attributeName="opacity"
+                values="0.1;0.3;0.1"
+                dur="4s"
+                begin="2s"
+                repeatCount="indefinite"/>
+            </path>
           </g>
         </pattern>
       </defs>
 
-      <!-- FONDO INVISIBLE QUE OCUPA TODO EL ANCHO -->
-      <rect width="100%" height="40" fill="rgba(26,26,46,0.1)"/>
+      <!-- FONDO TRANSPARENTE -->
+      <rect width="100%" height="24" fill="transparent"/>
       
-      <!-- LAYER DE GLOW PULSANTE (OPCIONAL) -->
-      <rect width="100%" height="40" fill="url(#animatedGlow)" opacity="0.1">
-        <animate attributeName="opacity" values="0.05;0.15;0.05" dur="3s" repeatCount="indefinite"/>
-      </rect>
+      <!-- PATTERN PRINCIPAL -->
+      <rect x="-600" width="2400" height="24" fill="url(#techPattern)" opacity="0.9"/>
       
-      <!-- CONTENEDOR CENTRADO CON MÁRGENES -->
-      <g transform="translate(0, 0)">
-        <!-- PATTERN QUE COMIENZA DESDE -600 (IZQUIERDA) HASTA +600 (DERECHA) -->
-        <rect x="-600" width="2400" height="40" fill="url(#flowerCandlePattern)" opacity="0.9"/>
-      </g>
-
-      <!-- EFECTO DE DESTELLO OCASIONAL -->
-      <rect width="100%" height="40" fill="url(#animatedGlow)" opacity="0">
-        <animate attributeName="opacity" values="0;0.3;0" dur="4s" begin="2s" repeatCount="indefinite"/>
-      </rect>
+      <!-- EFECTO DE LÍNEA PULSANTE -->
+      <line x1="0" y1="12" x2="100%" y2="12" stroke="rgba(255, 255, 255, 0.05)" stroke-width="0.5">
+        <animate 
+          attributeName="stroke-opacity"
+          values="0.03;0.08;0.03"
+          dur="6s"
+          repeatCount="indefinite"/>
+      </line>
     </svg>
   `;
 
@@ -169,11 +179,11 @@ const SeasonalDecorations = () => {
 
         .header-graphics {
           position: absolute;
-          top: 70px;
+          top: 80px;
           left: 0;
           width: 100%;
-          height: 40px;
-          opacity: 0.8;
+          height: 24px;
+          opacity: 0.7;
           display: flex;
           justify-content: center;
           overflow: hidden;
@@ -189,25 +199,27 @@ const SeasonalDecorations = () => {
         /* RESPONSIVE */
         @media (max-width: 768px) {
           .header-graphics {
-            top: 60px;
-            height: 30px;
+            top: 70px;
+            height: 20px;
+            opacity: 0.6;
           }
           
           .header-graphics svg {
             min-width: 768px;
-            height: 30px;
+            height: 20px;
           }
         }
 
         @media (max-width: 480px) {
           .header-graphics {
-            top: 55px;
-            height: 25px;
+            top: 65px;
+            height: 18px;
+            opacity: 0.5;
           }
           
           .header-graphics svg {
             min-width: 480px;
-            height: 25px;
+            height: 18px;
           }
         }
       `}</style>
