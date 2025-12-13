@@ -1,12 +1,12 @@
 // src/components/ParticleBackground.js
 'use client';
 
-import { useEffect, useRef, useState } from 'react'; // ← useState agregado
+import { useEffect, useRef, useState } from 'react';
 import './ParticleBackground.css';
 
 const ParticleBackground = () => {
   const canvasRef = useRef(null);
-  const [colors, setColors] = useState({}); // ← Estado para colores dinámicos
+  const [colors, setColors] = useState({});
 
   // OBTENER COLORES DE VARIABLES CSS
   useEffect(() => {
@@ -35,7 +35,7 @@ const ParticleBackground = () => {
   }, []);
 
   useEffect(() => {
-    if (!colors.primary || !canvasRef.current) return; // ← Esperar a tener colores
+    if (!colors.primary || !canvasRef.current) return;
 
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
@@ -56,14 +56,17 @@ const ParticleBackground = () => {
       secondaryColor: colors.secondary,
       tertiaryColor: colors.tertiary,
       
-      // MOVIMIENTO EN PLANOS 3D (MISMO QUE ORIGINAL)
+      // MOVIMIENTO EN PLANOS 3D
       baseSpeed: 0.2,
       turbulence: 0.2,
       floatAmplitude: 0.4,
       
-      // ROTACIÓN Y ESCALA (MISMO QUE ORIGINAL)
+      // ROTACIÓN Y ESCALA
       rotationSpeed: 0.001,
       pulseSpeed: 0.001,
+      
+      // ⚫ OPACIDAD DEL LAYER NEGRO - PUESTO A 0
+      blackLayerOpacity: 0.0
     };
 
     const resizeCanvas = () => {
@@ -234,15 +237,21 @@ const ParticleBackground = () => {
     const animate = () => {
       const currentTime = Date.now() - startTime;
       
-      const gradient = ctx.createRadialGradient(
-        canvas.width / 2, canvas.height / 2, 0,
-        canvas.width / 2, canvas.height / 2, Math.max(canvas.width, canvas.height) / 2
-      );
-      gradient.addColorStop(0, 'rgba(10, 10, 18, 0.1)');
-      gradient.addColorStop(1, 'rgba(26, 26, 46, 0.3)');
-      
-      ctx.fillStyle = gradient;
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      // ⚫ FONDO CON OPACIDAD CONFIGURABLE (AHORA EN 0)
+      if (particleConfig.blackLayerOpacity > 0) {
+        const gradient = ctx.createRadialGradient(
+          canvas.width / 2, canvas.height / 2, 0,
+          canvas.width / 2, canvas.height / 2, Math.max(canvas.width, canvas.height) / 2
+        );
+        gradient.addColorStop(0, `rgba(10, 10, 18, ${particleConfig.blackLayerOpacity * 0.3})`);
+        gradient.addColorStop(1, `rgba(26, 26, 46, ${particleConfig.blackLayerOpacity})`);
+        
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+      } else {
+        // Si la opacidad es 0, limpiar el canvas completamente
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
       
       particles.forEach(particle => {
         particle.update(currentTime);
@@ -261,7 +270,7 @@ const ParticleBackground = () => {
       cancelAnimationFrame(animationFrameId);
       window.removeEventListener('resize', resizeCanvas);
     };
-  }, [colors]); // ← Ejecutar cuando colors cambie
+  }, [colors]);
 
   return (
     <canvas
