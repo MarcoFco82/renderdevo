@@ -1,276 +1,252 @@
 // src/components/ParticleBackground.js
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import './ParticleBackground.css';
 
 const ParticleBackground = () => {
   const canvasRef = useRef(null);
-  const [colors, setColors] = useState({});
-
-  // OBTENER COLORES DE VARIABLES CSS
-  useEffect(() => {
-    const getCSSColors = () => {
-      const root = document.documentElement;
-      return {
-        primary: getComputedStyle(root).getPropertyValue('--color-electric-cyan').trim() || '#00f5ff',
-        secondary: getComputedStyle(root).getPropertyValue('--color-neon-magenta').trim() || '#ff00ff',
-        tertiary: getComputedStyle(root).getPropertyValue('--color-holographic').trim() || '#8a2be2'
-      };
-    };
-
-    setColors(getCSSColors());
-
-    // Escuchar cambios en las variables CSS
-    const observer = new MutationObserver(() => {
-      setColors(getCSSColors());
-    });
-
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ['style']
-    });
-
-    return () => observer.disconnect();
-  }, []);
 
   useEffect(() => {
-    if (!colors.primary || !canvasRef.current) return;
-
     const canvas = canvasRef.current;
+    if (!canvas) return;
+
     const ctx = canvas.getContext('2d');
     let animationFrameId;
     let particles = [];
 
-    // DETECTAR SI ES MÓVIL
+    // Obtener colores de CSS una sola vez
+    const root = document.documentElement;
+    const style = getComputedStyle(root);
+    const colorPalette = [
+      style.getPropertyValue('--color-electric-cyan').trim() || '#00f5ff',
+      style.getPropertyValue('--color-neon-magenta').trim() || '#ff00ff',
+      style.getPropertyValue('--color-holographic').trim() || '#8a2be2'
+    ];
+
     const isMobile = window.innerWidth < 768;
 
-    // CONFIGURACIÓN - GEOMETRÍAS FUTURISTAS (RESPONSIVE)
-    const particleConfig = {
-      count: isMobile ? 4 : 8,
-      maxSize: isMobile ? 600 : 1135,
-      minSize: isMobile ? 300 : 2015,
-      
-      // ✅ COLORES DINÁMICOS - USAR LOS DE CSS
-      primaryColor: colors.primary,
-      secondaryColor: colors.secondary,
-      tertiaryColor: colors.tertiary,
-      
-      // MOVIMIENTO EN PLANOS 3D
-      baseSpeed: 0.2,
-      turbulence: 0.2,
-      floatAmplitude: 0.4,
-      
-      // ROTACIÓN Y ESCALA
-      rotationSpeed: 0.001,
-      pulseSpeed: 0.001,
-      
-      // ⚫ OPACIDAD DEL LAYER NEGRO - PUESTO A 0
-      blackLayerOpacity: 0.0
+    // Configuración
+    const config = {
+      count: isMobile ? 6 : 10,
+      minSize: isMobile ? 300 : 800,
+      maxSize: isMobile ? 600 : 1200,
+      baseSpeed: 0.15,
+      turbulence: 0.15,
+      floatAmplitude: 0.3,
+      rotationSpeed: 0.0008,
+      pulseSpeed: 0.0008,
+      fadeMargin: 250,
+      fadeInSpeed: 0.008,
+      fadeOutSpeed: 0.015
     };
+
+    // Pre-calcular vértices de hexágono (evita Math.cos/sin en cada frame)
+    const hexVertices = [];
+    for (let i = 0; i < 6; i++) {
+      const angle = (i * Math.PI) / 3;
+      hexVertices.push({ x: Math.cos(angle) * 0.5, y: Math.sin(angle) * 0.5 });
+    }
 
     const resizeCanvas = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     };
 
-    class GeometricParticle {
-      constructor() {
-        this.reset();
-        this.timeOffset = Math.random() * 1000;
-        this.shapeType = Math.floor(Math.random() * 3); // 0: triángulo, 1: rombo, 2: hexágono
-        this.color = this.getRandomColor();
-      }
+    // Partícula como objeto simple (más eficiente que clase)
+    const createParticle = (initialFade = false) => {
+      const shapeType = Math.floor(Math.random() * 3);
+      return {
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: config.minSize + Math.random() * (config.maxSize - config.minSize),
+        rotation: Math.random() * Math.PI * 2,
+        rotationSpeed: (Math.random() - 0.5) * config.rotationSpeed,
+        baseOpacity: 0.08 + Math.random() * 0.12,
+        pulsePhase: Math.random() * Math.PI * 2,
+        speedX: (Math.random() - 0.5) * config.baseSpeed,
+        speedY: (Math.random() - 0.5) * config.baseSpeed,
+        timeOffset: Math.random() * 1000,
+        shapeType,
+        color: colorPalette[Math.floor(Math.random() * colorPalette.length)],
+        // Sistema de fade mejorado
+        fadeIn: initialFade ? 0 : 1,
+        fadeOut: 1,
+        isExiting: false
+      };
+    };
 
-      getRandomColor() {
-        const colors = [
-          particleConfig.primaryColor,
-          particleConfig.secondaryColor, 
-          particleConfig.tertiaryColor
-        ];
-        return colors[Math.floor(Math.random() * colors.length)];
-      }
-
-      reset() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.size = particleConfig.minSize + Math.random() * (particleConfig.maxSize - particleConfig.minSize);
-        this.rotation = Math.random() * Math.PI * 2;
-        this.rotationSpeed = (Math.random() - 0.5) * particleConfig.rotationSpeed;
-        this.opacity = 0.1 + Math.random() * 0.15;
-        this.pulsePhase = Math.random() * Math.PI * 2;
-        this.speedX = (Math.random() - 0.5) * particleConfig.baseSpeed;
-        this.speedY = (Math.random() - 0.5) * particleConfig.baseSpeed;
-        
-        // INICIAR CON FADE IN
-        this.fadeInProgress = true;
-        this.fadeValue = 0;
-      }
-
-      update(time) {
-        const t = time * 0.001 + this.timeOffset;
-        
-        // MOVIMIENTO BASE + TURBULENCIA
-        this.x += this.speedX + Math.sin(t * 0.9) * particleConfig.turbulence;
-        this.y += this.speedY + Math.cos(t * 0.9) * particleConfig.turbulence * 0.5;
-        
-        // FLOTACIÓN ORGÁNICA
-        this.y += Math.sin(t * 0.4 + this.x * 0.003) * particleConfig.floatAmplitude;
-        
-        // ROTACIÓN
-        this.rotation += this.rotationSpeed;
-        
-        // PULSO DE OPACIDAD Y ESCALA
-        this.pulsePhase += particleConfig.pulseSpeed;
-        this.currentOpacity = this.opacity * (0.7 + Math.sin(this.pulsePhase) * 0.3);
-        this.currentScale = 0.8 + Math.sin(this.pulsePhase * 1.5) * 0.2;
+    const resetParticle = (p) => {
+      // Elegir un borde aleatorio para entrar
+      const edge = Math.floor(Math.random() * 4);
+      const margin = config.fadeMargin + 50;
       
-        // FADE IN/FADE OUT CUANDO ESTÁ CERCA DE LOS BORDES
-        const fadeMargin = 200;
-        const canvasWidth = canvas.width;
-        const canvasHeight = canvas.height;
-        
-        // CALCULAR FADE EN BORDES
-        let edgeFade = 1.0;
-        
-        if (this.x < fadeMargin) {
-          edgeFade = this.x / fadeMargin;
-        } else if (this.x > canvasWidth - fadeMargin) {
-          edgeFade = (canvasWidth - this.x) / fadeMargin;
-        }
-        
-        if (this.y < fadeMargin) {
-          edgeFade = Math.min(edgeFade, this.y / fadeMargin);
-        } else if (this.y > canvasHeight - fadeMargin) {
-          edgeFade = Math.min(edgeFade, (canvasHeight - this.y) / fadeMargin);
-        }
-        
-        this.currentOpacity *= edgeFade;
+      switch (edge) {
+        case 0: // arriba
+          p.x = Math.random() * canvas.width;
+          p.y = -margin;
+          p.speedY = Math.abs(p.speedY) || config.baseSpeed * 0.5;
+          break;
+        case 1: // derecha
+          p.x = canvas.width + margin;
+          p.y = Math.random() * canvas.height;
+          p.speedX = -Math.abs(p.speedX) || -config.baseSpeed * 0.5;
+          break;
+        case 2: // abajo
+          p.x = Math.random() * canvas.width;
+          p.y = canvas.height + margin;
+          p.speedY = -Math.abs(p.speedY) || -config.baseSpeed * 0.5;
+          break;
+        case 3: // izquierda
+          p.x = -margin;
+          p.y = Math.random() * canvas.height;
+          p.speedX = Math.abs(p.speedX) || config.baseSpeed * 0.5;
+          break;
+      }
       
-        // REINICIAR SI SALE COMPLETAMENTE DE PANTALLA
-        const resetMargin = 50;
-        if (this.x < -resetMargin || this.x > canvasWidth + resetMargin || 
-            this.y < -resetMargin || this.y > canvasHeight + resetMargin) {
-          this.reset();
-          this.fadeInProgress = true;
-          this.fadeValue = 0;
-        }
+      p.size = config.minSize + Math.random() * (config.maxSize - config.minSize);
+      p.rotation = Math.random() * Math.PI * 2;
+      p.color = colorPalette[Math.floor(Math.random() * colorPalette.length)];
+      p.shapeType = Math.floor(Math.random() * 3);
+      p.fadeIn = 0;
+      p.fadeOut = 1;
+      p.isExiting = false;
+    };
+
+    const updateParticle = (p, time) => {
+      const t = time * 0.001 + p.timeOffset;
+      
+      // Movimiento suave
+      p.x += p.speedX + Math.sin(t * 0.7) * config.turbulence;
+      p.y += p.speedY + Math.cos(t * 0.7) * config.turbulence * 0.5;
+      p.y += Math.sin(t * 0.3 + p.x * 0.002) * config.floatAmplitude;
+      
+      // Rotación y pulso
+      p.rotation += p.rotationSpeed;
+      p.pulsePhase += config.pulseSpeed;
+      
+      const pulseFactor = 0.8 + Math.sin(p.pulsePhase) * 0.2;
+      const scaleFactor = 0.9 + Math.sin(p.pulsePhase * 1.3) * 0.1;
+      
+      // Fade in gradual
+      if (p.fadeIn < 1) {
+        p.fadeIn = Math.min(1, p.fadeIn + config.fadeInSpeed);
       }
-
-      draw() {
-        ctx.save();
-        ctx.translate(this.x, this.y);
-        ctx.rotate(this.rotation);
-        ctx.scale(this.currentScale, this.currentScale);
-        
-        ctx.globalAlpha = this.currentOpacity;
-        ctx.fillStyle = this.color;
-        ctx.strokeStyle = this.color;
-        ctx.lineWidth = 1.5;
-
-        switch(this.shapeType) {
-          case 0:
-            this.drawTriangle();
-            break;
-          case 1:
-            this.drawDiamond();
-            break;
-          case 2:
-            this.drawHexagon();
-            break;
-        }
-        
-        ctx.restore();
+      
+      // Calcular distancia a bordes
+      const distToLeft = p.x + config.fadeMargin;
+      const distToRight = canvas.width - p.x + config.fadeMargin;
+      const distToTop = p.y + config.fadeMargin;
+      const distToBottom = canvas.height - p.y + config.fadeMargin;
+      
+      // Detectar si está saliendo (más allá del margen visible)
+      const exitThreshold = config.fadeMargin * 0.3;
+      if (distToLeft < exitThreshold || distToRight < exitThreshold || 
+          distToTop < exitThreshold || distToBottom < exitThreshold) {
+        p.isExiting = true;
       }
-
-      drawTriangle() {
-        const size = this.size;
-        ctx.beginPath();
-        ctx.moveTo(0, -size / 2);
-        ctx.lineTo(size / 2, size / 2);
-        ctx.lineTo(-size / 2, size / 2);
-        ctx.closePath();
-        ctx.fill();
-        ctx.stroke();
+      
+      // Fade out cuando está saliendo
+      if (p.isExiting) {
+        p.fadeOut = Math.max(0, p.fadeOut - config.fadeOutSpeed);
+      } else {
+        // Fade suave cerca de bordes (pero no tan agresivo)
+        const edgeFade = Math.min(
+          Math.min(distToLeft, distToRight) / config.fadeMargin,
+          Math.min(distToTop, distToBottom) / config.fadeMargin
+        );
+        p.fadeOut = Math.min(1, Math.max(0.3, edgeFade));
       }
-
-      drawDiamond() {
-        const size = this.size;
-        ctx.beginPath();
-        ctx.moveTo(0, -size / 2);
-        ctx.lineTo(size / 2, 0);
-        ctx.lineTo(0, size / 2);
-        ctx.lineTo(-size / 2, 0);
-        ctx.closePath();
-        ctx.fill();
-        ctx.stroke();
-      }
-
-      drawHexagon() {
-        const size = this.size;
-        ctx.beginPath();
-        for (let i = 0; i < 6; i++) {
-          const angle = (i * Math.PI) / 3;
-          const x = Math.cos(angle) * size / 2;
-          const y = Math.sin(angle) * size / 2;
-          if (i === 0) {
-            ctx.moveTo(x, y);
-          } else {
-            ctx.lineTo(x, y);
-          }
-        }
-        ctx.closePath();
-        ctx.fill();
-        ctx.stroke();
-      }
-    }
-
-    const initParticles = () => {
-      particles = [];
-      for (let i = 0; i < particleConfig.count; i++) {
-        particles.push(new GeometricParticle());
+      
+      // Opacidad final combinada
+      p.currentOpacity = p.baseOpacity * pulseFactor * p.fadeIn * p.fadeOut;
+      p.currentScale = scaleFactor;
+      
+      // Reset cuando fade out completo y fuera de pantalla
+      const resetMargin = config.fadeMargin + 100;
+      if (p.fadeOut <= 0 || 
+          p.x < -resetMargin || p.x > canvas.width + resetMargin ||
+          p.y < -resetMargin || p.y > canvas.height + resetMargin) {
+        resetParticle(p);
       }
     };
 
-    let startTime = Date.now();
-    
-    const animate = () => {
-      const currentTime = Date.now() - startTime;
+    const drawParticle = (p) => {
+      if (p.currentOpacity < 0.01) return;
       
-      // ⚫ FONDO CON OPACIDAD CONFIGURABLE (AHORA EN 0)
-      if (particleConfig.blackLayerOpacity > 0) {
-        const gradient = ctx.createRadialGradient(
-          canvas.width / 2, canvas.height / 2, 0,
-          canvas.width / 2, canvas.height / 2, Math.max(canvas.width, canvas.height) / 2
-        );
-        gradient.addColorStop(0, `rgba(10, 10, 18, ${particleConfig.blackLayerOpacity * 0.3})`);
-        gradient.addColorStop(1, `rgba(26, 26, 46, ${particleConfig.blackLayerOpacity})`);
-        
-        ctx.fillStyle = gradient;
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-      } else {
-        // Si la opacidad es 0, limpiar el canvas completamente
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rotation);
+      ctx.scale(p.currentScale, p.currentScale);
+      ctx.globalAlpha = p.currentOpacity;
+      ctx.fillStyle = p.color;
+      ctx.strokeStyle = p.color;
+      ctx.lineWidth = 1.5;
+      
+      const halfSize = p.size * 0.5;
+      
+      ctx.beginPath();
+      
+      switch (p.shapeType) {
+        case 0: // Triángulo
+          ctx.moveTo(0, -halfSize);
+          ctx.lineTo(halfSize, halfSize);
+          ctx.lineTo(-halfSize, halfSize);
+          break;
+        case 1: // Rombo
+          ctx.moveTo(0, -halfSize);
+          ctx.lineTo(halfSize, 0);
+          ctx.lineTo(0, halfSize);
+          ctx.lineTo(-halfSize, 0);
+          break;
+        case 2: // Hexágono (vértices pre-calculados)
+          ctx.moveTo(hexVertices[0].x * p.size, hexVertices[0].y * p.size);
+          for (let i = 1; i < 6; i++) {
+            ctx.lineTo(hexVertices[i].x * p.size, hexVertices[i].y * p.size);
+          }
+          break;
       }
       
-      particles.forEach(particle => {
-        particle.update(currentTime);
-        particle.draw();
-      });
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+      ctx.restore();
+    };
 
+    const initParticles = () => {
+      particles = [];
+      for (let i = 0; i < config.count; i++) {
+        // Primeras partículas aparecen con fade in
+        particles.push(createParticle(true));
+      }
+    };
+
+    const startTime = performance.now();
+    
+    const animate = (timestamp) => {
+      const elapsed = timestamp - startTime;
+      
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      for (let i = 0; i < particles.length; i++) {
+        updateParticle(particles[i], elapsed);
+        drawParticle(particles[i]);
+      }
+      
       animationFrameId = requestAnimationFrame(animate);
     };
 
     resizeCanvas();
     initParticles();
-    animate();
+    animationFrameId = requestAnimationFrame(animate);
+    
     window.addEventListener('resize', resizeCanvas);
 
     return () => {
       cancelAnimationFrame(animationFrameId);
       window.removeEventListener('resize', resizeCanvas);
     };
-  }, [colors]);
+  }, []);
 
   return (
     <canvas

@@ -1,378 +1,535 @@
 /* styles/components/quote-generator.css */
-/* COTIZADOR MINIMAL */
-.quote-section-minimal {
-    background: color-mix(in srgb, var(--color-neural-gray) 100%, transparent);
-    backdrop-filter: blur(10px);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 30px 0;
-    margin: 0;
-    width: 100%;
-  }
-  
-  .quote-header-minimal {
-    text-align: center;
-    margin-bottom: 30px;
-  }
-  
-  .quote-header-minimal h2 {
-    font-size: var(--text-2xl);
-    font-family: var(--font-heading);
-    color: var(--color-glacial);
-    margin-bottom: 8px;
-    font-weight: 600;
-  }
-  
-  .quote-header-minimal p {
-    font-size: var(--text-base);
-    color: var(--color-electric-cyan);
-    margin: 0;
-    font-weight: 500;
-  }
-  
-  /* LISTA DE SERVICIOS MINIMAL */
-  .services-list-minimal {
-    max-width: 800px;
-    margin: 0 auto 30px auto;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-  
-  .service-item-minimal {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    padding: 16px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-  }
-  
-  .service-item-minimal:hover {
-    background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(0, 245, 255, 0.3);
-  }
-  
-  /* SERVICIOS SELECCIONADOS - SOLO GLOW ROSADO */
-  .service-item-minimal.selected {
-    background: rgba(255, 0, 255, 0.1);
-    border-color: var(--color-neon-magenta);
-    box-shadow: 0 0 20px rgba(255, 0, 255, 0.3);
-  }
-  
-  .service-checkbox {
-    flex-shrink: 0;
-    margin-top: 2px;
-  }
-  
-  .checkbox {
-    width: 20px;
-    height: 20px;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    border-radius: 4px;
+/* ═══════════════════════════════════════════════════════════════════
+   QUOTE GENERATOR - Modal con pasos, sin precios, backdrop blur
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ─────────────────────────────────────────────────────────────────────
+   MODAL OVERLAY
+   ───────────────────────────────────────────────────────────────────── */
+   .quote-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 12px;
-    font-weight: bold;
-    color: transparent;
-    transition: all 0.2s ease;
+    padding: 1rem;
+    animation: quoteModalFadeIn 0.2s ease;
   }
   
-  .checkbox.checked {
-    background: var(--color-neon-magenta);
-    border-color: var(--color-neon-magenta);
-    color: var(--color-glacial);
+  @keyframes quoteModalFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
   }
   
-  .service-content-minimal {
-    flex: 1;
+  /* Backdrop con blur - permite ver partículas */
+  .quote-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 10, 18, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
   }
   
-  .service-header-minimal {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 6px;
-    flex-wrap: wrap;
-  }
-  
-  .service-icon-minimal {
-    font-size: 1.2rem;
-  }
-  
-  .service-title-minimal {
-    font-size: var(--text-base);
-    color: var(--color-glacial);
-    font-weight: 600;
-    margin: 0;
-    flex: 1;
-  }
-  
-  .service-price-minimal {
-    font-size: var(--text-sm);
-    color: var(--color-electric-cyan);
-    font-weight: 600;
-    white-space: nowrap;
-  }
-  
-  .service-description-minimal {
-    color: var(--color-mist);
-    font-size: var(--text-sm);
-    line-height: 1.4;
-    margin: 0;
-    opacity: 0.8;
-  }
-  
-  /* SELECTOR DE MINUTOS */
-  .minutes-selector {
-    margin-top: 12px;
-    padding: 12px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 8px;
+  /* ─────────────────────────────────────────────────────────────────────
+     MODAL CONTAINER
+     ───────────────────────────────────────────────────────────────────── */
+  .quote-modal-container {
+    position: relative;
+    background: rgba(26, 26, 46, 0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    width: 100%;
+    max-width: 580px;
+    max-height: 90vh;
+    overflow: hidden;
+    animation: quoteModalSlideUp 0.3s ease;
+    box-shadow: 
+      0 0 0 1px rgba(255, 255, 255, 0.05),
+      0 25px 80px rgba(0, 0, 0, 0.5);
   }
   
-  .minutes-selector label {
-    display: block;
-    color: var(--color-mist);
-    font-size: var(--text-sm);
-    margin-bottom: 8px;
-    font-weight: 500;
+  @keyframes quoteModalSlideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px) scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
   }
   
-  .minutes-controls {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  
-  .minute-btn {
-    width: 32px;
-    height: 32px;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 6px;
-    color: var(--color-glacial);
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
+  /* Botón cerrar */
+  .quote-modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 40px;
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 50%;
+    color: var(--color-glacial);
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 10;
     transition: all 0.2s ease;
   }
   
-  .minute-btn:hover {
-    background: rgba(255, 255, 255, 0.15);
-    border-color: var(--color-neon-magenta);
-  }
-  
-  .minutes-display {
-    color: var(--color-electric-cyan);
-    font-weight: 600;
-    font-size: var(--text-lg);
-    min-width: 30px;
-    text-align: center;
-  }
-  
-  /* LISTA DE SERVICIOS SELECCIONADOS */
-  .selected-services-minimal {
-    margin-bottom: 20px;
-  }
-  
-  .selected-service-minimal {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    font-size: var(--text-sm);
-  }
-  
-  .selected-service-minimal:last-child {
-    border-bottom: none;
-  }
-  
-  .service-name-minimal {
-    color: var(--color-mist);
-    flex: 1;
-  }
-  
-  .service-minutes {
-    color: var(--color-electric-cyan);
-    font-size: var(--text-xs);
-    margin: 0 8px;
-  }
-  
-  /* RESUMEN MINIMAL */
-  .quote-summary-minimal {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
-    padding: 24px;
-    max-width: 500px;
-    margin: 0 auto;
-  }
-  
-  .summary-header-minimal {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .summary-header-minimal h3 {
-    color: var(--color-glacial);
-    font-size: var(--text-xl);
-    margin: 0;
-    font-weight: 600;
-  }
-  
-  .discount-badge-minimal {
+  .quote-modal-close:hover {
     background: var(--color-neon-magenta);
-    color: var(--color-glacial);
-    padding: 6px 12px;
-    border-radius: 16px;
-    font-size: var(--text-xs);
-    font-weight: 700;
-  }
-  
-  .price-breakdown-minimal {
-    margin-bottom: 20px;
-  }
-  
-  .breakdown-row-minimal {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 8px;
-    font-size: var(--text-sm);
-  }
-  
-  .breakdown-row-minimal:last-child {
-    margin-bottom: 0;
-  }
-  
-  .breakdown-row-minimal.discount {
-    color: var(--color-neon-magenta);
-    font-weight: 600;
-  }
-  
-  .breakdown-row-minimal.total {
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
-    padding-top: 12px;
-    font-weight: 700;
-    font-size: var(--text-lg);
-    color: var(--color-electric-cyan);
-  }
-  
-  /* FORMULARIO DE CONTACTO MINIMAL */
-  .contact-form-minimal {
-    margin-bottom: 20px;
-  }
-  
-  .form-group-minimal {
-    margin-bottom: 16px;
-  }
-  
-  .form-group-minimal label {
-    display: block;
-    color: var(--color-mist);
-    font-size: var(--text-sm);
-    margin-bottom: 6px;
-    font-weight: 500;
-  }
-  
-  .form-group-minimal input {
-    width: 100%;
-    padding: 12px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 8px;
-    color: var(--color-glacial);
-    font-size: var(--text-base);
-    transition: all 0.2s ease;
-  }
-  
-  .form-group-minimal input:focus {
-    outline: none;
     border-color: var(--color-neon-magenta);
+    transform: scale(1.1);
+  }
+  
+  /* ─────────────────────────────────────────────────────────────────────
+     PROGRESS BAR
+     ───────────────────────────────────────────────────────────────────── */
+  .quote-progress-bar {
+    height: 3px;
     background: rgba(255, 255, 255, 0.08);
   }
   
-  .form-actions-minimal {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-bottom: 16px;
+  .quote-progress-fill {
+    height: 100%;
+    background: var(--color-electric-cyan);
+    transition: width 0.3s ease;
+    box-shadow: 
+      0 0 8px var(--color-electric-cyan),
+      0 0 20px var(--color-electric-cyan),
+      0 0 40px rgba(0, 245, 255, 0.4);
   }
   
-  .summary-actions-minimal {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-bottom: 16px;
+  /* ─────────────────────────────────────────────────────────────────────
+     MODAL CONTENT
+     ───────────────────────────────────────────────────────────────────── */
+  .quote-modal-content {
+    padding: 2rem;
+    max-height: calc(90vh - 3px);
+    overflow-y: auto;
   }
   
-  .summary-footer-minimal {
+  /* ─────────────────────────────────────────────────────────────────────
+     STEP HEADER
+     ───────────────────────────────────────────────────────────────────── */
+  .quote-step-header {
     text-align: center;
+    margin-bottom: 1.75rem;
   }
   
-  .price-note-minimal {
-    color: var(--color-mist);
-    opacity: 0.6;
-    font-size: var(--text-xs);
-    line-height: 1.4;
-  }
-  
-  .full-width {
-    width: 100%;
-  }
-  
-  /* ESTADOS DE CARGA Y ERROR */
-  .loading-spinner {
+  .quote-step-indicator {
     display: inline-block;
-    width: 16px;
-    height: 16px;
-    border: 2px solid transparent;
-    border-top: 2px solid currentColor;
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--color-electric-cyan);
+    padding: 0.35rem 1rem;
+    border-radius: 2rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.75rem;
+  }
+  
+  .quote-step-header h3 {
+    font-family: var(--font-title);
+    font-size: 1.6rem;
+    color: var(--color-glacial);
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.02em;
+  }
+  
+  .quote-step-header p {
+    color: var(--color-mist);
+    opacity: 0.75;
+    font-size: 0.9rem;
+    margin: 0;
+  }
+  
+  /* ─────────────────────────────────────────────────────────────────────
+     SERVICES GRID (Step 1)
+     ───────────────────────────────────────────────────────────────────── */
+  .quote-services-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .quote-service-card {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+  }
+  
+  .quote-service-card:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.15);
+  }
+  
+  .quote-service-card.selected {
+    background: rgba(0, 245, 255, 0.08);
+    border-color: var(--color-electric-cyan);
+  }
+  
+  .quote-service-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+  
+  .quote-service-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+  
+  .quote-service-title {
+    color: var(--color-glacial);
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+  
+  .quote-service-desc {
+    color: var(--color-mist);
+    font-size: 0.8rem;
+    opacity: 0.7;
+  }
+  
+  .quote-check-mark {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-electric-cyan);
+    color: var(--color-deep-space);
     border-radius: 50%;
-    animation: spin 1s linear infinite;
-    margin-right: 8px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    flex-shrink: 0;
   }
   
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+  /* ─────────────────────────────────────────────────────────────────────
+     FORM STYLES (Steps 2 & 3)
+     ───────────────────────────────────────────────────────────────────── */
+  .quote-form-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
   }
   
-  .error-message {
-    background: rgba(255, 0, 0, 0.1);
-    border: 1px solid rgba(255, 0, 0, 0.3);
+  .quote-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .quote-form-group label {
+    color: var(--color-glacial);
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+  
+  .quote-form-group input,
+  .quote-form-group textarea {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 0.85rem 1rem;
+    color: var(--color-glacial);
+    font-size: 0.95rem;
+    font-family: var(--font-body);
+    transition: all 0.2s ease;
+  }
+  
+  .quote-form-group input:focus,
+  .quote-form-group textarea:focus {
+    outline: none;
+    border-color: var(--color-electric-cyan);
+    background: rgba(255, 255, 255, 0.08);
+  }
+  
+  .quote-form-group input::placeholder,
+  .quote-form-group textarea::placeholder {
+    color: var(--color-mist);
+    opacity: 0.4;
+  }
+  
+  .quote-form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+  
+  .quote-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  
+  /* ─────────────────────────────────────────────────────────────────────
+     OPTIONS GRID (Timeline, Budget)
+     ───────────────────────────────────────────────────────────────────── */
+  .quote-options-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+  
+  .quote-options-grid.single-column {
+    grid-template-columns: 1fr;
+  }
+  
+  .quote-option-card {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .quote-option-card:hover {
+    background: rgba(255, 255, 255, 0.06);
+  }
+  
+  .quote-option-card.selected {
+    background: rgba(0, 245, 255, 0.08);
+    border-color: var(--color-electric-cyan);
+  }
+  
+  .quote-option-card input {
+    display: none;
+  }
+  
+  .quote-option-card span {
+    color: var(--color-mist);
+    font-size: 0.85rem;
+    transition: color 0.2s ease;
+  }
+  
+  .quote-option-card.selected span {
+    color: var(--color-electric-cyan);
+  }
+  
+  /* ─────────────────────────────────────────────────────────────────────
+     SUMMARY BOX
+     ───────────────────────────────────────────────────────────────────── */
+  .quote-summary-box {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 1rem;
+  }
+  
+  .quote-summary-box h4 {
+    color: var(--color-mist);
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin: 0 0 0.75rem 0;
+    opacity: 0.8;
+  }
+  
+  .quote-summary-services {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .quote-summary-tag {
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--color-electric-cyan);
+    padding: 0.4rem 0.8rem;
+    border-radius: 2rem;
+    font-size: 0.8rem;
+  }
+  
+  /* ─────────────────────────────────────────────────────────────────────
+     STEP ACTIONS (Buttons)
+     ───────────────────────────────────────────────────────────────────── */
+  .quote-step-actions {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+  }
+  
+  .quote-btn-primary,
+  .quote-btn-secondary {
+    flex: 1;
+    padding: 0.9rem 1.5rem;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    font-family: var(--font-body);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  
+  .quote-btn-primary {
+    background: var(--color-electric-cyan);
+    border: none;
+    color: var(--color-deep-space);
+  }
+  
+  .quote-btn-primary:hover:not(:disabled) {
+    filter: brightness(1.1);
+    transform: translateY(-2px);
+  }
+  
+  .quote-btn-primary:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none;
+  }
+  
+  .quote-btn-secondary {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: var(--color-mist);
+  }
+  
+  .quote-btn-secondary:hover:not(:disabled) {
+    border-color: var(--color-electric-cyan);
+    color: var(--color-electric-cyan);
+  }
+  
+  /* ─────────────────────────────────────────────────────────────────────
+     SPINNER
+     ───────────────────────────────────────────────────────────────────── */
+  .quote-spinner {
+    width: 18px;
+    height: 18px;
+    border: 2px solid transparent;
+    border-top-color: currentColor;
+    border-radius: 50%;
+    animation: quoteSpinnerRotate 0.8s linear infinite;
+  }
+  
+  @keyframes quoteSpinnerRotate {
+    to { transform: rotate(360deg); }
+  }
+  
+  /* ─────────────────────────────────────────────────────────────────────
+     ERROR MESSAGE
+     ───────────────────────────────────────────────────────────────────── */
+  .quote-error-message {
+    background: rgba(255, 59, 48, 0.12);
+    border: 1px solid rgba(255, 59, 48, 0.25);
     color: #ff6b6b;
-    padding: 12px;
-    border-radius: 8px;
-    margin-bottom: 16px;
-    text-align: center;
+    padding: 0.75rem 1rem;
+    border-radius: 10px;
+    font-size: 0.9rem;
   }
   
-  /* RESPONSIVE COTIZADOR */
-  @media (max-width: 768px) {
-    .service-header-minimal {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 8px;
+  /* ─────────────────────────────────────────────────────────────────────
+     SUCCESS STATE
+     ───────────────────────────────────────────────────────────────────── */
+  .quote-success-state {
+    text-align: center;
+    padding: 2rem 1rem;
+  }
+  
+  .quote-success-icon {
+    width: 72px;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-electric-cyan);
+    color: var(--color-deep-space);
+    border-radius: 50%;
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0 auto 1.5rem;
+    animation: quoteSuccessPop 0.4s ease;
+  }
+  
+  @keyframes quoteSuccessPop {
+    0% { transform: scale(0); }
+    50% { transform: scale(1.15); }
+    100% { transform: scale(1); }
+  }
+  
+  .quote-success-state h3 {
+    font-family: var(--font-title);
+    font-size: 1.6rem;
+    color: var(--color-glacial);
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.02em;
+  }
+  
+  .quote-success-state p {
+    color: var(--color-mist);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    max-width: 360px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 0.95rem;
+  }
+  
+  .quote-success-state .quote-btn-primary {
+    max-width: 180px;
+    margin: 0 auto;
+  }
+  
+  /* ─────────────────────────────────────────────────────────────────────
+     RESPONSIVE
+     ───────────────────────────────────────────────────────────────────── */
+  @media (max-width: 600px) {
+    .quote-modal {
+      padding: 0.5rem;
     }
-    
-    .service-price-minimal {
-      align-self: flex-start;
+  
+    .quote-modal-container {
+      border-radius: 16px;
+      max-height: 95vh;
     }
-    
-    .quote-summary-minimal {
-      margin: 0 16px;
+  
+    .quote-modal-content {
+      padding: 1.5rem;
+    }
+  
+    .quote-step-header h3 {
+      font-size: 1.3rem;
+    }
+  
+    .quote-form-row {
+      grid-template-columns: 1fr;
+    }
+  
+    .quote-options-grid {
+      grid-template-columns: 1fr;
+    }
+  
+    .quote-step-actions {
+      flex-direction: column-reverse;
+    }
+  
+    .quote-modal-close {
+      top: 12px;
+      right: 12px;
+      width: 36px;
+      height: 36px;
     }
   }
