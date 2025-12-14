@@ -1,11 +1,13 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
+import QuoteGenerator from './QuoteGenerator';
 
 const PortfolioShowcase = () => {
   const [activeFilter, setActiveFilter] = useState('all');
   const [selectedProject, setSelectedProject] = useState(null);
   const [mounted, setMounted] = useState(false);
+  const [showQuote, setShowQuote] = useState(false);
 
   useEffect(() => {
     setMounted(true);
@@ -62,21 +64,10 @@ const PortfolioShowcase = () => {
     }
   ];
 
+  // Abre el QuoteGenerator desde el modal de proyecto
   const handleSimilarProjectQuote = (project) => {
-    const serviceMapping = {
-      'web': ['sitio-web'],
-      'videos': ['video-promocional', 'motion-graphics'],
-      'presentations': ['video-promocional', 'motion-graphics'],
-      'social': ['redes-sociales', 'motion-graphics']
-    };
-
-    const relatedServices = serviceMapping[project.category] || [];
-    
-    sessionStorage.setItem('preselectedServices', JSON.stringify(relatedServices));
-    sessionStorage.setItem('projectReference', project.title);
-    
-    setSelectedProject(null);
-    window.location.reload();
+    setSelectedProject(null); // Cierra modal de proyecto
+    setShowQuote(true); // Abre QuoteGenerator
   };
 
   const filteredItems = activeFilter === 'all' 
@@ -199,7 +190,6 @@ const PortfolioShowcase = () => {
                   )}
                 </div>
               
-                {/* Card content con backdrop blur */}
                 <div className="portfolio-card-content">
                   <h3 className="portfolio-card-title">{project.title}</h3>
                   <p className="portfolio-card-description">{project.description}</p>
@@ -216,6 +206,12 @@ const PortfolioShowcase = () => {
       </section>
 
       {renderModal()}
+      
+      {/* QuoteGenerator como modal independiente */}
+      <QuoteGenerator 
+        isOpen={showQuote} 
+        onClose={() => setShowQuote(false)} 
+      />
 
       <style jsx>{`
         /* ═══════════════════════════════════════════════════════════
