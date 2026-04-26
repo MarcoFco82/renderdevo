@@ -33,3 +33,7 @@ Patrón de 3 capas (.env.production + verify-bundle script + gate en /done) que 
 - Nunca borrar archivos sin confirmación
 - `npx tsc --noEmit` después de cambios
 - Respuestas en español
+- En este proyecto: commit directo a `main` sin preguntar (memory `feedback_commit_main.md`). NO incluye `push` ni acciones destructivas.
+
+## Session History
+- **001 — 2026-04-26:** bootstrap — CLAUDE.md, audit Pre-Deploy Triangle (no aplica), `renderdev-strategy-2026.md` (estrategia 2026 con 8 fuentes, 3 hipótesis, roadmap Q2–Q4). Ver `docs/sesiones/session_001.md`.
