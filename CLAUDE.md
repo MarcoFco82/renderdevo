@@ -1,39 +1,187 @@
 # renderdev01 — Project Context
 
-Sitio web de renderdevo.com. Next.js 15 (App Router) + React 19, deploy en Vercel.
+Sitio web **renderdevo.com** — Interactive Motion Studio.
 
-## Stack actual
-- Next.js 15.5.9 con `--turbopack` (dev y build)
-- React 19.1.0, TypeScript estricto
-- EmailJS (browser SDK) para formularios de contacto y cotizaciones
-- Sin Tailwind (CSS modules + globals.css)
-- Sin backend propio: el sitio es estático/SSR contra servicios externos (EmailJS, Vimeo, Google Analytics)
+> **Estado:** v2 reescritura en curso (2026-05-25). Stack legacy (Next.js+Vercel)
+> wipeado en sesión 002. Tag `pre-wipe-v1` conserva HEAD anterior si necesitás rollback.
+
+---
+
+## Stack actual (v2)
+
+- **Vite 7** + **React 19** + **TypeScript 5.7** (strict mode, sin `any` salvo casos justificados)
+- **Tailwind 4** (CSS-first config vía `@theme` block en `src/styles/tokens.css`)
+- **React Router v7** para SPA routing
+- **i18n custom** (ES + EN, JSON-driven, sin libs externas)
+- **100% Cloudflare Pages** — deploy via Wrangler
 
 ## Deploy
-- Plataforma: **Vercel** (rama `main` → producción)
-- Comando: `next build --turbopack`
-- Output: `.next/`
 
-### Pre-Deploy Automation Triangle — NO aplica (audit 2026-04-25)
-Patrón de 3 capas (.env.production + verify-bundle script + gate en /done) que previene "deploy con env vars incorrectas bakeadas en el bundle".
+- **Plataforma:** Cloudflare Pages (NO Vercel).
+- **Comando:** `npm run deploy`
+- **Output:** `dist/`
+- **Domain apex** y `www` apuntan a `renderdevo.pages.dev` (CNAME proxied en CF).
+- **Nameservers:** `steven.ns.cloudflare.com` + `norah.ns.cloudflare.com`.
 
-**No aplica acá porque:**
-- El proyecto no consume ninguna env var pública (cero `process.env.*` y cero `NEXT_PUBLIC_*` en `src/`).
-- Todas las URLs prod (`https://renderdevo.com`, Vimeo, Fonts, GA ID) están como string literal en código → no hay riesgo de "bundle apunta a localhost en prod".
-- Vercel además inyecta env vars desde el dashboard, lo que haría redundante la Capa 1 incluso si existieran.
+## Scripts
 
-**Trigger para reactivarlo:** mover las claves EmailJS de `QuoteGenerator.js` / `ContactForm.js` a `NEXT_PUBLIC_EMAILJS_*`, o agregar cualquier `NEXT_PUBLIC_*` que apunte a un backend propio. En ese momento implementar el Triangle adaptado a Next.js (bundle en `.next/`, no `dist/`).
+```bash
+npm run dev          # vite dev server
+npm run build        # tsc -b && vite build
+npm run preview      # preview del build local
+npm run typecheck    # tsc --noEmit
+npm run deploy       # build + wrangler pages deploy dist
+```
+
+---
+
+## Dialecto visual (locked)
+
+**"Neo-Tactile + Warm Light"**. Diferencia renderdevo de las agencies dark+cyan
+genéricas y refuerza el pedigree motion (cinematografía cálida).
+
+- **Light mode** dominante, off-white cremoso (no blanco médico)
+- **Tinta navy** muy oscura como contraste (no negro puro)
+- **Glow cálido ámbar/peach** como acento de luz (NO cyan, NO neón eléctrico)
+- **Glassmorphism sutil** en cards
+- **Neumorphism evolucionado** (relieves táctiles, sombras blandas)
+- **Bordes muy redondeados** (pills, capsules)
+- **Tipografías:**
+  - **Bebas Neue** — wordmark `RENDERDEVO` (negro tinta, solo)
+  - **General Sans** — body + headings (200–700)
+- **Sistema de tokens centralizado:** todo en `src/styles/tokens.css`.
+  Para cambiar tema completo: editar `:root` ahí. No hardcodear colores/fonts
+  en componentes — siempre via tokens.
+
+## Reglas locked (no transgredir nunca)
+
+🔒 **Marco NO se presenta como developer / dev / fullstack.** Usar:
+"Product Builder", "Director técnico del proyecto", "Build partner", "dirigir IA".
+La capacidad técnica se atribuye a "infraestructura propia de renderdevo", no a Marco
+escribiendo código.
+
+🔒 **3D NO se ofrece explícitamente como servicio.** El engine (Ashur) habilita 3D
+en el output ("experiencias inmersivas") pero nunca se vende como capacidad ("modelado 3D").
+Si un proyecto lo necesita, Marco contrata operativos 3D externos sin documentarlo.
+
+🔒 **Guardians / Sargón Cerebro NO van en renderdevo.com.** Esa narrativa
+(IA personal de Marco, "Jarvis") vive en marcomotion.com.
+
+🔒 **NO pricing público en v1.** El sitio dice "Cotización a partir de discovery call".
+Anchor pendiente: cliente universidad. Tabla interna en
+`marcomotionv2/docs/ref/09-12-tarifas-*.md`.
+
+🔒 **Nombres internos de los engines NO van al cliente.** "Ashur Engine"
+y "D-Anim-Gator" quedan en backstage. Al cliente solo "tecnología propia" /
+"infraestructura propia".
+
+🔒 **Sin emojis decorativos en UI/copy** (regla global).
+
+🔒 **Sin Wordpress, Wix, Webflow, Unity, Unreal** en el stack —
+ni para presumir que no los usamos en v1.
+
+---
+
+## Intel y briefs estratégicos
+
+Los briefs de mercado, tarifas, análisis de competencia y proyectos previos
+viven en **otro repo** (no en este):
+
+```
+/Users/markof/Desktop/Journey/marcomotionv2/docs/ref/
+```
+
+**Al iniciar sesión nueva, leer:**
+- `intel_renderdevo_brief_001.md` — perfil Marco + market intel
+- `apartalafecha-vip-proyecto.md` — case ALF (prueba SaaS comercial)
+- `eljardinperdido_for_renderdevo.md` — case EJP (flagship técnico, demo público)
+- `D-Anim-Gator-project.md` — motor de motion multi-formato propio
+- `01-08-*` — modelos de negocio, tendencias, posicionamiento 2026
+- `09-12-tarifas-*` — pricing benchmarks calibrados a LATAM
+
+**Por qué viven aparte:** la inteligencia estratégica es transversal a marcomotion
+y renderdevo. Duplicarla mantenerla sincronizada es dolor. marcomotionv2 = brain.
+renderdev01 = output renderdevo.com.
+
+---
+
+## Arquitectura del sitio v2
+
+```
+src/
+├── main.tsx               # entry (BrowserRouter + LocaleProvider)
+├── App.tsx                # rutas
+├── styles/
+│   ├── tokens.css         # ÚNICA fuente de tokens (Tailwind 4 @theme)
+│   └── global.css         # base + utilities (glass-card, tactile-card, glow-warm)
+├── i18n/
+│   ├── strings.ts         # toda la copy ES + EN, tipada
+│   └── LocaleProvider.tsx # hook useLocale()
+├── components/
+│   ├── Layout.tsx         # Header + main + Footer
+│   ├── Header.tsx         # nav + LanguageToggle
+│   ├── Footer.tsx         # secciones + contacto
+│   ├── Wordmark.tsx       # RENDERDEVO en Bebas Neue, sizes sm/md/lg/hero
+│   ├── LanguageToggle.tsx # ES/EN switch
+│   └── ComingSoon.tsx     # placeholder uniforme para pages no-listas
+└── pages/
+    ├── Home.tsx           # one-page: hero / capacidades / método / casos / why / cta
+    ├── Capacidades.tsx    # stub
+    ├── Casos.tsx          # stub
+    ├── Metodo.tsx         # stub
+    ├── Diario.tsx         # stub
+    ├── Sobre.tsx          # stub
+    ├── Contacto.tsx       # stub
+    └── LoQueNoHacemos.tsx # stub
+```
+
+## Servicios externos conectados
+
+- **R2 bucket:** `renderdevo-files` (Cloudflare Object Storage) — assets visuales
+  (hero image, frames de casos, screenshots, foto profesional). Marco sube
+  directamente al bucket; el sitio referencia via URL pública.
+- **Resend:** sending domain `renderdevo.com` configurado en misma cuenta de ALF.
+  Mismo API key. Mandar desde `contacto@renderdevo.com` / `hola@renderdevo.com`.
+- **Zoho Mail:** `contacto@renderdevo.com` como alias de Marco Ramos (config sesión 002).
+- **Calendly:** pendiente, Marco lo crea para discovery calls 30 min.
+- **Beehiiv (futuro):** newsletter "Diario" — pendiente, no es prioridad v1.
+
+---
+
+## Convenciones (heredadas + project-specific)
+
+- **Commits:** `type(scope): description` (feat, fix, refactor, docs, chore)
+- **Commits directo a `main` sin preguntar** (memory `feedback_commit_main.md`).
+  NO incluye `push` ni acciones destructivas.
+- **Typecheck obligatorio post-cambios:** `npm run typecheck`
+- **Respuestas en español** (regla global).
+- **ES Modules** siempre, jamás CommonJS.
+- **TypeScript strict**, evitar `any`.
+- **Funcional components con hooks**, no class components.
+- **i18n:** toda copy en `src/i18n/strings.ts`, jamás hardcoded en JSX.
+- **Tokens:** colores/fonts/sombras/radios solo desde `src/styles/tokens.css`.
+
+---
 
 ## Hazards conocidos
-- Claves EmailJS (`PUBLIC_KEY`, `SERVICE_ID`, `TEMPLATE_ID`, `USER_ID`) hardcoded en `src/components/QuoteGenerator.js` y `src/components/ContactForm.js`. Son claves públicas de EmailJS (no secrets reales) pero deberían moverse a env vars por higiene y para habilitar el Triangle.
-- Existen `src/app/globals.css` y `src/app/globals_new.css` simultáneos — verificar cuál está activo y borrar el otro antes de tocar estilos globales.
 
-## Convenciones (heredadas del CLAUDE.md global)
-- Commits: `type(scope): description`
-- Nunca borrar archivos sin confirmación
-- `npx tsc --noEmit` después de cambios
-- Respuestas en español
-- En este proyecto: commit directo a `main` sin preguntar (memory `feedback_commit_main.md`). NO incluye `push` ni acciones destructivas.
+- Repo aún sin `npm install` ejecutado tras wipe. `node_modules` ausente.
+  Primer comando obligatorio antes de `npm run dev`.
+- Calendly URL faltante: `Header.tsx` y `Footer.tsx` apuntan a `/contacto` (página
+  stub). Cuando Marco genere link Calendly, embeber en `pages/Contacto.tsx`.
+- Hero image pendiente: `Home.tsx` hero tiene radial gradient ambient pero
+  no still real todavía. Subir `hero/main.webp` (2880×1620) a R2 cuando esté.
+- Fotos de casos pendientes: en `Home.tsx` los 4 casos son cards vacías con
+  título. Reemplazar con `<img>` de R2 cuando Marco suba assets.
+
+---
 
 ## Session History
-- **001 — 2026-04-26:** bootstrap — CLAUDE.md, audit Pre-Deploy Triangle (no aplica), `renderdev-strategy-2026.md` (estrategia 2026 con 8 fuentes, 3 hipótesis, roadmap Q2–Q4). Ver `docs/sesiones/session_001.md`.
+
+- **001 — 2026-04-26:** bootstrap — CLAUDE.md inicial, audit Pre-Deploy Triangle (no aplica),
+  `renderdev-strategy-2026.md`. Ver `docs/sesiones/session_001.md`.
+- **002 — 2026-05-25:** mail setup (contacto@renderdevo.com alias en Zoho, split-brain
+  DNS Vercel limpiado), strategy refresh con 12 docs de marcomotionv2 (4 proyectos +
+  8 intel briefs + 4 tarifas), **wipe total del stack Next.js**, reescritura v2 con
+  Vite + React 19 + TS + Tailwind 4 + CF Pages, sistema de tokens centralizado,
+  i18n ES/EN, Home con bloques estructurales. Ver session_002 cuando se documente.
