@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useLocale } from '@/i18n/LocaleProvider';
+import { WorkGrid } from '@/components/WorkGrid';
 
 export function Home() {
   const { t } = useLocale();
@@ -99,29 +100,8 @@ export function Home() {
         </div>
       </section>
 
-      {/* === CASOS === */}
-      <section className="container-base py-[var(--spacing-section)]">
-        <div className="flex items-baseline justify-between mb-12">
-          <h2 className="font-display text-4xl md:text-5xl">{t.cases.title}</h2>
-          <Link to="/casos" className="text-sm text-[var(--color-muted)] hover:text-[var(--color-ink)] transition hidden sm:inline">
-            {t.cases.viewAll} →
-          </Link>
-        </div>
-
-        {/* Placeholder de casos — se llenan cuando subas imágenes a R2 */}
-        <div className="grid gap-6 md:grid-cols-2">
-          {['El Jardín Perdido', 'Defensa de Puebla', 'Aparta La Fecha VIP', 'Book Trailers Editoriales'].map(
-            (caseTitle) => (
-              <div
-                key={caseTitle}
-                className="aspect-[4/3] tactile-card flex items-end p-8 bg-[var(--color-bg-deep)]"
-              >
-                <span className="font-heading text-2xl font-semibold">{caseTitle}</span>
-              </div>
-            )
-          )}
-        </div>
-      </section>
+      {/* === WORK GRID (loops por categoría) === */}
+      <WorkGrid />
 
       {/* === POR QUÉ === */}
       <section className="container-base py-[var(--spacing-section)]">
@@ -139,28 +119,121 @@ export function Home() {
         </div>
       </section>
 
-      {/* === CTA === */}
-      <section className="container-base py-[var(--spacing-section)]">
-        <div
-          className="p-12 md:p-20 rounded-[var(--radius-card)] text-center"
-          style={{
-            background:
-              'radial-gradient(circle at center, var(--color-glow-soft) 0%, var(--color-bg) 70%)',
-            boxShadow: 'var(--shadow-glow)',
-          }}
-        >
-          <h2 className="font-display text-4xl md:text-6xl mb-4 max-w-3xl mx-auto">
+      {/* === CTA === Dark surface diagonal. El azul resalta contra el gris recio. Footer light cierra el sandwich. */}
+      <section
+        className="relative overflow-hidden py-24 md:py-36"
+        style={{
+          background:
+            'linear-gradient(135deg, var(--color-dark-soft) 0%, var(--color-dark) 35%, var(--color-dark-deep) 100%)',
+          color: 'var(--color-dark-fg)',
+        }}
+      >
+        <div className="container-base relative text-center">
+          <h2
+            className="font-display tracking-[0.02em] leading-[0.95] text-[clamp(2.5rem,6vw,5.5rem)] mb-6 max-w-[20ch] mx-auto"
+            style={{ color: 'var(--color-dark-fg)' }}
+          >
             {t.cta.title}
           </h2>
-          <p className="text-lg text-[var(--color-ink-soft)] max-w-xl mx-auto mb-8">
+          <p
+            className="text-lg max-w-xl mx-auto mb-14"
+            style={{ color: 'var(--color-dark-fg-soft)' }}
+          >
             {t.cta.sub}
           </p>
-          <Link
-            to="/contacto"
-            className="inline-flex items-center px-8 py-4 rounded-[var(--radius-pill)] bg-[var(--color-ink)] text-[var(--color-bg)] font-medium hover:opacity-90 transition"
-          >
-            {t.cta.button}
-          </Link>
+
+          {/* Pill button claro como héroe táctil sobre dark. LED glow de 3 capas: hot core + mid lush + outer atmospheric. */}
+          <div className="relative inline-block">
+            {/* Capa 3 — Outer atmospheric halo (más blur, más wide, opacity baja) */}
+            <div
+              aria-hidden
+              className="absolute left-1/2 -translate-x-1/2 top-full pointer-events-none"
+              style={{
+                width: '180%',
+                height: '50px',
+                marginTop: '-4px',
+                background:
+                  'radial-gradient(ellipse at center, var(--color-glow) 0%, transparent 70%)',
+                opacity: 0.4,
+                filter: 'blur(28px)',
+              }}
+            />
+
+            {/* Capa 2 — Mid lush blue saturado (el cuerpo del glow) */}
+            <div
+              aria-hidden
+              className="absolute left-1/2 -translate-x-1/2 top-full pointer-events-none"
+              style={{
+                width: '120%',
+                height: '32px',
+                marginTop: '-4px',
+                background:
+                  'radial-gradient(ellipse at center, oklch(72% 0.22 230) 0%, var(--color-glow) 45%, transparent 75%)',
+                opacity: 0.75,
+                filter: 'blur(10px)',
+              }}
+            />
+
+            {/* Capa 1 — Hot LED core (base del quemado, cyan claro) */}
+            <div
+              aria-hidden
+              className="absolute left-1/2 -translate-x-1/2 top-full pointer-events-none"
+              style={{
+                width: '60%',
+                height: '12px',
+                marginTop: '-4px',
+                background:
+                  'radial-gradient(ellipse at center, oklch(96% 0.04 230) 0%, oklch(85% 0.18 220) 35%, transparent 75%)',
+                opacity: 0.95,
+                filter: 'blur(3px)',
+              }}
+            />
+
+            {/* Capa 0 — Filament (blend Add tipo AE: extendido 33% y elevado para sentirse "detrás" del button) */}
+            <div
+              aria-hidden
+              className="absolute left-1/2 -translate-x-1/2 top-full pointer-events-none"
+              style={{
+                width: '80%',
+                height: '24px',
+                marginTop: '-10px',
+                background:
+                  'radial-gradient(ellipse at center, oklch(100% 0 0) 0%, oklch(100% 0 0) 15%, oklch(95% 0.06 220) 40%, oklch(85% 0.16 220) 65%, transparent 85%)',
+                opacity: 1,
+                filter: 'blur(10px)',
+                mixBlendMode: 'plus-lighter',
+              }}
+            />
+
+            {/* Capa -1 — Hot spot ultra concentrado (núcleo del quemado, parcialmente oculto detrás del button) */}
+            <div
+              aria-hidden
+              className="absolute left-1/2 -translate-x-1/2 top-full pointer-events-none"
+              style={{
+                width: '50%',
+                height: '18px',
+                marginTop: '-10px',
+                background:
+                  'radial-gradient(ellipse at center, oklch(100% 0 0) 0%, oklch(100% 0 0) 25%, oklch(98% 0.02 220) 50%, transparent 80%)',
+                opacity: 1,
+                filter: 'blur(12px)',
+                mixBlendMode: 'plus-lighter',
+              }}
+            />
+
+            <Link
+              to="/contacto"
+              className="relative inline-flex items-center px-12 py-5 rounded-[var(--radius-pill)] text-lg font-medium hover:translate-y-[-2px] transition"
+              style={{
+                background: 'var(--color-dark-fg)',
+                color: 'var(--color-dark-deep)',
+                boxShadow:
+                  '0 18px 36px -10px oklch(58% 0.20 240 / 0.55), 0 32px 60px -16px oklch(58% 0.20 240 / 0.35), 0 1px 0 oklch(100% 0 0 / 0.4) inset',
+              }}
+            >
+              {t.cta.button}
+            </Link>
+          </div>
         </div>
       </section>
     </>

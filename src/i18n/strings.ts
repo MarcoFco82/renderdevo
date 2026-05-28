@@ -64,6 +64,19 @@ const es = {
       viewAll: 'Ver todos los casos',
     },
 
+    work: {
+      title: 'Trabajo seleccionado',
+      subtitle: 'Motion, experimental, interactivo.',
+      tabs: {
+        motionDesign: 'Motion Design',
+        experimental: 'Experimental & Stylized',
+        interactive: 'Interactive',
+      },
+      empty: 'Próximamente',
+      viewProject: 'Ver pieza',
+      close: 'Cerrar',
+    },
+
     whyUs: {
       title: '¿Por qué renderdevo?',
       ownTech: {
@@ -93,7 +106,7 @@ const es = {
     },
 
     cta: {
-      title: '¿Tenés un proyecto en mente?',
+      title: '¿Tienes un proyecto en mente?',
       sub: 'Empezamos con un Discovery pagado. Entrega real, sin compromiso de continuar.',
       button: 'Agendar discovery',
     },
@@ -164,6 +177,19 @@ const en: StringsShape = {
     cases: {
       title: 'Selected work',
       viewAll: 'See all work',
+    },
+
+    work: {
+      title: 'Selected work',
+      subtitle: 'Motion, experimental, interactive.',
+      tabs: {
+        motionDesign: 'Motion Design',
+        experimental: 'Experimental & Stylized',
+        interactive: 'Interactive',
+      },
+      empty: 'Coming soon',
+      viewProject: 'View piece',
+      close: 'Close',
     },
 
     whyUs: {

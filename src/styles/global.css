@@ -1,79 +1,67 @@
 /*
  * ============================================================================
- * renderdevo — Global styles
+ * renderdevo — Global stylesheet (Tailwind entry)
  * ============================================================================
  *
- * Importa los tokens (que ya importa tailwindcss) y define reset + base.
- * NO hardcodear valores acá. Todo debe venir de tokens.css.
+ * Importa Tailwind y después tokens (que definen @theme).
+ * NO duplicar el reset — Tailwind 4 ya hace preflight en @layer base.
+ * Todo lo custom (body, utilities) va DENTRO de un @layer apropiado
+ * para que la cascada se respete:
+ *
+ *   @layer base       ← preflight + nuestras overrides body/html
+ *   @layer components ← (vacío, espacio para componentes)
+ *   @layer utilities  ← tailwind utilities + nuestras @utility custom
+ *
+ * Reglas unlayered SIEMPRE ganan a @layer — por eso TODO va dentro de un layer.
  * ============================================================================
  */
 
+@import "tailwindcss";
 @import "./tokens.css";
 
-/* === Reset suave === */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+/* === Base: extender el preflight de Tailwind === */
+@layer base {
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-feature-settings: "ss01", "cv11";
+    min-height: 100vh;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  #root {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  ::selection {
+    background: var(--color-glow);
+    color: var(--color-ink);
+  }
 }
 
-html {
-  -webkit-text-size-adjust: 100%;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/*
+ * === Utilities custom ===
+ * Tailwind 4 registra estas en @layer utilities automáticamente.
+ */
+
+@utility container-base {
+  width: 100%;
+  max-width: var(--site-max-width, 1280px);
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+
+  @media (min-width: 768px) {
+    padding-inline: 2.5rem;
+  }
 }
 
-body {
-  background-color: var(--color-bg);
-  color: var(--color-ink);
-  font-family: var(--font-body);
-  font-weight: 400;
-  font-feature-settings: "ss01", "cv11";
-  min-height: 100vh;
-  line-height: 1.5;
-}
-
-#root {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-img,
-picture,
-video,
-canvas,
-svg {
-  display: block;
-  max-width: 100%;
-  height: auto;
-}
-
-button,
-input,
-select,
-textarea {
-  font: inherit;
-  color: inherit;
-  background: none;
-  border: none;
-  outline: none;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-::selection {
-  background: var(--color-glow);
-  color: var(--color-ink);
-}
-
-/* === Utilities de glass tactile que usamos en components === */
 @utility glass-card {
   background: var(--glass-bg);
   backdrop-filter: blur(var(--glass-blur));
@@ -91,15 +79,4 @@ a {
 
 @utility glow-warm {
   box-shadow: var(--shadow-glow);
-}
-
-@utility container-base {
-  width: 100%;
-  max-width: var(--container-max);
-  margin-inline: auto;
-  padding-inline: 1.5rem;
-
-  @media (min-width: 768px) {
-    padding-inline: 2.5rem;
-  }
 }

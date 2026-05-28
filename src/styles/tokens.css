@@ -1,41 +1,47 @@
 /*
  * ============================================================================
- * renderdevo — Design Tokens (Tailwind 4 CSS-first config)
+ * renderdevo — Design Tokens (Tailwind 4 @theme block)
  * ============================================================================
  *
  * UNICA fuente de verdad para colores, tipografías, radios, sombras y glass.
  * Cambiar acá → cambia el sitio entero. No hardcodear en componentes.
  *
- * Dialecto visual: "Neo-Tactile + Warm Light"
+ * Dialecto visual: "Neo-Tactile + Cool Light" (variante cold)
  *   - Light mode dominante (off-white cremoso, no blanco médico)
  *   - Tinta navy oscura como contraste
- *   - Glow cálido ámbar/peach como acento de luz (NO cyan, NO neón)
+ *   - Glow azul cielo como acento de luz
  *   - Glassmorphism sutil
  *   - Bordes muy redondeados (pills, capsules, soft rectangles)
  *
- * Para cambiar el tema completo: editá los valores en :root.
- * Para experimentar con paletas: usá las "presets" comentadas abajo.
+ * Este file SOLO define el @theme. Tailwind se importa en global.css.
  * ============================================================================
  */
 
-@import "tailwindcss";
-
 @theme {
   /* === Colores base === */
-  --color-bg: oklch(98% 0.012 80);          /* off-white cremoso, calidez */
-  --color-bg-deep: oklch(95% 0.018 75);     /* nivel hundido sutil */
+  --color-bg: oklch(98% 0.012 80);          /* off-white cremoso, calidez sutil de fondo */
+  --color-bg-deep: oklch(95% 0.015 80);     /* nivel hundido sutil */
   --color-ink: oklch(18% 0.025 250);        /* navy casi negro, alto contraste */
   --color-ink-soft: oklch(35% 0.025 250);   /* navy medio, secondary text */
   --color-muted: oklch(55% 0.015 250);      /* gris frío, captions */
 
-  /* === Glow cálido (acento de luz, signature del dialecto) === */
-  --color-glow: oklch(78% 0.18 60);         /* amber peach, hero accent */
-  --color-glow-soft: oklch(92% 0.07 70);    /* peach soft, fondos cálidos */
-  --color-glow-deep: oklch(65% 0.18 50);    /* coral profundo, hover */
+  /* === Glow frío (acento de luz, signature del dialecto cold) === */
+  --color-glow: oklch(75% 0.15 230);        /* sky blue brillante, hero accent */
+  --color-glow-soft: oklch(92% 0.06 225);   /* sky soft, fondos suaves */
+  --color-glow-deep: oklch(58% 0.20 240);   /* royal blue profundo, hover */
 
-  /* === Acento opcional para "active" / interactivo === */
-  --color-accent: oklch(55% 0.22 260);      /* royal blue, estados activos */
-  --color-accent-soft: oklch(85% 0.10 260); /* blue soft, hover */
+  /* === Acento opcional (active states) === */
+  --color-accent: oklch(60% 0.22 280);      /* indigo para diferenciar de glow */
+  --color-accent-soft: oklch(85% 0.10 280); /* indigo soft, hover */
+
+  /* === Dark surfaces (para Header top banner + CTA section) === */
+  /* "Gris recio, no negro puro" — gris azulado profundo */
+  --color-dark: oklch(25% 0.025 250);       /* base dark surface */
+  --color-dark-deep: oklch(18% 0.025 250);  /* extremo del gradient */
+  --color-dark-soft: oklch(32% 0.025 250);  /* hover/elevación sutil */
+  --color-dark-fg: oklch(95% 0.005 80);     /* texto principal sobre dark */
+  --color-dark-fg-soft: oklch(70% 0.015 250); /* texto secundario sobre dark */
+  --color-dark-border: oklch(100% 0 0 / 0.08); /* borde sutil sobre dark */
 
   /* === Tipografías === */
   --font-display: 'Bebas Neue', sans-serif;       /* RENDERDEVO wordmark, hero */
@@ -61,13 +67,13 @@
     0 8px 32px oklch(0% 0 0 / 0.08),
     0 16px 64px oklch(0% 0 0 / 0.06);
 
-  /* === Glow shadows (warm light) === */
+  /* === Glow shadows (cool light) === */
   --shadow-glow:
-    0 0 30px oklch(78% 0.18 60 / 0.35),
-    0 0 60px oklch(78% 0.18 60 / 0.18);
+    0 0 30px oklch(75% 0.15 230 / 0.35),
+    0 0 60px oklch(75% 0.15 230 / 0.18);
   --shadow-glow-strong:
-    0 0 40px oklch(78% 0.18 60 / 0.55),
-    0 0 90px oklch(78% 0.18 60 / 0.30);
+    0 0 40px oklch(75% 0.15 230 / 0.55),
+    0 0 90px oklch(75% 0.15 230 / 0.30);
 
   /* === Glass === */
   --glass-bg: oklch(100% 0 0 / 0.55);
@@ -76,26 +82,30 @@
   --glass-blur-strong: 32px;
   --glass-border: oklch(100% 0 0 / 0.7);
 
-  /* === Spacing scale (extiende Tailwind si necesitás) === */
-  --spacing-section: 6rem;        /* gap vertical entre secciones */
-  --spacing-section-lg: 9rem;     /* hero / first scroll */
+  /* === Spacing scale === */
+  --spacing-section: 6rem;
+  --spacing-section-lg: 9rem;
 
-  /* === Container === */
-  --container-max: 1280px;
-  --container-narrow: 880px;
+  /* === Container (renombrado del namespace --container-* que Tailwind 4 reserva) === */
+  --site-max-width: 1280px;
+  --site-narrow-width: 880px;
 }
 
 /*
  * ============================================================================
- * PRESETS DE PALETA (descomentar para probar variantes — sustituyen :root arriba)
+ * PRESETS DE PALETA (descomentar para probar variantes)
  * ============================================================================
  *
- * Preset "Warm Editorial": peach + royal blue (actual, default)
- * Preset "Cool Studio": substituí los glow por azules fríos.
- *   --color-glow: oklch(78% 0.15 220);
- *   --color-glow-soft: oklch(92% 0.06 220);
+ * Preset "Warm Editorial": peach + royal blue
+ *   --color-glow: oklch(78% 0.18 60);
+ *   --color-glow-soft: oklch(92% 0.07 70);
+ *   --color-glow-deep: oklch(65% 0.18 50);
  *
- * Preset "Earth Warm": substituí navy por brown profundo.
+ * Preset "Cool Studio" (actual): sky blue + indigo
+ *   --color-glow: oklch(75% 0.15 230);
+ *   --color-glow-soft: oklch(92% 0.06 225);
+ *
+ * Preset "Earth Warm": brown profundo
  *   --color-ink: oklch(20% 0.04 50);
  *   --color-glow: oklch(75% 0.15 50);
  */

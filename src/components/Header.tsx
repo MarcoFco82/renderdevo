@@ -1,5 +1,4 @@
 import { NavLink } from 'react-router-dom';
-import { Wordmark } from './Wordmark';
 import { LanguageToggle } from './LanguageToggle';
 import { useLocale } from '@/i18n/LocaleProvider';
 
@@ -18,14 +17,23 @@ export function Header() {
     <header
       className="sticky top-0 z-50 w-full"
       style={{
-        background: 'oklch(98% 0.012 80 / 0.85)',
-        backdropFilter: `blur(var(--glass-blur))`,
-        WebkitBackdropFilter: `blur(var(--glass-blur))`,
-        borderBottom: '1px solid oklch(0% 0 0 / 0.05)',
+        background:
+          'linear-gradient(135deg, var(--color-dark-soft) 0%, var(--color-dark) 35%, var(--color-dark-deep) 100%)',
+        borderBottom: '1px solid var(--color-dark-border)',
+        color: 'var(--color-dark-fg)',
       }}
     >
       <div className="container-base flex items-center justify-between gap-6 py-5">
-        <Wordmark size="sm" />
+        {/* Wordmark invertido a claro sobre dark */}
+        <NavLink to="/" className="inline-block">
+          <span
+            className="font-display tracking-[0.04em] leading-none text-2xl"
+            style={{ color: 'var(--color-dark-fg)' }}
+            aria-label="renderdevo"
+          >
+            RENDERDEVO
+          </span>
+        </NavLink>
 
         <nav className="hidden md:flex items-center gap-7 text-sm">
           {navItems.map((item) => (
@@ -34,8 +42,13 @@ export function Header() {
               to={item.to}
               className={({ isActive }) =>
                 isActive
-                  ? 'text-[var(--color-ink)] font-medium'
-                  : 'text-[var(--color-ink-soft)] hover:text-[var(--color-ink)] transition'
+                  ? 'font-medium transition'
+                  : 'transition hover:opacity-100'
+              }
+              style={({ isActive }) =>
+                isActive
+                  ? { color: 'var(--color-dark-fg)' }
+                  : { color: 'var(--color-dark-fg-soft)' }
               }
             >
               {item.label}
@@ -44,10 +57,14 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <LanguageToggle />
+          <LanguageToggle variant="dark" />
           <NavLink
             to="/contacto"
-            className="hidden sm:inline-flex items-center px-4 py-2 rounded-[var(--radius-pill)] bg-[var(--color-ink)] text-[var(--color-bg)] text-sm font-medium hover:opacity-90 transition"
+            className="hidden sm:inline-flex items-center px-4 py-2 rounded-[var(--radius-pill)] text-sm font-medium hover:opacity-90 transition"
+            style={{
+              background: 'var(--color-dark-fg)',
+              color: 'var(--color-dark-deep)',
+            }}
           >
             {t.nav.contact}
           </NavLink>

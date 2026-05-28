@@ -80,6 +80,13 @@ y "D-Anim-Gator" quedan en backstage. Al cliente solo "tecnología propia" /
 🔒 **Sin Wordpress, Wix, Webflow, Unity, Unreal** en el stack —
 ni para presumir que no los usamos en v1.
 
+🔒 **Copy del sitio en español de MÉXICO**, no rioplatense.
+- "Tienes" / "Quieres" / "Puedes", **NUNCA** "tenés" / "querés" / "podés".
+- "Construir" sobre "armar", "platicar" sobre "charlar" cuando aplique.
+- Marco está en Guadalajara, target principal LATAM con anclaje MX.
+- Las conversaciones internas (este chat) pueden usar voseo informal,
+  pero `src/i18n/strings.ts` siempre va en ES-MX neutro.
+
 ---
 
 ## Intel y briefs estratégicos
