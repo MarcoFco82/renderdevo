@@ -187,8 +187,9 @@ src/
 
 - **001 — 2026-04-26:** bootstrap — CLAUDE.md inicial, audit Pre-Deploy Triangle (no aplica),
   `renderdev-strategy-2026.md`. Ver `docs/sesiones/session_001.md`.
-- **002 — 2026-05-25:** mail setup (contacto@renderdevo.com alias en Zoho, split-brain
-  DNS Vercel limpiado), strategy refresh con 12 docs de marcomotionv2 (4 proyectos +
-  8 intel briefs + 4 tarifas), **wipe total del stack Next.js**, reescritura v2 con
-  Vite + React 19 + TS + Tailwind 4 + CF Pages, sistema de tokens centralizado,
-  i18n ES/EN, Home con bloques estructurales. Ver session_002 cuando se documente.
+- **002 — 2026-05-28:** mail setup (contacto@renderdevo.com alias en Zoho, split-brain
+  DNS Vercel limpiado), ingestión de 13 docs estratégicos de marcomotionv2, **wipe total
+  del stack Next.js**, reescritura v2 (Vite + React 19 + TS + Tailwind 4 + CF Pages),
+  tokens centralizados, i18n ES/EN, Home vestido (WorkGrid tabs+lightbox, 4 loops Envato),
+  Header+CTA dark con LED glow 5 capas, R2 custom domain media.renderdevo.com,
+  **deploy a producción** (`2c9533a` → https://renderdevo.com). Ver `docs/sesiones/session_002.md`.
