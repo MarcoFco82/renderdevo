@@ -8,6 +8,10 @@ dist
 build
 .vite
 
+# legacy Next.js (stack wipeado en sesión 002 — artefactos huérfanos)
+.next
+next-env.d.ts
+
 # testing
 /coverage
 
