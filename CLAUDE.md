@@ -158,8 +158,9 @@ src/
 ## Convenciones (heredadas + project-specific)
 
 - **Commits:** `type(scope): description` (feat, fix, refactor, docs, chore)
-- **Commits directo a `main` sin preguntar** (memory `feedback_commit_main.md`).
-  NO incluye `push` ni acciones destructivas.
+- **Commit + push directo a `main` sin preguntar** (memory `feedback_commit_main.md`).
+  Flujo solo-dev sin PRs. Acciones destructivas (force-push, reset --hard, branch -D)
+  SIGUEN requiriendo confirmación explícita.
 - **Typecheck obligatorio post-cambios:** `npm run typecheck`
 - **Respuestas en español** (regla global).
 - **ES Modules** siempre, jamás CommonJS.
