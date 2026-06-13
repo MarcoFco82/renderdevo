@@ -71,9 +71,14 @@ Si un proyecto lo necesita, Marco contrata operativos 3D externos sin documentar
 Anchor pendiente: cliente universidad. Tabla interna en
 `marcomotionv2/docs/ref/09-12-tarifas-*.md`.
 
-🔒 **Nombres internos de los engines NO van al cliente.** "Ashur Engine"
-y "D-Anim-Gator" quedan en backstage. Al cliente solo "tecnología propia" /
-"infraestructura propia".
+🔒 **Ashur Engine y D-Anim-Gator son productos públicos y reconocibles de
+RENDERDEVO** (decisión 2026-06-12, ver `docs/decisions.md`). Ashur Engine tiene
+marca y sitio propios (**ashurengine.com**, repo separado
+`Playground/Apps/ashurengine/`); todo adelanto visual de Marco lleva splash
+"Developed with Ashur Engine". En renderdevo.com ambos motores se nombran como
+tecnología propia de la casa, con link. NO se venden ni ofrecen como
+producto/licencia/editor todavía — son marcas de tecnología propietaria.
+Sin early access ni captura de emails en ashurengine.com.
 
 🔒 **Sin emojis decorativos en UI/copy** (regla global).
 
