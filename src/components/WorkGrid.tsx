@@ -27,6 +27,7 @@ export function WorkGrid() {
 
   const tabLabel: Record<WorkCategory, string> = {
     'motion-design': t.work.tabs.motionDesign,
+    'ai-film': t.work.tabs.aiFilm,
     experimental: t.work.tabs.experimental,
     interactive: t.work.tabs.interactive,
   };
@@ -136,6 +137,7 @@ function WorkCell({ item, onClick }: WorkCellProps) {
     '9:16': 'aspect-[9/16]',
     '16:9': 'aspect-[16/9]',
     '1:1': 'aspect-square',
+    '2:3': 'aspect-[2/3]',
   };
 
   return (

@@ -12,14 +12,14 @@
 
 import { r2 } from '@/lib/r2';
 
-export type WorkCategory = 'motion-design' | 'experimental' | 'interactive';
+export type WorkCategory = 'motion-design' | 'ai-film' | 'experimental' | 'interactive';
 
 export interface WorkItem {
   id: string;
   category: WorkCategory;
   src: string;
   /** Aspect del source. Determina cómo se renderiza la celda. */
-  aspect: '9:16' | '16:9' | '1:1';
+  aspect: '9:16' | '16:9' | '1:1' | '2:3';
 }
 
 export const works: WorkItem[] = [
@@ -27,9 +27,13 @@ export const works: WorkItem[] = [
   { id: 'md02', category: 'motion-design', src: r2('motion-design/md02.mp4'), aspect: '9:16' },
   { id: 'md03', category: 'motion-design', src: r2('motion-design/md05.mp4'), aspect: '9:16' },
   { id: 'md04', category: 'motion-design', src: r2('motion-design/md04.mp4'), aspect: '9:16' },
+
+  // AI Film — book trailers (generados con IA y editados). 720×1280, 9:16.
+  { id: 'alsduam-leonarda', category: 'ai-film', src: r2('ai-video/alsduam-leonarda.mp4'), aspect: '9:16' },
+  { id: 'alsduam-petra', category: 'ai-film', src: r2('ai-video/alsduam-petra.mp4'), aspect: '9:16' },
 ];
 
-export const categoryOrder: WorkCategory[] = ['motion-design', 'experimental', 'interactive'];
+export const categoryOrder: WorkCategory[] = ['motion-design', 'ai-film', 'experimental', 'interactive'];
 
 export function worksByCategory(category: WorkCategory): WorkItem[] {
   return works.filter((w) => w.category === category);

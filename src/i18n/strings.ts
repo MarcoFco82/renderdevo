@@ -69,6 +69,7 @@ const es = {
       subtitle: 'Motion, experimental, interactivo.',
       tabs: {
         motionDesign: 'Motion Design',
+        aiFilm: 'AI Film',
         experimental: 'Experimental & Stylized',
         interactive: 'Interactive',
       },
@@ -184,6 +185,7 @@ const en: StringsShape = {
       subtitle: 'Motion, experimental, interactive.',
       tabs: {
         motionDesign: 'Motion Design',
+        aiFilm: 'AI Film',
         experimental: 'Experimental & Stylized',
         interactive: 'Interactive',
       },
