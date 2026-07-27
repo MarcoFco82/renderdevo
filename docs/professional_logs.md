@@ -13,15 +13,62 @@ Cumulative observations on Marco's decision-making, technical direction, and cre
 - **Self-aware about feature creep.** Flags own architectural bloat (e.g., "ADR-030 lleva 9 sesiones sin disparar — candidato a retiro narrativo") instead of defending it.
 - **Exceptional visual direction vocabulary.** Directs UI craft using motion-designer language ("blureálo 200%", "fusión de layer tipo Add", "que se queme como After Effects Glow", "filament detrás del botón, no debajo"). Translates a felt visual target into precise, iterable adjustments. This is his deepest competitive moat — the AI executes, but the eye is his.
 - **Iterates toward a target rather than accepting first output.** Rejected 2 CTA approaches before landing the dark-mode LED concept, then drove ~6 micro-iterations on the glow alone. Knows the difference between "works" and "right".
+- **Integrity in external materials (S003).** Proactively corrected his own overclaims in the pitch ("cero pesos" → real cost; "cliente" → unpaid collaboration) even when it weakened the story. Chooses defensible over impressive — the trait that survives a technical jury.
+- **Editorial ear for copy, not just visuals (S003).** Detects "AI voice" (slogans, dressed-up phrasing) and directs prose tone with the same precision he directs motion. Caught over-colloquial V3 instantly.
 
 ### Areas to develop
 - **Commercial muscle dormant.** Has not closed a paying client in ~2 years. Outbound, pricing conversations, and deal mechanics will need deliberate practice, not just publishing content.
-- **Narrative discipline across a product portfolio.** Tendency to seed multiple products (engine, SaaS, motion engine, Guardians) before commercial validation of any. The risk is fragmentation — communicating one coherent identity will require active editing of what to mention publicly vs. what to keep in roadmap.
+- **Narrative discipline across a product portfolio.** Tendency to seed multiple products (engine, SaaS, motion engine, Guardians) before commercial validation of any. The risk is fragmentation — communicating one coherent identity will require active editing of what to mention publicly vs. what to keep in roadmap. *(S003: improving — deliberately kept Guardianes out of the pitch to protect focus.)*
 - **Tension between "cero runway" and "lo que sea es bueno".** Without explicit revenue thresholds, hard to know when to pivot tactics. Recommend setting binary checkpoints (e.g., "if no client by week 8, change channel").
 
 ---
 
 ## Session Log
+
+### Session 003 — 2026-07-26
+
+> Sesión mayormente sobre Ashur Engine / RenderDevo (sitio ashurengine.com + pitch
+> Creativa GDL + biblia estratégica). Arrancó con la pestaña AI Film en renderdevo.com.
+
+#### Direction & Decision-Making
+- **Integridad por encima de impresionar.** Corrigió dos sobre-afirmaciones que él mismo
+  había dejado pasar: "cero pesos" (era ~$235/mes) y "primer cliente institucional" (era
+  una colaboración no pagada vía su hermana). Prefirió un pitch más débil pero defendible.
+  Este es un cambio real respecto al riesgo de "narrativa inflada" — ahora edita a la baja.
+- **Disciplina de foco sobre el portafolio.** Decidió dejar Guardianes FUERA del pitch para
+  no fracturar el mensaje, aunque le entusiasmaba. Es exactamente el "active editing of what
+  to mention publicly vs. roadmap" que faltaba en S001-002. Patrón mejorando.
+- **Vulnerabilidad estratégica productiva.** Dijo claro "no sé qué hacer con el sistema, es
+  crítico" y pidió asesoría en vez de fingir un plan. Una vez enmarcado (managed vs SaaS vs
+  licencia), razonó él mismo el modelo y corrigió su propia idea errónea ("debe ir en el
+  servidor del cliente / cobrar barato").
+- **Oído editorial fortísimo aplicado a la prosa, no solo al visual.** Detectó y nombró el
+  "lenguaje de IA" (eslóganes, frases maquilladas) y pidió tono ensayístico; cuando la V3 se
+  pasó de coloquial, lo cachó al instante ("haha no tan coloquial"). Su ojo de motion designer
+  ahora también calibra copy.
+
+#### Technical Strategy
+- Trató la biblia como fuente de verdad y el pitch/sitio como derivados — jerarquía correcta
+  de documentación. Pidió explícitamente el documento de fondo aparte del "resumen para vender".
+- Entendió rápido la implicación del dato de Cloudflare (costo casi plano por egress gratis de
+  R2) y la convirtió en decisión: cuota de operación por valor/riesgo, no por costo.
+
+#### Creative
+- Encuadre de marca consolidado: RenderDevo (casa) → Ashur (producto) → Defensa/EJP (prueba),
+  con Marco como fundador/director técnico y creativo (derogó la regla de "no soy developer").
+- Reencuadre honesto del museo: "en implementación / se anuncia como nuevo feature" en vez de
+  "desplegado" — precisión sin perder fuerza.
+
+#### Areas of Opportunity
+- **Sigue sin validar precio.** El modelo (proyecto + operación anual) ya está escrito, pero
+  los rangos de tarifa siguen pendientes de anclar. Próximo paso concreto: poner números y
+  probarlos con un prospecto real, no solo documentarlos.
+- **Gestión de tokens/sesión.** Mencionó haber quemado una sesión de 5h en 15min. Le sirve una
+  heurística explícita (research pesado → background agents; edición → inline) — ya se aplicó
+  esta sesión, conviene volverlo hábito consciente.
+- **Cerrar la brecha "casi listo".** El engine está "casi listo" para varios frentes; el riesgo
+  es perseguir amplitud (educación + arte + IA personal) antes de cerrar UN caso pagado. Fijar
+  un checkpoint binario ayudaría (sigue vigente desde S002).
 
 ### Session 002 — 2026-05-28
 
