@@ -1,7 +1,9 @@
-import { ComingSoon } from '@/components/ComingSoon';
-import { useLocale } from '@/i18n/LocaleProvider';
+import { Navigate } from 'react-router-dom';
 
+/**
+ * /metodo quedó obsoleto: la sección "Método" fue reemplazada por "Ashur Engine"
+ * (D-002). Se conserva la ruta como redirect para no romper links antiguos.
+ */
 export function Metodo() {
-  const { t } = useLocale();
-  return <ComingSoon title={t.method.title} />;
+  return <Navigate to="/ashur" replace />;
 }

@@ -76,27 +76,54 @@ export function Home() {
         </div>
       </section>
 
-      {/* === MÉTODO === */}
+      {/* === PRODUCTOS ESTRELLA === */}
       <section className="container-base py-[var(--spacing-section)]">
-        <h2 className="font-display text-4xl md:text-5xl mb-12 max-w-3xl">
-          {t.method.title}
-        </h2>
+        <div className="flex flex-col gap-3 mb-10 max-w-3xl">
+          <h2 className="font-display text-4xl md:text-5xl">{t.products.title}</h2>
+          <p className="text-[var(--color-muted)]">{t.products.subtitle}</p>
+        </div>
 
-        <div className="space-y-px">
-          {t.method.steps.map((step) => (
-            <div
-              key={step.num}
-              className="flex flex-col md:flex-row md:items-baseline gap-3 md:gap-12 py-6 border-t border-[oklch(0%_0_0_/_0.08)]"
+        <div className="grid gap-6 md:grid-cols-2">
+          {/* Ashur Engine — producto en vivo, link a /ashur */}
+          <div className="flex flex-col p-8 tactile-card">
+            <span className="inline-block self-start text-xs uppercase tracking-[0.2em] text-[var(--color-glow-deep)] mb-4">
+              {t.products.ashur.status}
+            </span>
+            <h3 className="font-heading text-2xl font-semibold mb-2">
+              {t.products.ashur.name}
+            </h3>
+            <p className="font-heading text-[var(--color-ink)] mb-3">
+              {t.products.ashur.tagline}
+            </p>
+            <p className="text-[var(--color-ink-soft)] mb-6 flex-1">
+              {t.products.ashur.body}
+            </p>
+            <Link
+              to="/ashur"
+              className="inline-flex items-center self-start px-5 py-2.5 rounded-[var(--radius-pill)] bg-[var(--color-ink)] text-[var(--color-bg)] text-sm font-medium hover:opacity-90 transition"
             >
-              <span className="font-mono text-sm text-[var(--color-muted)] md:w-20">
-                {step.num}
-              </span>
-              <div className="flex-1 grid md:grid-cols-[200px_1fr] gap-3 md:gap-12">
-                <span className="font-heading text-lg font-semibold">{step.name}</span>
-                <p className="text-[var(--color-ink-soft)] max-w-2xl">{step.body}</p>
-              </div>
-            </div>
-          ))}
+              {t.products.ashur.cta}
+            </Link>
+          </div>
+
+          {/* D-Anim-Gator — en desarrollo, sin link */}
+          <div className="flex flex-col p-8 glass-card">
+            <span className="inline-block self-start text-xs uppercase tracking-[0.2em] text-[var(--color-muted)] mb-4">
+              {t.products.danimgator.status}
+            </span>
+            <h3 className="font-heading text-2xl font-semibold mb-2">
+              {t.products.danimgator.name}
+            </h3>
+            <p className="font-heading text-[var(--color-ink)] mb-3">
+              {t.products.danimgator.tagline}
+            </p>
+            <p className="text-[var(--color-ink-soft)] mb-6 flex-1">
+              {t.products.danimgator.body}
+            </p>
+            <span className="inline-flex items-center self-start px-5 py-2.5 rounded-[var(--radius-pill)] text-sm font-medium text-[var(--color-muted)] border border-[oklch(0%_0_0_/_0.12)]">
+              {t.products.danimgator.cta}
+            </span>
+          </div>
         </div>
       </section>
 

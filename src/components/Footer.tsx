@@ -30,8 +30,8 @@ export function Footer() {
               <Link to="/casos" className="hover:text-[var(--color-glow-deep)] transition">
                 {t.nav.cases}
               </Link>
-              <Link to="/metodo" className="hover:text-[var(--color-glow-deep)] transition">
-                {t.nav.method}
+              <Link to="/ashur" className="hover:text-[var(--color-glow-deep)] transition">
+                {t.nav.ashur}
               </Link>
               <Link to="/lo-que-no-hacemos" className="hover:text-[var(--color-glow-deep)] transition">
                 {t.notDoing.title}

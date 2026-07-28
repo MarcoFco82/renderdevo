@@ -8,7 +8,7 @@ export function Header() {
   const navItems = [
     { to: '/capacidades', label: t.nav.capabilities },
     { to: '/casos', label: t.nav.cases },
-    { to: '/metodo', label: t.nav.method },
+    { to: '/ashur', label: t.nav.ashur },
     { to: '/diario', label: t.nav.diary },
     { to: '/sobre', label: t.nav.about },
   ];
