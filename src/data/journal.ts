@@ -1,11 +1,12 @@
 /**
- * Journal de renderdevo — notas de proceso, decisiones y construcción en público.
+ * Journal de renderdevo — cómo trabajo y las decisiones detrás de la construcción.
  *
- * Fuente curada (EN): renderdevo/docs/JOURNAL_renderdevo.md
- * ES-MX: traducción conservando la voz (primera persona, reflexiva, honesta).
+ * Fuente curada (EN): renderdevo/docs/JOURNAL_renderdevo.md (v2, prosa reestructurada).
+ * ES-MX: traducción conservando la voz — primera persona, plana, honesta. Marco es
+ * diseñador de motion que construye herramientas dirigiendo IA. Sin slogans ni manifiestos.
  * NO es un changelog (los feature drops con fecha viven en el Devlog de Ashur).
  *
- * Emphasis inline soportado en ambos idiomas:  **negrita**  ·  *cursiva*
+ * Emphasis inline soportado si hiciera falta:  **negrita**  ·  *cursiva*
  * Orden: narrativo (deliberado), no cronológico. Se respeta el orden de la fuente.
  */
 
@@ -20,154 +21,148 @@ export interface JournalEntry {
 
 export const journal: JournalEntry[] = [
   {
-    slug: 'became-a-platform',
+    slug: 'whos-building-this',
+    title: { es: 'Quién está construyendo esto', en: "Who's building this" },
+    body: {
+      es: [
+        'Soy diseñador de motion graphics. Llevo años en Cinema 4D y After Effects, no en un codebase. Lo que estoy haciendo ahora es construir un motor web y los proyectos encima de él, con la IA haciendo buena parte del código real mientras yo lo dirijo y aprendo sobre la marcha.',
+        'Pongo este diario porque prefiero ser honesto con eso que fingir que soy ingeniero de software. Una parte la entiendo bien; otra la voy resolviendo a medio construir. Cuando algo estuvo difícil o me equivoqué, lo voy a decir.',
+      ],
+      en: [
+        "I'm a motion graphics designer. I've spent years in Cinema 4D and After Effects, not in a codebase. What I'm doing now is building a web engine and the projects on top of it, with AI doing a lot of the actual coding while I direct it and learn as I go.",
+        "I'm putting this journal up because I'd rather be honest about that than pretend I'm a software engineer. Some of this I understand well; some of it I'm figuring out mid-build. When something was hard or I got it wrong, I'll say so.",
+      ],
+    },
+  },
+  {
+    slug: 'project-turned-into-engine',
     date: '2026-03-13',
+    title: { es: 'El proyecto se volvió un motor', en: 'The project turned into an engine' },
+    body: {
+      es: [
+        'Por un tiempo creí que estaba haciendo un solo mundo 3D. En algún momento caí en cuenta de que la mayor parte de lo que había construido estaba debajo del mundo: el terreno, el renderizado, el backend, las herramientas de edición. El lugar específico era una capa delgada encima de todo eso.',
+        'Así que lo separé: las partes genéricas a un núcleo compartido, el mundo específico como una capa pequeña encima. Decidir tratarlo como un motor en vez de un solo producto fue una decisión más grande que cualquier función. Mantuve todo en un repo porque trabajo solo y ahora mismo así es más simple para mí.',
+      ],
+      en: [
+        "For a while I thought I was making one 3D world. At some point it clicked that most of what I'd built was underneath the world — the terrain, the rendering, the backend, the editing tools. The specific place was a thin layer on top of all that.",
+        'So I split it: the generic parts into a shared core, the specific world as a small layer on top. Deciding to treat it as an engine instead of a single product was a bigger call than any feature. I kept everything in one repo because I work alone and that\'s simpler for me right now.',
+      ],
+    },
+  },
+  {
+    slug: 'two-projects-one-engine',
+    title: { es: 'Dos proyectos, un motor', en: 'Two projects, one engine' },
+    body: {
+      es: [
+        'Unos días después de la separación armé un segundo proyecto, sin relación con el primero, sobre el mismo motor. Me tomó como media hora. Ese fue el momento en que «es reutilizable» dejó de ser algo que esperaba y se volvió algo que ya había hecho.',
+        'Ahora los dos proyectos conviven lado a lado. Los nuevos cambian el contenido, no el motor. Esa es toda la razón por la que pasé por la separación.',
+      ],
+      en: [
+        'A few days after the split I set up a second, unrelated project on the same engine. It took about half an hour. That was the moment "it\'s reusable" stopped being something I hoped and became something I\'d actually done.',
+        'Now the two projects live side by side. New ones change the content, not the engine. That\'s the whole reason to have gone through the split.',
+      ],
+    },
+  },
+  {
+    slug: 'everything-inside-the-tool',
+    title: { es: 'Construyo todo dentro de la herramienta', en: 'I build everything inside the tool' },
+    body: {
+      es: [
+        'No quería un pipeline donde modelas en una app, animas en otra y lo unes todo en otro lado. Quería dibujar el terreno, modelar los assets, construir las estructuras caminables, cablear la lógica y diseñar los menús —todo en la misma herramienta— y luego entregarlo como un link.',
+        'Parte de eso viene de mi background: como motion designer estoy acostumbrado a un solo entorno donde hago todo. Parte es práctico: menos piezas moviéndose significa menos cosas que tengo que traer en la cabeza.',
+      ],
+      en: [
+        "I didn't want a pipeline where you model in one app, animate in another, and stitch it together somewhere else. I wanted to draw the terrain, model the assets, build the walkable structures, wire the logic, and design the menus — all in the same tool — and then ship it as a link.",
+        "Part of that is my background: as a motion designer I'm used to one environment where I do the whole thing. Part of it is practical — fewer moving parts means fewer things I have to keep in my head.",
+      ],
+    },
+  },
+  {
+    slug: 'bug-means-design-wrong',
     title: {
-      es: 'El día que el proyecto se volvió plataforma',
-      en: 'The day the project became a platform',
+      es: 'A veces el bug me dice que el diseño está mal',
+      en: 'Sometimes the bug is telling me the design is wrong',
     },
     body: {
       es: [
-        'Por un tiempo creí que estaba construyendo un mundo. Un día me di cuenta de que el mundo era casi todo motor: el terreno, el renderizado, el backend, las herramientas de edición eran todos genéricos; solo una capa delgada era el lugar específico.',
-        'Así que dejé de tratarlo como un producto y empecé a tratarlo como una plataforma. Saqué las partes genéricas a un núcleo compartido y dejé lo específico como una capa delgada encima. Mantuve todo en un solo repositorio: como equipo de una persona, los refactors atómicos y una sola fuente de verdad le ganan a la ceremonia de muchos repos.',
-        'La decisión que lo cambió todo no fue una función. Fue un límite.',
+        'Lo más útil que he aprendido construyendo esto: algunos bugs no son bugs. Un menú que parpadeaba no era un problema de renderizado; el motor estaba tratando el menú como un video que se reproduce y termina, cuando un menú debería quedarse ahí hasta que alguien haga clic. La solución no fue un parche, fue cambiar cómo había pensado los menús.',
+        'Cuando algo se sigue rompiendo de formas raras, aprendí a dejar de parchar y preguntarme si lo armé mal desde el principio.',
       ],
       en: [
-        'For a while I thought I was building a world. One day I realized the world was mostly engine — the terrain, the rendering, the backend, the editing tools were all generic; only a thin slice was the specific place.',
-        'So I stopped treating it as a product and started treating it as a platform. I pulled the generic parts into a shared core and left the specific parts as a thin shell on top. Kept everything in one repository — as a team of one, atomic refactors and a single source of truth beat the ceremony of many repos.',
-        "The decision that changed everything wasn't a feature. It was a boundary.",
+        "The most useful thing I've learned building this: some bugs aren't bugs. A menu that flickered wasn't a rendering problem — the engine was treating a menu like a video that plays and ends, when a menu should just sit there until someone clicks. The fix wasn't a patch, it was changing how I'd thought about menus.",
+        "When something keeps breaking in weird ways, I've learned to stop patching and ask if I set it up wrong in the first place.",
       ],
     },
   },
   {
-    slug: 'one-engine-many-worlds',
-    title: { es: 'Un motor, muchos mundos', en: 'One engine, many worlds' },
+    slug: 'test-by-shipping',
+    title: { es: 'Pruebo publicando', en: 'I test by shipping' },
     body: {
       es: [
-        'La apuesta es fácil de decir y difícil de ganarse: **construye la capacidad una vez, llévala a muchos mundos.**',
-        'Unos días después de la separación, levanté un segundo producto completamente distinto sobre el mismo motor en cosa de media hora de configuración: un jardín contemplativo y un set de minijuegos históricos, compartiendo un núcleo, cada uno con su propia infraestructura aislada. Ese fue el momento en que la plataforma dejó de ser teoría. Los mundos nuevos cambian el contenido, no el código.',
+        'No hago mucha prueba en un sandbox. Deployeo, y luego lo reviso en mi celular y en el navegador donde la gente lo va a usar de verdad. Suena arriesgado. Para un proyecto chico, con setup serverless y sin una base de usuarios grande todavía, ha sido más rápido que la alternativa.',
+        'Solo funciona por las cosas aburridas de abajo.',
       ],
       en: [
-        'The bet is simple to say and hard to earn: **build the capability once, ship it into many worlds.**',
-        'A few days after the split, I stood up a second, completely different product on the same engine in about half an hour of setup — a contemplative garden and a set of historical mini-games, sharing a core, each with its own isolated infrastructure. That was the moment the platform stopped being a theory. New worlds change the content, not the code.',
+        "I don't do a lot of testing in a sandbox. I deploy, then I check it on my phone and in the browser where people will actually use it. It sounds risky. For a small project with a serverless setup and no big user base yet, it's been faster than the alternative.",
+        'It only works because of the boring stuff below.',
       ],
     },
   },
   {
-    slug: 'author-inside-the-tool',
+    slug: 'boring-stuff-move-fast',
     title: {
-      es: 'Crear todo dentro de la herramienta',
-      en: 'Author everything inside the tool',
+      es: 'Las cosas aburridas que me dejan ir rápido',
+      en: 'The boring stuff that lets me move fast',
     },
     body: {
       es: [
-        'Hay muchas formas de poner 3D en la web. Lo que a mí me importa es distinto: **todo el ciclo de creación vive dentro de la herramienta.**',
-        'Dibujar el terreno. Esculpir los assets. Construir los edificios caminables. Cablear la lógica y las reglas con un grafo visual de nodos. Diseñar los menús y las pantallas. Luego se entrega como link o código QR: sin descargas, sin app store, sin instalación. La suite de autoría no es una función del motor. *Es* el producto.',
+        'Hay alrededor de 2,300 pruebas automatizadas en el motor, los cambios de base de datos se hacen de forma que no rompan lo que ya existe, y los proyectos viejos siguen funcionando cuando agrego cosas nuevas. Nada de eso es emocionante. Es lo que me deja publicar rápido sin destrozar los mundos que ya están en vivo.',
+        'No llegué a esto de forma natural; es la disciplina que fui agarrando (y que le hago cumplir a la IA) para no pegarme un tiro en el pie.',
       ],
       en: [
-        'There are plenty of ways to put 3D on the web. The thing I care about is different: **the entire authoring loop lives inside the tool.**',
-        "Draw the terrain. Sculpt the assets. Construct the walkable buildings. Wire the logic and the rules with a visual node graph. Design the menus and screens. Then it ships as a link or a QR code — no downloads, no app store, no install. The authoring suite isn't a feature of the engine. It *is* the product.",
+        "There are around 2,300 automated tests on the engine, database changes are made so they don't break what already exists, and old projects keep working when I add new things. None of that is exciting. It's what lets me ship quickly without wrecking the worlds that are already live.",
+        "I didn't come to this naturally — it's the discipline I've picked up (and had the AI enforce) so I don't shoot myself in the foot.",
       ],
     },
   },
   {
-    slug: 'reframe-the-bug',
-    title: {
-      es: 'Reencuadrar el bug como arquitectura',
-      en: 'Reframe the bug into the architecture',
-    },
+    slug: 'measure-instead-of-guess',
+    title: { es: 'Trato de medir en vez de adivinar', en: 'I try to measure instead of guess' },
     body: {
       es: [
-        'Mi hábito más útil no es arreglar bugs: es notar cuándo un bug es en realidad un diseño avisándome que el modelo está mal.',
-        'Un menú que parpadeaba no era un bug de renderizado; era el motor tratando cada pantalla como un video, cuando un menú debería quedarse quieto hasta que el jugador actúe. Un sistema de combate que se sentía demasiado específico no necesitaba una función más; necesitaba volverse un sistema general de bandos y reglas configurables, del que las escaramuzas, las escoltas y las peleas de jefe simplemente emergen.',
-        'La solución, la mayoría de las veces, es una mejor idea, no más código.',
+        'Cuando estoy atorado, la salida más rápida casi siempre ha sido ir a ver los datos reales —el archivo real, el registro real en la base de datos, la petición de red real— en vez de teorizar. Casi todas las veces que perdí horas, fue porque estaba adivinando en vez de checar.',
+        'Todavía me cacho haciéndolo. Es un hábito que estoy construyendo.',
       ],
       en: [
-        "My most useful habit isn't fixing bugs — it's noticing when a bug is really a design telling me the model is wrong.",
-        "A menu that flickered wasn't a rendering bug; it was the engine treating every screen like a video when a menu should hold still until the player acts. A combat system that felt too specific wasn't missing a feature; it needed to become a general system of configurable sides and rules, from which skirmishes and escorts and boss fights simply emerge.",
-        'The fix, more often than not, is a better idea — not more code.',
-      ],
-    },
-  },
-  {
-    slug: 'ship-then-verify',
-    title: {
-      es: 'Publicar, luego verificar en el dispositivo real',
-      en: 'Ship, then verify on the real device',
-    },
-    body: {
-      es: [
-        'No pruebo en teoría. Los deploys son la prueba de humo: las funciones salen a producción rápido y se validan donde los jugadores realmente están —en el celular, en el navegador—, no en un simulador ni en una especificación.',
-        'Suena imprudente. No lo es, por las siguientes dos entradas.',
-      ],
-      en: [
-        "I don't test in theory. Deploys are the smoke test: features go live fast and get validated where players actually are — on the phone, in the browser — not in a simulator or a spec.",
-        "It sounds reckless. It isn't, because of the next two posts.",
-      ],
-    },
-  },
-  {
-    slug: 'safety-net-under-speed',
-    title: {
-      es: 'Una red de seguridad bajo la velocidad',
-      en: 'A safety net under the speed',
-    },
-    body: {
-      es: [
-        'La velocidad solo funciona con un piso debajo. Por eso el motor carga 2,296+ pruebas automatizadas, los cambios de datos son aditivos y no rompen nada por defecto, y la retrocompatibilidad es un requisito de primera clase, no un lujo.',
-        'Puedo moverme rápido precisamente porque romper los mundos que ya existen no está sobre la mesa. La disciplina aburrida es la que compra la velocidad emocionante.',
-      ],
-      en: [
-        'Speed only works with a floor under it. So the engine carries 2,296+ automated tests, data changes are additive and non-breaking by default, and backward compatibility is a first-class requirement, not a nice-to-have.',
-        "I can move fast precisely because breaking the worlds that already exist isn't on the table. The boring discipline is what buys the exciting velocity.",
-      ],
-    },
-  },
-  {
-    slug: 'measure-dont-guess',
-    title: { es: 'Medir, no adivinar', en: "Measure, don't guess" },
-    body: {
-      es: [
-        'Cuando algo es ambiguo, la respuesta viene de la instrumentación —leer los datos reales—, no de una corazonada. Comparar los archivos reales. Consultar el estado real. Observar la llamada de red real.',
-        'Toma más tiempo montarlo y es mucho más rápido para acertar. Casi siempre que estuve realmente atorado, fue porque estaba teorizando en vez de medir.',
-      ],
-      en: [
-        "When something's ambiguous, the answer comes from instrumentation — reading the actual data — not from a hunch. Compare the real files. Query the real state. Watch the real network call.",
-        "It's slower to set up and far faster to be right. Most of the time I've been badly stuck, it was because I was theorizing instead of measuring.",
+        "When I'm stuck, the fastest way out has usually been to go look at the actual data — the real file, the real database row, the real network request — instead of theorizing. Most of the times I've wasted hours, it was because I was guessing instead of checking.",
+        "Still catch myself doing it. It's a habit I'm building.",
       ],
     },
   },
   {
     slug: 'mobile-first',
     title: {
-      es: 'Mobile-first, porque así llega la gente',
-      en: "Mobile-first, because that's how people arrive",
+      es: 'Mobile primero, porque así llega la gente',
+      en: "Mobile first, because that's how people show up",
     },
     body: {
       es: [
-        'Cada decisión de controles, rendimiento y UI parte del celular, no del escritorio. Un dispositivo de gama baja baja a un perfil más ligero de forma automática para que simplemente funcione; los controles son touch-first y se configuran por mundo; todo está diseñado para abrirse escaneando un código.',
-        'A mobile no se porta al final. Empiezas ahí, o en realidad nunca llegas.',
+        'La gente abre esto escaneando un código QR en su celular, así que empiezo ahí. Los controles están hechos para touch, los celulares débiles reciben automáticamente una versión más ligera, y la UI está diseñada primero para pantalla chica. Si construyes para escritorio y luego intentas exprimirlo en un celular, se nota.',
       ],
       en: [
-        'Every choice about controls, performance and UI starts from the phone, not the desktop. A low-end device drops to a lighter profile automatically so it just works; controls are touch-first and configured per world; the whole thing is designed to be opened by scanning a code.',
-        "You don't port to mobile at the end. You start there, or you don't really get there.",
+        'People open these by scanning a QR code on their phone, so I start there. Controls are made for touch, weak phones automatically get a lighter version, and the UI is designed for a small screen first. If you build for desktop and try to squeeze it onto a phone later, it shows.',
       ],
     },
   },
   {
-    slug: 'build-tools-to-build-content',
-    title: {
-      es: 'Construir herramientas para construir contenido',
-      en: 'Build tools to build content',
-    },
+    slug: 'build-tools-not-content',
+    title: { es: 'Construyo herramientas, no solo contenido', en: 'I build tools, not just content' },
     body: {
       es: [
-        'Me sigo dando cuenta de que mis mejores días no se van en hacer un nivel: se van en hacer la herramienta que hace niveles. Un modelador, un editor de mundos, un grafo de nodos, un modo de construcción.',
-        'Cada herramienta multiplica todo lo que viene después. Es más lento el primer día y se acumula para siempre. Esa es la estrategia bajo todo esto: **construye la cosa que construye las cosas.**',
+        'Me he dado cuenta de que mi mejor trabajo no es hacer un nivel: es hacer la cosa que hace niveles. Un modelador, un editor de mundos, un modo de construcción. Es más lento ese día, porque estoy construyendo la máquina en vez del resultado, pero cada herramienta se paga sola cada vez que la uso después.',
       ],
       en: [
-        "I keep noticing that my best days aren't spent making a level — they're spent making the tool that makes levels. A modeler, a world editor, a node graph, a construction mode.",
-        "Each tool multiplies everything downstream. It's slower on day one and compounding forever after. That's the strategy under all of it: **build the thing that builds the things.**",
+        "I've noticed my best work isn't making a level — it's making the thing that makes levels. A modeler, a world editor, a build mode. It's slower on the day, because I'm building the machine instead of the output, but every tool pays off every time I use it after.",
       ],
     },
   },
@@ -177,12 +172,10 @@ export const journal: JournalEntry[] = [
     title: { es: 'Entregado por un link', en: 'Delivered by a link' },
     body: {
       es: [
-        'La prueba más honesta de «sin instalaciones, corre en el navegador» es ponerlo frente a desconocidos que no vinieron a probar tu tecnología.',
-        'Defensa de Puebla —construida sobre el motor— llegó a un museo, jugable escaneando un código QR. Sin app, sin descarga, sin fricción entre una persona y la experiencia. Ver eso funcionar es la tesis entera en un momento: un mundo interactivo completo, entregado por un link.',
+        'Uno de los proyectos, Defensa de Puebla, entró a un museo. Los visitantes escanean un código QR y se abre en el navegador: sin app, sin descarga. Ver a gente que no vino por la tecnología simplemente sacar su celular y jugar fue la prueba más clara de que «corre en el navegador, nada que instalar» de verdad se sostiene fuera de mi propio setup.',
       ],
       en: [
-        'The truest test of "no installs, runs in the browser" is putting it in front of strangers who didn\'t come to try your tech.',
-        'Defensa de Puebla — built on the engine — went to a museum, playable by scanning a QR code. No app, no download, no friction between a person and the experience. Watching that work is the whole thesis in one moment: an entire interactive world, delivered by a link.',
+        'One of the projects, Defensa de Puebla, went into a museum. Visitors scan a QR code and it opens in the browser — no app, no download. Watching people who didn\'t come for the tech just pick up their phone and play was the clearest proof that "runs in the browser, nothing to install" actually holds up outside my own setup.',
       ],
     },
   },
