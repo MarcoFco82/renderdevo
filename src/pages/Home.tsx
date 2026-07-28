@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useLocale } from '@/i18n/LocaleProvider';
 import { WorkGrid } from '@/components/WorkGrid';
+import { r2 } from '@/lib/r2';
 
 export function Home() {
   const { t } = useLocale();
@@ -84,27 +85,65 @@ export function Home() {
         </div>
 
         <div className="grid gap-6 md:grid-cols-2">
-          {/* Ashur Engine — producto en vivo, link a /ashur */}
-          <div className="flex flex-col p-8 tactile-card">
-            <span className="inline-block self-start text-xs uppercase tracking-[0.2em] text-[var(--color-glow-deep)] mb-4">
-              {t.products.ashur.status}
-            </span>
-            <h3 className="font-heading text-2xl font-semibold mb-2">
-              {t.products.ashur.name}
-            </h3>
-            <p className="font-heading text-[var(--color-ink)] mb-3">
-              {t.products.ashur.tagline}
-            </p>
-            <p className="text-[var(--color-ink-soft)] mb-6 flex-1">
-              {t.products.ashur.body}
-            </p>
-            <Link
-              to="/ashur"
-              className="inline-flex items-center self-start px-5 py-2.5 rounded-[var(--radius-pill)] bg-[var(--color-ink)] text-[var(--color-bg)] text-sm font-medium hover:opacity-90 transition"
-            >
-              {t.products.ashur.cta}
-            </Link>
-          </div>
+          {/* Ashur Engine — banner con imagen de fondo, link a /ashur */}
+          <Link
+            to="/ashur"
+            className="group relative flex flex-col justify-end overflow-hidden rounded-[var(--radius-card)] min-h-[440px] p-8"
+          >
+            <img
+              src={r2('ashur/juego-eljardiperdido-2-sunset.webp')}
+              alt=""
+              aria-hidden
+              className="absolute inset-0 h-full w-full object-cover transition duration-700 ease-out group-hover:scale-[1.04]"
+            />
+            {/* Overlay para legibilidad del texto sobre la imagen */}
+            <div
+              aria-hidden
+              className="absolute inset-0"
+              style={{
+                background:
+                  'linear-gradient(180deg, oklch(20% 0.03 250 / 0.10) 0%, oklch(16% 0.03 250 / 0.45) 45%, oklch(10% 0.02 250 / 0.90) 100%)',
+              }}
+            />
+            <div className="relative">
+              <span
+                className="inline-block text-xs uppercase tracking-[0.2em] mb-4 px-3 py-1 rounded-[var(--radius-pill)]"
+                style={{
+                  background: 'oklch(100% 0 0 / 0.14)',
+                  color: 'var(--color-dark-fg)',
+                }}
+              >
+                {t.products.ashur.status}
+              </span>
+              <h3
+                className="font-heading text-3xl font-semibold mb-2"
+                style={{ color: 'var(--color-dark-fg)' }}
+              >
+                {t.products.ashur.name}
+              </h3>
+              <p
+                className="font-heading mb-3"
+                style={{ color: 'var(--color-dark-fg)' }}
+              >
+                {t.products.ashur.tagline}
+              </p>
+              <p
+                className="mb-6 max-w-md"
+                style={{ color: 'var(--color-dark-fg-soft)' }}
+              >
+                {t.products.ashur.body}
+              </p>
+              <span
+                className="inline-flex items-center px-5 py-2.5 rounded-[var(--radius-pill)] text-sm font-medium transition group-hover:translate-y-[-2px]"
+                style={{
+                  background: 'var(--color-dark-fg)',
+                  color: 'var(--color-dark-deep)',
+                }}
+              >
+                {t.products.ashur.cta}
+              </span>
+            </div>
+          </Link>
 
           {/* D-Anim-Gator — en desarrollo, sin link */}
           <div className="flex flex-col p-8 glass-card">
