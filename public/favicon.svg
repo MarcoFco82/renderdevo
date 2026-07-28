@@ -6,13 +6,6 @@
       <stop offset="0.5" stop-color="#171d28"/>
       <stop offset="1" stop-color="#10141c"/>
     </linearGradient>
-    <!-- Glow azul LED: la firma visual (el mismo del botón CTA) -->
-    <radialGradient id="led" cx="0.5" cy="0.5" r="0.5">
-      <stop offset="0" stop-color="#eaf6ff"/>
-      <stop offset="0.32" stop-color="#7cc2f2"/>
-      <stop offset="0.7" stop-color="#2f6fd6"/>
-      <stop offset="1" stop-color="#2f6fd6" stop-opacity="0"/>
-    </radialGradient>
   </defs>
 
   <!-- Tile con esquinas muy redondeadas (dialecto neo-tactile) -->
@@ -20,12 +13,8 @@
   <!-- Relieve táctil sutil en el borde superior -->
   <rect x="2.5" y="2.5" width="59" height="59" rx="15.5" fill="none" stroke="#ffffff" stroke-opacity="0.07" stroke-width="1"/>
 
-  <!-- Haz LED azul bajo la letra -->
-  <ellipse cx="32" cy="50" rx="21" ry="6.5" fill="url(#led)" opacity="0.95"/>
-  <ellipse cx="32" cy="50" rx="9" ry="2.4" fill="#f2f9ff" opacity="0.85"/>
-
   <!-- Monograma R en Impact (eco del wordmark) -->
-  <text x="32" y="45.5" text-anchor="middle"
+  <text x="32" y="46" text-anchor="middle"
         font-family="Impact, 'Haettenschweiler', 'Arial Narrow', 'Franklin Gothic Bold', sans-serif"
-        font-size="47" fill="#f4f0e9" letter-spacing="0.5">R</text>
+        font-size="48" fill="#f4f0e9" letter-spacing="0.5">R</text>
 </svg>
