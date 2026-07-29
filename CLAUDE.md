@@ -55,10 +55,15 @@ genéricas y refuerza el pedigree motion (cinematografía cálida).
 
 ## Reglas locked (no transgredir nunca)
 
-🔒 **Marco NO se presenta como developer / dev / fullstack.** Usar:
-"Product Builder", "Director técnico del proyecto", "Build partner", "dirigir IA".
-La capacidad técnica se atribuye a "infraestructura propia de renderdevo", no a Marco
-escribiendo código.
+🔒 **Marco se presenta como "motion graphics designer" y "desarrollador creativo"**
+(creative developer). La voz honesta es la del Journal: diseñador de motion que construye
+herramientas dirigiendo IA y aprende el lado de software sobre la marcha. Sí puede
+atribuírsele construir/dirigir el motor y los proyectos.
+NO usar "ingeniero de software" ni "fullstack engineer" — no es el encuadre.
+También válidos: "Product Builder", "Director técnico del proyecto".
+> Regla previa DEROGADA (2026-07-28): antes decía "Marco NO se presenta como developer" y
+> atribuía toda la capacidad técnica a "infraestructura propia de renderdevo". El Journal v2
+> reencuadró esto de forma honesta (ver S003 y `docs/JOURNAL_renderdevo.md`).
 
 🔒 **3D NO se ofrece explícitamente como servicio.** El engine (Ashur) habilita 3D
 en el output ("experiencias inmersivas") pero nunca se vende como capacidad ("modelado 3D").
