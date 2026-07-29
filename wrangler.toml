@@ -1,0 +1,19 @@
+# Cloudflare Pages + Functions config para renderdevo.
+# Bindings de R2 para las Pages Functions (API del Journal).
+#
+#   DATA  → bucket privado. Guarda journal/entries.json (incluye borradores).
+#           NO tiene dominio público, así que los drafts no se filtran.
+#   FILES → bucket público (media.renderdevo.com). Guarda la media del Journal
+#           bajo journal/media/... para servirse por URL.
+
+name = "renderdevo"
+compatibility_date = "2026-07-01"
+pages_build_output_dir = "dist"
+
+[[r2_buckets]]
+binding = "DATA"
+bucket_name = "renderdevo-data"
+
+[[r2_buckets]]
+binding = "FILES"
+bucket_name = "renderdevo-files"
