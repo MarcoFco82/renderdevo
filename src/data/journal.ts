@@ -166,17 +166,4 @@ export const journal: JournalEntry[] = [
       ],
     },
   },
-  {
-    slug: 'delivered-by-a-link',
-    date: '2026-07-26',
-    title: { es: 'Entregado por un link', en: 'Delivered by a link' },
-    body: {
-      es: [
-        'Uno de los proyectos, Defensa de Puebla, entró a un museo. Los visitantes escanean un código QR y se abre en el navegador: sin app, sin descarga. Ver a gente que no vino por la tecnología simplemente sacar su celular y jugar fue la prueba más clara de que «corre en el navegador, nada que instalar» de verdad se sostiene fuera de mi propio setup.',
-      ],
-      en: [
-        'One of the projects, Defensa de Puebla, went into a museum. Visitors scan a QR code and it opens in the browser — no app, no download. Watching people who didn\'t come for the tech just pick up their phone and play was the clearest proof that "runs in the browser, nothing to install" actually holds up outside my own setup.',
-      ],
-    },
-  },
 ];

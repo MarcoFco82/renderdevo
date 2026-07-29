@@ -137,7 +137,7 @@ const es = {
           {
             name: 'Defensa de Puebla',
             url: 'https://defensadepuebla.com',
-            body: 'Colección de minijuegos por QR sobre la Batalla de Puebla, en colaboración con el Museo de la No Intervención. Pieza central: la batalla campal.',
+            body: 'Colección de minijuegos por QR sobre la Batalla de Puebla. Pieza central: la batalla campal.',
           },
         ],
       },
@@ -381,7 +381,7 @@ const en: StringsShape = {
           {
             name: 'Defensa de Puebla',
             url: 'https://defensadepuebla.com',
-            body: 'A QR-delivered collection of minigames about the Battle of Puebla, in collaboration with the Museo de la No Intervención. Centerpiece: the pitched battle.',
+            body: 'A QR-delivered collection of minigames about the Battle of Puebla. Centerpiece: the pitched battle.',
           },
         ],
       },
