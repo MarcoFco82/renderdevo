@@ -224,7 +224,7 @@ const es = {
 
     diary: {
       title: 'Diario',
-      sub: 'Notas sobre cómo trabajo y las decisiones que tomo mientras construyo. No es una lista de features — eso está en el devlog de Ashur Engine.',
+      sub: 'Cómo se construye este motor dirigiendo una AI: los métodos, las decisiones y dónde se rompe.',
       subscribe: 'Suscribirse',
       readAll: 'Ver todas las entradas',
     },
@@ -468,7 +468,7 @@ const en: StringsShape = {
 
     diary: {
       title: 'Journal',
-      sub: 'Notes on how I work and the decisions I make while building. Not a feature list — that\'s the Ashur Engine devlog.',
+      sub: 'How this engine gets built by directing an AI: the methods, the decisions, and where it breaks.',
       subscribe: 'Subscribe',
       readAll: 'Read all entries',
     },

@@ -23,6 +23,13 @@ export interface TextBlock {
   en: string;
 }
 
+/** Bloque de lista con viñetas, bilingüe. */
+export interface ListBlock {
+  type: 'list';
+  es: string[];
+  en: string[];
+}
+
 /** Bloque de media opcional para "vestir" la entrada. */
 export interface MediaBlock {
   type: 'image' | 'video';
@@ -34,7 +41,7 @@ export interface MediaBlock {
   caption?: { es: string; en: string };
 }
 
-export type Block = TextBlock | MediaBlock;
+export type Block = TextBlock | ListBlock | MediaBlock;
 
 export interface JournalEntry {
   slug: string;

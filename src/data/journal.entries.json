@@ -1,163 +1,221 @@
 {
   "entries": [
     {
-      "slug": "whos-building-this",
+      "slug": "what-directing-an-ai-means",
       "published": true,
-      "title": { "es": "Quién está construyendo esto", "en": "Who's building this" },
+      "title": { "es": "Qué significa dirigir una AI aquí", "en": "What directing an AI actually means here" },
       "blocks": [
         {
           "type": "text",
-          "es": "Soy diseñador de motion graphics. Llevo años en Cinema 4D y After Effects, no en un codebase. Lo que estoy haciendo ahora es construir un motor web y los proyectos encima de él, con la IA haciendo buena parte del código real mientras yo lo dirijo y aprendo sobre la marcha.",
-          "en": "I'm a motion graphics designer. I've spent years in Cinema 4D and After Effects, not in a codebase. What I'm doing now is building a web engine and the projects on top of it, with AI doing a lot of the actual coding while I direct it and learn as I go."
-        },
-        {
-          "type": "text",
-          "es": "Pongo este diario porque prefiero ser honesto con eso que fingir que soy ingeniero de software. Una parte la entiendo bien; otra la voy resolviendo a medio construir. Cuando algo estuvo difícil o me equivoqué, lo voy a decir.",
-          "en": "I'm putting this journal up because I'd rather be honest about that than pretend I'm a software engineer. Some of this I understand well; some of it I'm figuring out mid-build. When something was hard or I got it wrong, I'll say so."
+          "es": "Yo decido la dirección y cómo encajan las piezas; la AI escribe el código y lo publica. No lo leo línea por línea — no podría, y tampoco ayudaría. Reviso lo que sí puedo juzgar: si se comporta bien, si es la decisión correcta, si embona con lo demás. Mi trabajo real está antes: decidir qué reusar, qué queda fuera de alcance y qué no puede romperse nunca — antes de que exista el código. Cuando me lo salto y solo digo \"constrúyelo\", la AI va por lo que funcione hoy, que casi siempre es la decisión equivocada para el mes que viene.",
+          "en": "I decide the direction and how the pieces fit; the AI writes the code and ships it. I don't read it line by line — I couldn't, and it wouldn't help. I review what I can actually judge: does it behave right, is it the correct decision, does it fit the rest. My real job is upstream — deciding what to reuse, what's out of scope, and what must never break — before any code exists. When I skip that and just say \"build it,\" the AI goes for whatever works today, which is usually the wrong call for next month."
         }
       ]
     },
     {
-      "slug": "project-turned-into-engine",
-      "date": "2026-03-13",
+      "slug": "reuse-before-building",
       "published": true,
-      "title": { "es": "El proyecto se volvió un motor", "en": "The project turned into an engine" },
+      "title": { "es": "Reusar antes de construir", "en": "Reuse before building" },
       "blocks": [
         {
           "type": "text",
-          "es": "Por un tiempo creí que estaba haciendo un solo mundo 3D. En algún momento caí en cuenta de que la mayor parte de lo que había construido estaba debajo del mundo: el terreno, el renderizado, el backend, las herramientas de edición. El lugar específico era una capa delgada encima de todo eso.",
-          "en": "For a while I thought I was making one 3D world. At some point it clicked that most of what I'd built was underneath the world — the terrain, the rendering, the backend, the editing tools. The specific place was a thin layer on top of all that."
-        },
-        {
-          "type": "text",
-          "es": "Así que lo separé: las partes genéricas a un núcleo compartido, el mundo específico como una capa pequeña encima. Decidir tratarlo como un motor en vez de un solo producto fue una decisión más grande que cualquier función. Mantuve todo en un repo porque trabajo solo y ahora mismo así es más simple para mí.",
-          "en": "So I split it: the generic parts into a shared core, the specific world as a small layer on top. Deciding to treat it as an engine instead of a single product was a bigger call than any feature. I kept everything in one repo because I work alone and that's simpler for me right now."
+          "es": "Cada feature arranca con \"qué ya existe\". La colisión de los edificios se reusó para plataformas, para props, y para el constructor de bloques — cada vez, caminar y saltar salieron gratis. Cuando la AI quiere construir algo desde cero, esa es mi señal de frenarla y encontrar la parte que ya existe.",
+          "en": "Every feature starts with \"what's already here.\" The collision from the buildings got reused for platforms, for props, and for the block-builder — each time, walking and jumping came for free. When the AI wants to build something from scratch, that's my cue to stop it and find the part that already exists."
         }
       ]
     },
     {
-      "slug": "two-projects-one-engine",
+      "slug": "checking-feasibility",
       "published": true,
-      "title": { "es": "Dos proyectos, un motor", "en": "Two projects, one engine" },
+      "title": { "es": "Revisar viabilidad antes de comprometerme", "en": "Checking feasibility before I commit" },
       "blocks": [
         {
           "type": "text",
-          "es": "Unos días después de la separación armé un segundo proyecto, sin relación con el primero, sobre el mismo motor. Me tomó como media hora. Ese fue el momento en que «es reutilizable» dejó de ser algo que esperaba y se volvió algo que ya había hecho.",
-          "en": "A few days after the split I set up a second, unrelated project on the same engine. It took about half an hour. That was the moment \"it's reusable\" stopped being something I hoped and became something I'd actually done."
-        },
-        {
-          "type": "text",
-          "es": "Ahora los dos proyectos conviven lado a lado. Los nuevos cambian el contenido, no el motor. Esa es toda la razón por la que pasé por la separación.",
-          "en": "Now the two projects live side by side. New ones change the content, not the engine. That's the whole reason to have gone through the split."
+          "es": "Antes de dar luz verde a algo grande, hago que la AI mapee qué se puede reusar contra qué es genuinamente nuevo — con referencias reales, no un \"claro\" optimista. Para el builder, ese mapa mostró que la mayor parte del cimiento ya existía y que lo nuevo era sobre todo la forma de interactuar con él. Me comprometo con la escala solo cuando entiendo ese mapa.",
+          "en": "Before I greenlight anything big, I make the AI map out what can be reused versus what's genuinely new — with real references, not an optimistic \"sure.\" For the builder, that map showed most of the foundation already existed and the new part was mainly the way you interact with it. I only commit to scale once I understand that map."
         }
       ]
     },
     {
-      "slug": "everything-inside-the-tool",
+      "slug": "planning-fragile-files",
       "published": true,
-      "title": { "es": "Construyo todo dentro de la herramienta", "en": "I build everything inside the tool" },
+      "title": { "es": "Planeación extra para los archivos frágiles", "en": "Extra planning for the fragile files" },
       "blocks": [
         {
           "type": "text",
-          "es": "No quería un pipeline donde modelas en una app, animas en otra y lo unes todo en otro lado. Quería dibujar el terreno, modelar los assets, construir las estructuras caminables, cablear la lógica y diseñar los menús —todo en la misma herramienta— y luego entregarlo como un link.",
-          "en": "I didn't want a pipeline where you model in one app, animate in another, and stitch it together somewhere else. I wanted to draw the terrain, model the assets, build the walkable structures, wire the logic, and design the menus — all in the same tool — and then ship it as a link."
-        },
-        {
-          "type": "text",
-          "es": "Parte de eso viene de mi background: como motion designer estoy acostumbrado a un solo entorno donde hago todo. Parte es práctico: menos piezas moviéndose significa menos cosas que tengo que traer en la cabeza.",
-          "en": "Part of that is my background: as a motion designer I'm used to one environment where I do the whole thing. Part of it is practical — fewer moving parts means fewer things I have to keep in my head."
+          "es": "Dos archivos cargan a los personajes, y son los más fáciles de romper. Antes de tocarlos hago que la AI haga primero una pasada de planeación — mapeando exactamente dónde va el cambio y las trampas a evitar. Ha valido la pena; una vez cachó un cambio que habría funcionado bien en el editor pero se habría roto en el juego real.",
+          "en": "Two files hold the characters, and they're the easiest to break. Before touching them I have the AI do a planning pass first — mapping exactly where the change goes and the traps to avoid. It's paid off; once it caught a change that would have worked fine in the editor but broken in the actual game."
         }
       ]
     },
     {
-      "slug": "bug-means-design-wrong",
+      "slug": "miscommunication-became-rule",
       "published": true,
-      "title": { "es": "A veces el bug me dice que el diseño está mal", "en": "Sometimes the bug is telling me the design is wrong" },
+      "title": { "es": "Un malentendido que se volvió regla", "en": "A miscommunication that became a rule" },
       "blocks": [
         {
           "type": "text",
-          "es": "Lo más útil que he aprendido construyendo esto: algunos bugs no son bugs. Un menú que parpadeaba no era un problema de renderizado; el motor estaba tratando el menú como un video que se reproduce y termina, cuando un menú debería quedarse ahí hasta que alguien haga clic. La solución no fue un parche, fue cambiar cómo había pensado los menús.",
-          "en": "The most useful thing I've learned building this: some bugs aren't bugs. A menu that flickered wasn't a rendering problem — the engine was treating a menu like a video that plays and ends, when a menu should just sit there until someone clicks. The fix wasn't a patch, it was changing how I'd thought about menus."
-        },
-        {
-          "type": "text",
-          "es": "Cuando algo se sigue rompiendo de formas raras, aprendí a dejar de parchar y preguntarme si lo armé mal desde el principio.",
-          "en": "When something keeps breaking in weird ways, I've learned to stop patching and ask if I set it up wrong in the first place."
+          "es": "Pedí una pantalla de selección de personaje. La AI construyó al personaje parado dentro del mundo — una lectura literal de mis palabras, no lo que yo imaginaba. Costó un deploy tirado y varias idas y vueltas. El arreglo no fue mejor redacción; ahora es una regla: para cualquier cosa visual, la AI me muestra un mockup rápido y yo apruebo eso antes de código. La siguiente feature visual salió sin nada desperdiciado.",
+          "en": "I asked for a character-select screen. The AI built the character standing inside the world — a literal reading of my words, not what I pictured. It cost a wasted deploy and several back-and-forths. The fix wasn't better wording; it's a rule now: for anything visual, the AI shows me a quick mockup and I approve that before any code. The next visual feature shipped with nothing wasted."
         }
       ]
     },
     {
-      "slug": "test-by-shipping",
+      "slug": "miscommunication-became-system",
       "published": true,
-      "title": { "es": "Pruebo publicando", "en": "I test by shipping" },
+      "title": { "es": "Un malentendido que se volvió todo un sistema", "en": "A miscommunication that became a whole system" },
       "blocks": [
         {
           "type": "text",
-          "es": "No hago mucha prueba en un sandbox. Deployeo, y luego lo reviso en mi celular y en el navegador donde la gente lo va a usar de verdad. Suena arriesgado. Para un proyecto chico, con setup serverless y sin una base de usuarios grande todavía, ha sido más rápido que la alternativa.",
-          "en": "I don't do a lot of testing in a sandbox. I deploy, then I check it on my phone and in the browser where people will actually use it. It sounds risky. For a small project with a serverless setup and no big user base yet, it's been faster than the alternative."
-        },
-        {
-          "type": "text",
-          "es": "Solo funciona por las cosas aburridas de abajo.",
-          "en": "It only works because of the boring stuff below."
-        }
-      ]
-    },
-    {
-      "slug": "boring-stuff-move-fast",
-      "published": true,
-      "title": { "es": "Las cosas aburridas que me dejan ir rápido", "en": "The boring stuff that lets me move fast" },
-      "blocks": [
-        {
-          "type": "text",
-          "es": "Hay alrededor de 2,300 pruebas automatizadas en el motor, los cambios de base de datos se hacen de forma que no rompan lo que ya existe, y los proyectos viejos siguen funcionando cuando agrego cosas nuevas. Nada de eso es emocionante. Es lo que me deja publicar rápido sin destrozar los mundos que ya están en vivo.",
-          "en": "There are around 2,300 automated tests on the engine, database changes are made so they don't break what already exists, and old projects keep working when I add new things. None of that is exciting. It's what lets me ship quickly without wrecking the worlds that are already live."
-        },
-        {
-          "type": "text",
-          "es": "No llegué a esto de forma natural; es la disciplina que fui agarrando (y que le hago cumplir a la IA) para no pegarme un tiro en el pie.",
-          "en": "I didn't come to this naturally — it's the discipline I've picked up (and had the AI enforce) so I don't shoot myself in the foot."
+          "es": "Tiendo a mezclar una idea suelta y un requisito duro en la misma frase, y la AI toma mi ejemplo al pie de la letra. Estaba a punto de dejar fijo \"Boss\" como una opción — lo que habría encerrado un juego específico dentro del motor. Cacharlo produjo lo contrario: un sistema general de bandos configurables y reglas simples, del que salen bosses, escoltas y batallas. La regla ahora: nunca nombrar algo por el ejemplo; subirlo a la idea general y confirmar.",
+          "en": "I tend to mix a loose idea and a hard requirement in the same sentence, and the AI takes my example literally. It was about to hardwire \"Boss\" as a fixed option — which would have locked one specific game into the engine. Catching it produced the opposite: a general system of configurable sides and simple rules, from which bosses, escorts and battles all fall out. The rule now: never name something after the example; lift it to the general idea and confirm."
         }
       ]
     },
     {
       "slug": "measure-instead-of-guess",
       "published": true,
-      "title": { "es": "Trato de medir en vez de adivinar", "en": "I try to measure instead of guess" },
+      "title": { "es": "Medir en vez de adivinar", "en": "Measure instead of guess" },
       "blocks": [
         {
           "type": "text",
-          "es": "Cuando estoy atorado, la salida más rápida casi siempre ha sido ir a ver los datos reales —el archivo real, el registro real en la base de datos, la petición de red real— en vez de teorizar. Casi todas las veces que perdí horas, fue porque estaba adivinando en vez de checar.",
-          "en": "When I'm stuck, the fastest way out has usually been to go look at the actual data — the real file, the real database row, the real network request — instead of theorizing. Most of the times I've wasted hours, it was because I was guessing instead of checking."
+          "es": "Los bugs más lentos fueron los que dejé que la AI adivinara. Un bug del terreno tomó como diez sesiones de teorías hasta que abrí la escena en vivo al navegador y fui cambiando piezas una por una. Un puntaje que nunca se guardaba sobrevivió una sesión entera de adivinanzas hasta que observé la llamada de red real y vi que nunca se disparaba. Mi regla ahora: después de dos adivinanzas fallidas, parar y medir.",
+          "en": "The slowest bugs were the ones I let the AI guess at. One terrain bug took about ten sessions of theories until I opened the live scene to the browser and swapped pieces out one by one. A score that never saved survived a whole session of guessing until I watched the actual network call and saw it never fired. My rule now: after two failed guesses, stop and measure."
+        }
+      ]
+    },
+    {
+      "slug": "ai-introduces-bugs",
+      "published": true,
+      "title": { "es": "La AI mete bugs — lo planeo", "en": "The AI introduces bugs — I plan for it" },
+      "blocks": [
+        {
+          "type": "text",
+          "es": "El código escrito por AI se rompe de formas reconocibles, y cacharlas es parte del trabajo: algo que se reconstruía cada frame y mataba el frame rate en silencio; un valor leído en el momento equivocado que reseteaba la vida de un enemigo para siempre; un elemento visual que elegí sin verificar y que deformaba una barra de vida. Ninguno era exótico. Conocer el patrón es cómo los cacho rápido.",
+          "en": "AI-written code breaks in recognizable ways, and catching those is part of the job: something rebuilt every frame that quietly killed the frame rate; a value read at the wrong moment that reset an enemy's health forever; a display element I picked without checking that it distorted a health bar. None were exotic. Knowing the pattern is how I catch them fast."
+        }
+      ]
+    },
+    {
+      "slug": "ship-then-check-phone",
+      "published": true,
+      "title": { "es": "Publicar, luego probarlo en el teléfono", "en": "Ship, then check it on the phone" },
+      "blocks": [
+        {
+          "type": "text",
+          "es": "Los tests automáticos de la AI son necesarios pero no bastan. Los bugs que me llegan viven en el pegamento entre sistemas — la parte con casi cero tests. Así que publicar es la prueba real: lo pruebo en mi teléfono y entre navegadores, porque el táctil, la caché stale y los crashes de gráficos solo aparecen en dispositivos reales.",
+          "en": "The AI's automated tests are necessary but not enough. The bugs that reach me live in the glue between systems — the part with almost no tests. So publishing is the real test: I check it on my phone and across browsers, because touch, stale cache and graphics crashes only show up on real devices."
+        }
+      ]
+    },
+    {
+      "slug": "publish-to-both",
+      "published": true,
+      "title": { "es": "Publicar a los dos, tras uno que se desfasó", "en": "Publish to both, after one drifted" },
+      "blocks": [
+        {
+          "type": "text",
+          "es": "Dos productos comparten el motor. Por un rato solo publiqué uno y nunca espejeé el otro; se fue quedando atrás en silencio y me costó una hora de limpieza cuando lo noté. Ahora cada publicación va a los dos, sin excepción. Un script que haga los dos de una sigue en mi lista.",
+          "en": "Two products share the engine. For a while I only published one and never mirrored the other; it quietly fell behind and cost me an hour of cleanup when I noticed. Now every publish goes to both, no exceptions. A script to do both at once is still on my list."
+        }
+      ]
+    },
+    {
+      "slug": "avoid-database-changes",
+      "published": true,
+      "title": { "es": "Evitar cambios a la base de datos cuando puedo", "en": "Avoid database changes when I can" },
+      "blocks": [
+        {
+          "type": "text",
+          "es": "La mayoría de los ajustes por-cosa viven dentro de un campo flexible, así que una feature nueva normalmente no necesita cambiar la estructura de la base de datos. Cuando un cambio es inevitable solo agrega, nunca quita, y sale con un test que prueba que la data vieja se sigue comportando igual. Esa disciplina es lo que me deja moverme rápido sin romper los mundos que ya están en vivo.",
+          "en": "Most per-thing settings live inside a flexible field, so a new feature usually needs no change to the database's structure. When a change is unavoidable it only adds, never removes, and it ships with a test proving old data still behaves the same. That discipline is what lets me move fast without breaking the worlds already live."
+        }
+      ]
+    },
+    {
+      "slug": "decisions-reversed",
+      "published": true,
+      "title": { "es": "Decisiones que reversé a propósito", "en": "Decisions I reversed on purpose" },
+      "blocks": [
+        {
+          "type": "list",
+          "es": [
+            "Los ajustes de calidad pasaron de por-usuario a por-proyecto — un sistema que se comportaba distinto para gente logueada y anónima era el modelo equivocado.",
+            "El modelador de sólidos pasó de un enfoque rápido a uno bien hecho, aunque fuera más trabajo.",
+            "Los controles pasaron de fijos a configurables por mundo — nada del input debería estar horneado.",
+            "El comportamiento de enemigos pasó de la lógica de un juego específico a un sistema general de reglas."
+          ],
+          "en": [
+            "Quality settings went from per-user to per-project — a system that behaved differently for logged-in and anonymous people was the wrong model.",
+            "The solid modeler went from a quick approach to a proper one, even though it was more work.",
+            "Controls went from fixed to configurable per world — nothing about input should be baked in.",
+            "Enemy behavior went from one specific game's logic to a general rule system."
+          ]
         },
         {
           "type": "text",
-          "es": "Todavía me cacho haciéndolo. Es un hábito que estoy construyendo.",
-          "en": "Still catch myself doing it. It's a habit I'm building."
+          "es": "Ninguno tiró el trabajo previo; cada uno fue un replanteo construido encima. Reversar sin encariñarse es parte del método.",
+          "en": "None of these threw away the earlier work; each was a rethink built on top of it. Reversing without getting attached is part of the method."
         }
       ]
     },
     {
-      "slug": "mobile-first",
+      "slug": "tests-floor-under-speed",
       "published": true,
-      "title": { "es": "Mobile primero, porque así llega la gente", "en": "Mobile first, because that's how people show up" },
+      "title": { "es": "Los tests son el piso bajo la velocidad", "en": "Tests are the floor under the speed" },
       "blocks": [
         {
           "type": "text",
-          "es": "La gente abre esto escaneando un código QR en su celular, así que empiezo ahí. Los controles están hechos para touch, los celulares débiles reciben automáticamente una versión más ligera, y la UI está diseñada primero para pantalla chica. Si construyes para escritorio y luego intentas exprimirlo en un celular, se nota.",
-          "en": "People open these by scanning a QR code on their phone, so I start there. Controls are made for touch, weak phones automatically get a lighter version, and the UI is designed for a small screen first. If you build for desktop and try to squeeze it onto a phone later, it shows."
+          "es": "Hay como 2,300 tests automáticos en el motor, posibles por un hábito: cuando algo riesgoso necesita test, saco la lógica de la parte visual a una pieza plana e independiente y pruebo eso. También fuerza separaciones más limpias que las que sacaría de otra forma.",
+          "en": "There are around 2,300 automated tests on the engine, kept possible by one habit: when something risky needs testing, I pull the logic out of the visual part into a plain, standalone piece and test that. It also forces cleaner separations than I'd get otherwise."
         }
       ]
     },
     {
-      "slug": "build-tools-not-content",
+      "slug": "tools-catch-mistakes",
       "published": true,
-      "title": { "es": "Construyo herramientas, no solo contenido", "en": "I build tools, not just content" },
+      "title": { "es": "Hacer que las herramientas cachen mis propios errores", "en": "Making the tools catch my own mistakes" },
       "blocks": [
         {
           "type": "text",
-          "es": "Me he dado cuenta de que mi mejor trabajo no es hacer un nivel: es hacer la cosa que hace niveles. Un modelador, un editor de mundos, un modo de construcción. Es más lento ese día, porque estoy construyendo la máquina en vez del resultado, pero cada herramienta se paga sola cada vez que la uso después.",
-          "en": "I've noticed my best work isn't making a level — it's making the thing that makes levels. A modeler, a world editor, a build mode. It's slower on the day, because I'm building the machine instead of the output, but every tool pays off every time I use it after."
+          "es": "Algunos ajustes hay que conectarlos en varios lugares a la vez, y olvidar uno fallaba en silencio. Ahora el motor se niega a compilar hasta que todos los lugares están resueltos. Cuando una decisión se riega en muchos puntos, hago que el sistema la haga cumplir en vez de depender de mi memoria.",
+          "en": "Some settings have to be connected in several places at once, and forgetting one used to fail silently. Now the engine refuses to build until every place is handled. When a decision is spread across many spots, I make the system enforce it instead of relying on memory."
+        }
+      ]
+    },
+    {
+      "slug": "how-i-talk-to-ai",
+      "published": true,
+      "title": { "es": "Cómo he tenido que hablarle a la AI", "en": "How I've had to talk to the AI" },
+      "blocks": [
+        {
+          "type": "text",
+          "es": "Dos cosas me cuestan tiempo. Una: la AI contesta una pregunta de diseño en términos de ingeniero que me sacan de mi flow — la necesito en términos planos, o con un default sensato. Dos: cuando un sistema tiene un editor general y un uso específico de él, la AI publica el uso específico y lo llama el feature — tiene que decirme qué capa está entregando en realidad. Los dos son bugs de comunicación, y los dos produjeron trabajo equivocado hasta que los nombré.",
+          "en": "Two things cost me time. One: the AI answers a design question in engineer's terms that pull me out of my flow — I need it in plain terms, or a sensible default. Two: when a system has both a general editor and one specific use of it, the AI ships the specific use and calls it the feature — it has to tell me which layer it's actually delivering. Both are communication bugs, and both produced wrong work until I named them."
+        }
+      ]
+    },
+    {
+      "slug": "staying-honest",
+      "published": true,
+      "title": { "es": "Mantenerme honesto sobre lo que sí funciona", "en": "Staying honest about what actually works" },
+      "blocks": [
+        {
+          "type": "text",
+          "es": "Cualquier cosa que pongo frente a alguien técnico, hago que la AI la separe limpio en lo que funciona hoy y lo que solo está diseñado. Sobredimensionar una cosa ante alguien que se da cuenta mata la credibilidad de todo lo demás. El motor va muy por delante de cualquier pitch; la disciplina es no dejar que el pitch se adelante al motor.",
+          "en": "Anything I put in front of someone technical, I make the AI split cleanly into what works today and what's only designed. Overstating one thing to someone who can tell kills the credibility of everything else. The engine is well ahead of any pitch; the discipline is not letting the pitch get ahead of the engine."
+        }
+      ]
+    },
+    {
+      "slug": "running-several-ais",
+      "published": true,
+      "title": { "es": "Correr varias AIs a la vez", "en": "Running several AIs at once" },
+      "blocks": [
+        {
+          "type": "text",
+          "es": "Corro más de una AI en paralelo — una en los sitios, una en la historia, una en el código — y mi trabajo es darle a cada una el contexto correcto. La del código revisa el trabajo de otra antes de que aterrice, así no tengo que re-leer todo yo. Es el mismo rol de productor, apuntado a un stack chico de AIs en vez de a un stack de herramientas.",
+          "en": "I run more than one AI in parallel — one on the sites, one on the story, one on the code — and my job is feeding each the right context. The code one reviews another's work before it lands, so I don't have to re-read everything myself. It's the same producer role, aimed at a small stack of AIs instead of tools."
         }
       ]
     }

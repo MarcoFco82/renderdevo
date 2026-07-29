@@ -61,18 +61,33 @@ export function Diario() {
               {entry.title[locale]}
             </h2>
             <div className="space-y-4">
-              {entry.blocks.map((block, i) =>
-                block.type === 'text' ? (
-                  <p
-                    key={i}
-                    className="text-lg leading-relaxed text-[var(--color-ink-soft)]"
-                  >
-                    {renderInline(block[locale])}
-                  </p>
-                ) : (
-                  <JournalMedia key={i} block={block} locale={locale} />
-                )
-              )}
+              {entry.blocks.map((block, i) => {
+                if (block.type === 'text') {
+                  return (
+                    <p
+                      key={i}
+                      className="text-lg leading-relaxed text-[var(--color-ink-soft)]"
+                    >
+                      {renderInline(block[locale])}
+                    </p>
+                  );
+                }
+                if (block.type === 'list') {
+                  return (
+                    <ul key={i} className="list-disc pl-5 space-y-2">
+                      {block[locale].map((item, j) => (
+                        <li
+                          key={j}
+                          className="text-lg leading-relaxed text-[var(--color-ink-soft)]"
+                        >
+                          {renderInline(item)}
+                        </li>
+                      ))}
+                    </ul>
+                  );
+                }
+                return <JournalMedia key={i} block={block} locale={locale} />;
+              })}
             </div>
           </article>
         ))}
