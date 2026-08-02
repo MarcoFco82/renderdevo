@@ -81,9 +81,12 @@ RENDERDEVO** (decisión 2026-06-12, ver `docs/decisions.md`). Ashur Engine tiene
 marca y sitio propios (**ashurengine.com**, repo separado
 `Playground/Apps/ashurengine/`); todo adelanto visual de Marco lleva splash
 "Developed with Ashur Engine". En renderdevo.com ambos motores se nombran como
-tecnología propia de la casa, con link. NO se venden ni ofrecen como
-producto/licencia/editor todavía — son marcas de tecnología propietaria.
-Sin early access ni captura de emails en ashurengine.com.
+tecnología propia de la casa, con link. Aún no se venden como licencia/editor
+de pago — son marcas de tecnología propietaria.
+**Excepción (D-003, 2026-08-02): Ashur Engine SÍ abre un camino de early access —
+wishlist / captura de interés** (mecanismo y ubicación por definir). Esto deroga el
+previo "sin early access ni captura de emails en ashurengine.com". D-Anim-Gator sigue
+sin wishlist por ahora.
 
 🔒 **Sin emojis decorativos en UI/copy** (regla global).
 

@@ -4,6 +4,32 @@ Architecture y strategy decisions del proyecto renderdevo.com. Newest first.
 
 ---
 
+## D-003 — 2026-08-02 — Ashur Engine abre wishlist / early access (enmienda a D-002)
+
+**Contexto:** al planear la estrategia de perfil social (Reddit/TikTok/LinkedIn/Instagram,
+ver `renderdevo/docs/estrategia-perfil-social.md`), Marco decidió que el **wishlist es para
+Ashur Engine**, no para un juego. Esto choca con D-002, que definía ashurengine.com como
+*showcase puro, sin waitlist, sin early access, sin captura de emails*.
+
+**Decisión:** el motor pasa de "showcase puro, no ofrecido como producto" a **"producto con
+un camino de early access"**. Ashur Engine tendrá **wishlist / captura de interés**. Se deroga
+la cláusula "sin early access ni captura de emails" de D-002.
+
+**Alcance:**
+- Solo **Ashur Engine**. D-Anim-Gator sigue sin wishlist por ahora.
+- **No** implica venta/licencia de pago todavía — es captura de interés para un early access futuro.
+- **Mecanismo y ubicación por definir** (captura en ashurengine.com vs landing aparte). Implicará
+  que el sitio de Ashur deje de ser estático: backend de captura (Pages Function + KV/D1/R2,
+  anti-spam, doble opt-in vía Resend) — mismo patrón que el admin del Journal.
+
+**Razón:** el wishlist es el objeto de conversión de la estrategia social — TikTok y Reddit
+construyen audiencia que aterriza en las demos jugables y se apunta al early access. Sin un
+objeto de captura, el alcance no se convierte en nada medible.
+
+**Pendiente:** definir mecanismo/ubicación y construir la captura.
+
+---
+
 ## D-002 — 2026-06-12 — Ashur Engine y D-Anim-Gator pasan a ser productos públicos
 
 **Contexto:** la regla locked original decía que los nombres internos de los
