@@ -1,56 +1,44 @@
 # Social Media Ideas — renderdevo
 
-Ideas de contenido para redes, alimentadas **por sesión** (como `professional_logs.md`).
-Se llena en cada `/done`, a partir del avance real de esa sesión. Newest first.
+Ideas de contenido para redes, alimentadas **por sesión** (como `professional_logs.md`),
+a partir del avance real de cada sesión. Newest first. Se llena en cada `/done` — o se marca N/A.
 
-Marca/canales: ver `renderdevo/docs/estrategia-perfil-social.md`.
+El listón no es *brillante*; es **cierto + específico + exacto + con ángulo honesto**. Bajar el
+listón de *espectáculo* NO es bajar la vara de calidad: va de la mano con subir el filtro de juicio.
 
----
+## Método (fuente de verdad)
 
-## El bloqueo que este archivo existe para romper
+- **Regla (5 filtros + guardián N/A + formato):** `~/.claude/skills/done/social-m-ideas-rule.md` (v2).
+- **Estrategia de fondo (posicionamiento, ángulo IA, medios, por red):** `~/.claude/skills/done/the-creative-posting.md`.
+- **Política permanente (marcas, canales, pilares, wishlist, reglas locked):** `renderdevo/docs/estrategia-perfil-social.md`.
 
-> "Lo que quiero mostrar debe ser, si no espectacular, genial."
+**Principio inviolable:** no es obligatorio generar ideas. Sesión de plomería (config, refactor,
+fixes triviales, git) casi siempre = **N/A**, y está bien. Típico **0–2 ideas, no 5.** Ante la duda: N/A.
 
-Eso garantiza **cero publicaciones**. El listón real no es *brillante*; es **cierto + específico +
-con un ángulo honesto**. Lo espectacular es una trampa. Nadie más muestra el medio aburrido y
-honesto de dirigir IA — **ahí está tu diferenciador**, no en el highlight-reel.
+## Redes y marcas de este proyecto
 
-Regla mental: si esperas a que sea genial, no sale nada. Si sale algo cierto y específico, ya ganaste.
+- **renderdevo** (producto/estudio): Reddit `renderdevo` · TikTok `@renderevo` (humor/3D meme) · Instagram `render_devo` (serio, D-Anim).
+- **marcomotion** (la persona): X `@marcomotiondev` · LinkedIn `marcofranciscoramos`.
+- **No cruzar marcas en un mismo canal** (producto→renderdevo, persona/humano-IA→marcomotion).
 
----
+## Formato (v2 — 4 campos, Reddit elaborado)
 
-## El pozo anti-espectacular (de dónde sacar cuando "no hay nada genial")
+```markdown
+## Sesión NNN — YYYY-MM-DD
 
-Cuando el avance no se siente lucidor, casi siempre hay un ángulo aquí:
+### Idea 1
+- **Fecha:** YYYY-MM-DD
+- **Idea encontrada:** [gancho concreto, traducido, sin jerga interna]
+- **Red social:** [una o varias, con la marca correcta]
+- **Porqué es relevante:** [por qué a un desconocido de ESA comunidad le importa; qué pilar toca; qué prueba]
+- **Ancla:** [qué pasó *exactamente* en la sesión que sostiene la idea]
+```
 
-- **El proceso feo** — greybox, primer draft, la iteración 47, el setup real, la pantalla partida dirigiendo IA.
-- **El error** — el bug tonto, las 3 horas que eran tu culpa, lo que rompió la IA, el deploy tirado.
-- **La decisión** — por qué X sobre Y, el tradeoff, lo que reversaste a propósito.
-- **Lo humano** — lo que no entiendes todavía, lo que te frustró, aprender a medias, dirigir IA sin ser programador.
-- **Lo pequeño** — una win chiquita, un detalle, un antes/después modesto.
-- **La pregunta** — pedir feedback/opinión a la comunidad (cero espectáculo, pura participación).
-- **La reacción** — comentar/opinar sobre algo ajeno (participar > crear).
-- **Desmitificar** — "esto que se ve pro en realidad es este truco simple".
-- **El meta** — "este post fracasó, esto creo que pasó" (honestidad sobre métricas).
-
-Prioriza esto **tanto como** lo brillante. El objetivo es volumen honesto y sostenible, no perfección.
-
----
-
-## Cómo se alimenta (regla)
-
-En cada `/done`, el agente revisa el avance de la sesión y:
-1. Si hay un ángulo publicable honesto → agrega entry al TOP con 1-N ideas.
-2. **Si NO lo hay → escribe `N/A social-m-ideas (sin ángulo esta sesión)` y NO fuerza nada.**
-   No proponer es válido e importante. Manufacturar contenido falso rompe lo único que tienes: honestidad.
-
-**Formato de idea:** `[canal · marca] formato — gancho/ángulo (anclado a: qué pasó en la sesión).`
-Reglas: español; anclar a algo REAL de la sesión (no genérico); marca correcta (producto→renderdevo,
-persona→marcomotion); respetar reglas locked (sin pricing, 3D no como servicio, claims honestos).
+Reddit lleva campos extra (Encuadre / Tipo de aporte / Medio) — ver §4.1 de la regla.
+Si no hubo ángulo: `## Sesión NNN — YYYY-MM-DD → N/A social-m-ideas (razón breve)`.
 
 ---
 
 ## Registro por sesión
 
-<!-- Newest first. Cada /done agrega aquí (o marca N/A). Aún sin entradas —
-     este archivo arranca hoy; se llenará con las próximas sesiones. -->
+<!-- Newest first. Cada /done agrega aquí (formato de 4 campos) o marca N/A. Aún sin entradas. -->
