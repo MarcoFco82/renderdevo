@@ -40,18 +40,33 @@ npm run deploy       # build + wrangler pages deploy dist
 **"Neo-Tactile + Warm Light"**. Diferencia renderdevo de las agencies dark+cyan
 genéricas y refuerza el pedigree motion (cinematografía cálida).
 
-- **Light mode** dominante, off-white cremoso (no blanco médico)
-- **Tinta navy** muy oscura como contraste (no negro puro)
-- **Glow cálido ámbar/peach** como acento de luz (NO cyan, NO neón eléctrico)
+- **Dark mode es el DEFAULT** (decisión 2026-08-28), con **light seleccionable**
+  desde el header — toggle de primera clase, igual que el de idioma. Se guarda en
+  `localStorage` (`renderdevo:theme`) y NO sigue la preferencia del sistema:
+  el default de marca manda.
+  > Regla previa DEROGADA: antes decía "Light mode dominante, off-white cremoso".
+  > El light sigue existiendo completo como alternativa, ya no como base.
+- **Tinta navy** muy oscura (no negro puro) — en dark es el fondo; en light, el texto
+- **Fondo animado paramétrico ("Malla")** — `MeshBackdrop` con una forma distinta
+  por sección/página (presets: hero · dense · wide · corner · low · orbit). Origen:
+  handoff del agente de El Jardín Perdido. **El composite NO se invierte**: en dark
+  compone `lighter` (suma luz), en light `multiply` (deposita tinta). Si alguien
+  "simplifica" eso a un solo composite, la malla desaparece en un modo.
+- **Glow azul LED** como acento de luz (variante cold del dialecto)
 - **Glassmorphism sutil** en cards
 - **Neumorphism evolucionado** (relieves táctiles, sombras blandas)
 - **Bordes muy redondeados** (pills, capsules)
 - **Tipografías:**
   - **Bebas Neue** — wordmark `RENDERDEVO` (negro tinta, solo)
   - **General Sans** — body + headings (200–700)
+- **Dark surfaces** (header, CTA): en light son bloques de contraste; en dark se
+  invierten a superficies **elevadas** (un paso más claras que el fondo) para que
+  el sandwich compositivo siga leyéndose sin tocar componentes.
 - **Sistema de tokens centralizado:** todo en `src/styles/tokens.css`.
-  Para cambiar tema completo: editar `:root` ahí. No hardcodear colores/fonts
-  en componentes — siempre via tokens.
+  Los temas viven al final del archivo: `:root` = dark (default), `:root[data-theme=light]`
+  = light. No hardcodear colores/fonts en componentes — siempre via tokens. Para
+  bordes usar `--color-border` / `--color-border-soft` (se adaptan); un negro
+  translúcido hardcodeado desaparece en dark.
 
 ## Reglas locked (no transgredir nunca)
 

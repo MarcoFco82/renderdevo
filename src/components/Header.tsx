@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { LanguageToggle } from './LanguageToggle';
+import { ThemeToggle } from './ThemeToggle';
 import { useLocale } from '@/i18n/LocaleProvider';
 
 export function Header() {
@@ -57,6 +58,7 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-3">
+          <ThemeToggle variant="dark" />
           <LanguageToggle variant="dark" />
           <NavLink
             to="/contacto"

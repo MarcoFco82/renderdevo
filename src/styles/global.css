@@ -72,7 +72,7 @@
 }
 
 @utility tactile-card {
-  background: var(--color-bg);
+  background: var(--color-surface, var(--color-bg));
   border-radius: var(--radius-card);
   box-shadow: var(--shadow-tactile);
 }

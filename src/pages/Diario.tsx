@@ -1,6 +1,7 @@
 import { Fragment, useEffect, useState, type ReactNode } from 'react';
 import { useLocale } from '@/i18n/LocaleProvider';
 import { journal, type JournalEntry, type MediaBlock } from '@/data/journal';
+import { MeshBackdrop } from '@/components/MeshBackdrop';
 import type { Locale } from '@/i18n/strings';
 
 /**
@@ -32,7 +33,9 @@ export function Diario() {
   }, []);
 
   return (
-    <section className="container-base py-[var(--spacing-section-lg)]">
+    <section className="relative overflow-hidden">
+      <MeshBackdrop variant="wide" />
+      <div className="relative container-base py-[var(--spacing-section-lg)]">
       <header className="mb-16 max-w-3xl">
         <h1
           className="font-display tracking-[0.02em] leading-[0.95] text-[clamp(3rem,7vw,5.5rem)] mb-5"
@@ -47,7 +50,7 @@ export function Diario() {
         {entries.map((entry) => (
           <article
             key={entry.slug}
-            className="py-10 border-t border-[oklch(0%_0_0_/_0.08)]"
+            className="py-10 border-t border-[var(--color-border)]"
           >
             {entry.date && (
               <time
@@ -91,6 +94,7 @@ export function Diario() {
             </div>
           </article>
         ))}
+      </div>
       </div>
     </section>
   );

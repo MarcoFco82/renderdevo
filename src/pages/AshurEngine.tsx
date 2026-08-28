@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useLocale } from '@/i18n/LocaleProvider';
 import { ashurScenes, ashurSystem, type AshurShot } from '@/data/ashur';
+import { MeshBackdrop } from '@/components/MeshBackdrop';
 
 /**
  * AshurEngine — página del producto insignia de RENDERDEVO.
@@ -21,7 +22,8 @@ export function AshurEngine() {
     <>
       {/* === HERO === */}
       <section className="relative overflow-hidden">
-        <div className="container-base pt-20 pb-24 md:pt-28 md:pb-32">
+        <MeshBackdrop variant="dense" />
+        <div className="relative container-base pt-20 pb-24 md:pt-28 md:pb-32">
           <span className="inline-block text-xs uppercase tracking-[0.3em] text-[var(--color-muted)] mb-6">
             {a.tagline}
           </span>
@@ -180,6 +182,7 @@ export function AshurEngine() {
           color: 'var(--color-dark-fg)',
         }}
       >
+        <MeshBackdrop variant="low" intensity={0.8} />
         <div className="container-base relative text-center">
           <h2
             className="font-display tracking-[0.02em] leading-[0.95] text-[clamp(2.5rem,6vw,5rem)] mb-6 max-w-[20ch] mx-auto"

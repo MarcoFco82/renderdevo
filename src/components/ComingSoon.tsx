@@ -1,15 +1,20 @@
 import { useLocale } from '@/i18n/LocaleProvider';
+import { MeshBackdrop, type MeshVariant } from '@/components/MeshBackdrop';
 
 interface ComingSoonProps {
   title: string;
   description?: string;
+  /** Forma del fondo paramétrico. Cada página stub puede usar la suya. */
+  mesh?: MeshVariant;
 }
 
-export function ComingSoon({ title, description }: ComingSoonProps) {
+export function ComingSoon({ title, description, mesh = 'corner' }: ComingSoonProps) {
   const { t } = useLocale();
 
   return (
-    <section className="container-base py-[var(--spacing-section-lg)] min-h-[60vh]">
+    <section className="relative overflow-hidden min-h-[60vh]">
+      <MeshBackdrop variant={mesh} />
+      <div className="relative container-base py-[var(--spacing-section-lg)]">
       <span className="inline-block text-xs uppercase tracking-[0.3em] text-[var(--color-muted)] mb-6">
         {t.common.comingSoon}
       </span>
@@ -22,6 +27,7 @@ export function ComingSoon({ title, description }: ComingSoonProps) {
       {description && (
         <p className="text-lg text-[var(--color-ink-soft)] max-w-2xl">{description}</p>
       )}
+      </div>
     </section>
   );
 }

@@ -9,7 +9,7 @@ export function Footer() {
     <footer
       className="w-full mt-[var(--spacing-section)] py-12"
       style={{
-        borderTop: '1px solid oklch(0% 0 0 / 0.06)',
+        borderTop: '1px solid var(--color-border-soft)',
       }}
     >
       <div className="container-base">
@@ -72,7 +72,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-10 pt-6 border-t border-[oklch(0%_0_0_/_0.05)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-xs text-[var(--color-muted)]">
+        <div className="mt-10 pt-6 border-t border-[var(--color-border-soft)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-xs text-[var(--color-muted)]">
           <span>{t.footer.copyright}</span>
           <span>Guadalajara, México</span>
         </div>

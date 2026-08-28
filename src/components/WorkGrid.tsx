@@ -239,7 +239,7 @@ function EmptyState({ label }: { label: string }): ReactNode {
       className="flex items-center justify-center py-20 rounded-[var(--radius-card)]"
       style={{
         background: 'var(--color-bg-deep)',
-        border: '1px dashed oklch(0% 0 0 / 0.1)',
+        border: '1px dashed var(--color-border)',
       }}
     >
       <span className="text-sm uppercase tracking-[0.3em] text-[var(--color-muted)]">

@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { useLocale } from '@/i18n/LocaleProvider';
 import { WorkGrid } from '@/components/WorkGrid';
 import { r2 } from '@/lib/r2';
+import { MeshBackdrop } from '@/components/MeshBackdrop';
 
 export function Home() {
   const { t } = useLocale();
@@ -10,7 +11,10 @@ export function Home() {
     <>
       {/* === HERO === */}
       <section className="relative overflow-hidden">
-        <div className="container-base pt-20 pb-32 md:pt-32 md:pb-44">
+        {/* Fondo paramétrico — una forma distinta por zona (ver MeshBackdrop) */}
+        <MeshBackdrop variant="hero" />
+
+        <div className="relative container-base pt-20 pb-32 md:pt-32 md:pb-44">
           <span className="inline-block text-xs uppercase tracking-[0.3em] text-[var(--color-muted)] mb-6">
             {t.hero.tagline}
           </span>
@@ -159,7 +163,7 @@ export function Home() {
             <p className="text-[var(--color-ink-soft)] mb-6 flex-1">
               {t.products.danimgator.body}
             </p>
-            <span className="inline-flex items-center self-start px-5 py-2.5 rounded-[var(--radius-pill)] text-sm font-medium text-[var(--color-muted)] border border-[oklch(0%_0_0_/_0.12)]">
+            <span className="inline-flex items-center self-start px-5 py-2.5 rounded-[var(--radius-pill)] text-sm font-medium text-[var(--color-muted)] border border-[var(--color-border)]">
               {t.products.danimgator.cta}
             </span>
           </div>
@@ -194,6 +198,7 @@ export function Home() {
           color: 'var(--color-dark-fg)',
         }}
       >
+        <MeshBackdrop variant="orbit" intensity={0.75} />
         <div className="container-base relative text-center">
           <h2
             className="font-display tracking-[0.02em] leading-[0.95] text-[clamp(2.5rem,6vw,5.5rem)] mb-6 max-w-[20ch] mx-auto"
