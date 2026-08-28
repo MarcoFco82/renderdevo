@@ -182,7 +182,7 @@ export function AshurEngine() {
           color: 'var(--color-dark-fg)',
         }}
       >
-        <MeshBackdrop variant="low" intensity={0.8} />
+        <MeshBackdrop variant="low" intensity={1.3} force="dark" />
         <div className="container-base relative text-center">
           <h2
             className="font-display tracking-[0.02em] leading-[0.95] text-[clamp(2.5rem,6vw,5rem)] mb-6 max-w-[20ch] mx-auto"

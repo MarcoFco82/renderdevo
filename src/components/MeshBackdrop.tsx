@@ -67,21 +67,30 @@ interface MeshBackdropProps {
   variant?: MeshVariant;
   /** Multiplica la opacidad del preset. 1 = tal cual. */
   intensity?: number;
+  /**
+   * Fuerza el modo, ignorando el tema activo. Necesario en secciones que son
+   * SIEMPRE oscuras (CTA de Home, cierre de Ashur): ahí el fondo es un gradiente
+   * dark propio, así que la malla siempre debe componer en aditivo. Sin esto, en
+   * tema light usaría multiply sobre negro y se comería el dibujo.
+   */
+  force?: 'dark' | 'light';
   className?: string;
 }
 
 export function MeshBackdrop({
   variant = 'hero',
   intensity = 1,
+  force,
   className,
 }: MeshBackdropProps) {
   const { theme } = useTheme();
+  const mode = force ?? theme;
   return (
     <MeshGlow
       {...PRESETS[variant]}
-      mode={theme}
-      palette={PALETTE[theme]}
-      opacity={OPACITY[theme] * intensity}
+      mode={mode}
+      palette={PALETTE[mode]}
+      opacity={OPACITY[mode] * intensity}
       className={className}
     />
   );

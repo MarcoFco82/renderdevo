@@ -240,6 +240,16 @@ const es = {
       button: 'Agendar discovery',
     },
 
+    contact: {
+      title: 'Hablemos',
+      sub: 'Cuéntame qué tienes en mente. Respondo personalmente.',
+      emailLabel: 'Correo',
+      linkedinLabel: 'LinkedIn',
+      locationLabel: 'Base',
+      location: 'Guadalajara, México',
+      note: 'Para proyectos: escribe qué quieres construir, para cuándo y con quién. Entre más concreto, más útil es la primera respuesta.',
+    },
+
     footer: {
       tagline: 'Interactive Motion Studio',
       copyright: '© 2026 renderdevo',
@@ -482,6 +492,16 @@ const en: StringsShape = {
       title: 'Have a project in mind?',
       sub: 'We start with a paid Discovery. Real deliverable, no commitment to continue.',
       button: 'Book discovery',
+    },
+
+    contact: {
+      title: 'Let\'s talk',
+      sub: 'Tell me what you have in mind. I answer personally.',
+      emailLabel: 'Email',
+      linkedinLabel: 'LinkedIn',
+      locationLabel: 'Based in',
+      location: 'Guadalajara, Mexico',
+      note: 'For projects: tell me what you want to build, by when, and with whom. The more concrete, the more useful my first reply.',
     },
 
     footer: {

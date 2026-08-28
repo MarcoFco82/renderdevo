@@ -8,11 +8,11 @@ import {
 } from 'react';
 
 /**
- * ThemeProvider — dark es el DEFAULT de renderdevo (decisión 2026-08-28).
+ * ThemeProvider — light es el DEFAULT de renderdevo; dark es alternativa.
  *
  * Mismo patrón que LocaleProvider: estado + localStorage + atributo en <html>.
- * En dark no se escribe atributo (es el :root base); en light se pone
- * data-theme="light", que es lo que activa el override en tokens.css.
+ * En light no se escribe atributo (es el :root base, así no hay flash al cargar);
+ * en dark se pone data-theme="dark", que activa el override en tokens.css.
  */
 
 export type Theme = 'dark' | 'light';
@@ -28,11 +28,11 @@ const ThemeContext = createContext<ThemeContextValue | null>(null);
 const STORAGE_KEY = 'renderdevo:theme';
 
 function detectInitialTheme(): Theme {
-  if (typeof window === 'undefined') return 'dark';
+  if (typeof window === 'undefined') return 'light';
   const saved = window.localStorage.getItem(STORAGE_KEY);
   if (saved === 'dark' || saved === 'light') return saved;
-  // Sin preferencia guardada: dark es el default de la marca, no el del sistema.
-  return 'dark';
+  // Sin preferencia guardada: light es el default de la marca, no el del sistema.
+  return 'light';
 }
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
@@ -40,8 +40,8 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const root = document.documentElement;
-    if (theme === 'light') {
-      root.setAttribute('data-theme', 'light');
+    if (theme === 'dark') {
+      root.setAttribute('data-theme', 'dark');
     } else {
       root.removeAttribute('data-theme');
     }
