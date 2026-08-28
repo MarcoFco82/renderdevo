@@ -94,8 +94,12 @@ Anchor pendiente: cliente universidad. Tabla interna en
 🔒 **Ashur Engine y D-Anim-Gator son productos públicos y reconocibles de
 RENDERDEVO** (decisión 2026-06-12, ver `docs/decisions.md`). Ashur Engine tiene
 marca y sitio propios (**ashurengine.com**, repo separado
-`Playground/Apps/ashurengine/`); todo adelanto visual de Marco lleva splash
-"Developed with Ashur Engine". En renderdevo.com ambos motores se nombran como
+`Playground/Apps/ashurengine/`); todo adelanto visual de Marco lleva la atribución
+canónica (fijada 2026-08-28, deroga "Developed with Ashur Engine"):
+> `Made with Ashur Engine` · `A RENDERDEVO Game`
+Literal, sin traducir, sin alterar el orden. Motor acreditado + estudio acreditado.
+Kit de marca vectorizado de las tres marcas: `renderdevo/docs/brand/vectorized/`
+(también en `public/brand/` del sitio). En renderdevo.com ambos motores se nombran como
 tecnología propia de la casa, con link. Aún no se venden como licencia/editor
 de pago — son marcas de tecnología propietaria.
 **Excepción (D-003, 2026-08-02): Ashur Engine SÍ abre un camino de early access —
