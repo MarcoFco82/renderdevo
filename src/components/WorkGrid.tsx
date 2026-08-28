@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { useLocale } from '@/i18n/LocaleProvider';
+import { MeshBackdrop } from '@/components/MeshBackdrop';
 import {
   worksByCategory,
   categoryOrder,
@@ -33,7 +34,9 @@ export function WorkGrid() {
   };
 
   return (
-    <section className="container-base py-[var(--spacing-section)]">
+    <section className="relative overflow-hidden py-[var(--spacing-section)]">
+      <MeshBackdrop variant="work" />
+      <div className="relative container-base">
       {/* === Header del bloque === */}
       <div className="flex flex-col gap-3 mb-10">
         <h2 className="font-display text-4xl md:text-5xl">{t.work.title}</h2>
@@ -96,6 +99,7 @@ export function WorkGrid() {
           closeLabel={t.work.close}
         />
       )}
+      </div>
     </section>
   );
 }

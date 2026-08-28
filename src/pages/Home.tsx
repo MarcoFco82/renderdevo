@@ -82,7 +82,9 @@ export function Home() {
       </section>
 
       {/* === PRODUCTOS ESTRELLA === */}
-      <section className="container-base py-[var(--spacing-section)]">
+      <section className="relative overflow-hidden py-[var(--spacing-section)]">
+        <MeshBackdrop variant="products" />
+        <div className="relative container-base">
         <div className="flex flex-col gap-3 mb-10 max-w-3xl">
           <h2 className="font-display text-4xl md:text-5xl">{t.products.title}</h2>
           <p className="text-[var(--color-muted)]">{t.products.subtitle}</p>
@@ -168,13 +170,16 @@ export function Home() {
             </span>
           </div>
         </div>
+        </div>
       </section>
 
       {/* === WORK GRID (loops por categoría) === */}
       <WorkGrid />
 
       {/* === POR QUÉ === */}
-      <section className="container-base py-[var(--spacing-section)]">
+      <section className="relative overflow-hidden py-[var(--spacing-section)]">
+        <MeshBackdrop variant="why" />
+        <div className="relative container-base">
         <h2 className="font-display text-4xl md:text-5xl mb-12 max-w-3xl">
           {t.whyUs.title}
         </h2>
@@ -186,6 +191,7 @@ export function Home() {
               <p className="text-[var(--color-ink-soft)]">{item.body}</p>
             </div>
           ))}
+        </div>
         </div>
       </section>
 
