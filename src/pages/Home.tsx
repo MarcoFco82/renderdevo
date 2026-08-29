@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useLocale } from '@/i18n/LocaleProvider';
 import { WorkGrid } from '@/components/WorkGrid';
-import { CaseAlf } from '@/components/CaseAlf';
 import { r2 } from '@/lib/r2';
 import { MeshBackdrop } from '@/components/MeshBackdrop';
 import { BrandMark } from '@/components/BrandMark';
@@ -186,9 +185,6 @@ export function Home() {
 
       {/* === WORK GRID (loops por categoría) === */}
       <WorkGrid />
-
-      {/* === CASO: Aparta La Fecha (ficha dentro de Trabajo Seleccionado) === */}
-      <CaseAlf />
 
       {/* === POR QUÉ === */}
       <section className="relative overflow-hidden py-[var(--spacing-section)]">

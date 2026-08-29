@@ -75,16 +75,35 @@ const es = {
 
     work: {
       title: 'Trabajo seleccionado',
-      subtitle: 'Motion, experimental, interactivo.',
+      subtitle: 'Motion, cine con IA, interactivo y producto.',
       tabs: {
         motionDesign: 'Motion Design',
         aiFilm: 'AI Film',
-        experimental: 'Experimental & Stylized',
         interactive: 'Interactive',
+        digitalProduct: 'Producto Digital',
+      },
+      /* El texto llena lo que no ocupan las piezas: a menos piezas, más texto. */
+      blurbs: {
+        motionDesign: { title: '', body: '' },
+        aiFilm: {
+          title: 'Book trailers con IA dirigida',
+          body: 'Piezas de promoción literaria producidas con generación por IA y montadas con criterio de motion. La IA acelera el material; el ritmo, el corte y la dirección de arte los pongo yo.',
+        },
+        interactive: {
+          title: 'Defensa de Puebla',
+          body: 'Colección de minijuegos sobre la Batalla de Puebla, construida sobre Ashur Engine. Corre 100% en el navegador y se entrega por link o QR: sin instalación, sin app store, sin hardware especial. La pieza central es la batalla campal, con cientos de unidades en pantalla.',
+        },
+        digitalProduct: {
+          title: 'Aparta La Fecha VIP',
+          body: 'SaaS de invitaciones digitales en producción, con clientes reales. Cada invitación es un microsite vivo: confirmación de asistencia, mapas, mesa de regalos y avisos de último minuto detrás de un link. Debajo, un motor de plantillas propio que genera más de 200 diseños desde un solo sistema visual.',
+          linkLabel: 'Ver en vivo',
+          linkHref: 'https://apartalafecha.vip',
+        },
       },
       empty: 'Próximamente',
       viewProject: 'Ver pieza',
       close: 'Cerrar',
+      autoplayPaused: 'Rotación pausada',
     },
 
     whyUs: {
@@ -379,16 +398,34 @@ const en: StringsShape = {
 
     work: {
       title: 'Selected work',
-      subtitle: 'Motion, experimental, interactive.',
+      subtitle: 'Motion, AI film, interactive and product.',
       tabs: {
         motionDesign: 'Motion Design',
         aiFilm: 'AI Film',
-        experimental: 'Experimental & Stylized',
         interactive: 'Interactive',
+        digitalProduct: 'Digital Product',
+      },
+      blurbs: {
+        motionDesign: { title: '', body: '' },
+        aiFilm: {
+          title: 'Book trailers with directed AI',
+          body: 'Literary promo pieces produced with AI generation and cut with a motion designer\'s judgment. AI speeds up the footage; pacing, editing and art direction are mine.',
+        },
+        interactive: {
+          title: 'Defensa de Puebla',
+          body: 'A collection of minigames about the Battle of Puebla, built on Ashur Engine. Runs 100% in the browser and ships by link or QR: no install, no app store, no special hardware. The centerpiece is the pitched battle, with hundreds of units on screen.',
+        },
+        digitalProduct: {
+          title: 'Aparta La Fecha VIP',
+          body: 'A digital-invitations SaaS in production with real customers. Every invitation is a living microsite: RSVP, maps, gift registry and last-minute updates behind a single link. Underneath, a proprietary template engine that generates 200+ designs from one visual system.',
+          linkLabel: 'See it live',
+          linkHref: 'https://apartalafecha.vip',
+        },
       },
       empty: 'Coming soon',
       viewProject: 'View piece',
       close: 'Close',
+      autoplayPaused: 'Rotation paused',
     },
 
     whyUs: {
