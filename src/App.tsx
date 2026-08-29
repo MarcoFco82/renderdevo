@@ -9,6 +9,7 @@ import { Metodo } from '@/pages/Metodo';
 import { Sobre } from '@/pages/Sobre';
 import { Contacto } from '@/pages/Contacto';
 import { LoQueNoHacemos } from '@/pages/LoQueNoHacemos';
+import { NoEncontrada } from '@/pages/NoEncontrada';
 
 export function App() {
   return (
@@ -24,6 +25,8 @@ export function App() {
         <Route path="/sobre" element={<Sobre />} />
         <Route path="/contacto" element={<Contacto />} />
         <Route path="/lo-que-no-hacemos" element={<LoQueNoHacemos />} />
+        {/* Catch-all: sin esto una URL muerta renderiza el Layout con el main vacío */}
+        <Route path="*" element={<NoEncontrada />} />
       </Routes>
     </Layout>
   );

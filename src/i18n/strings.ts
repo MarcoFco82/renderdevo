@@ -324,6 +324,13 @@ const es = {
       closeMenu: 'Cerrar menú',
       menu: 'Menú',
     },
+
+    notFound: {
+      eyebrow: 'Error 404',
+      title: 'Esta página ya no vive aquí',
+      body: 'El enlace que seguiste apunta a algo que se movió o que dejó de existir. Desde el inicio puedes llegar a todo lo demás.',
+      cta: 'Ir al inicio',
+    },
 };
 
 export type StringsShape = typeof es;
@@ -637,6 +644,13 @@ const en: StringsShape = {
       openMenu: 'Open menu',
       closeMenu: 'Close menu',
       menu: 'Menu',
+    },
+
+    notFound: {
+      eyebrow: 'Error 404',
+      title: 'This page no longer lives here',
+      body: 'The link you followed points to something that moved or no longer exists. Everything else is reachable from the home page.',
+      cta: 'Back home',
     },
 };
 
