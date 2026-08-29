@@ -1,221 +1,315 @@
 {
   "entries": [
     {
-      "slug": "what-directing-an-ai-means",
+      "slug": "borra-lo-que-no-sirve",
+      "date": "2026-08-26",
       "published": true,
-      "title": { "es": "Qué significa dirigir una AI aquí", "en": "What directing an AI actually means here" },
+      "title": {
+        "es": "Retiró herramientas propias por costo, y protegió una por nombre",
+        "en": "Retired his own tooling on cost, and protected one by name"
+      },
       "blocks": [
         {
           "type": "text",
-          "es": "Yo decido la dirección y cómo encajan las piezas; la AI escribe el código y lo publica. No lo leo línea por línea — no podría, y tampoco ayudaría. Reviso lo que sí puedo juzgar: si se comporta bien, si es la decisión correcta, si embona con lo demás. Mi trabajo real está antes: decidir qué reusar, qué queda fuera de alcance y qué no puede romperse nunca — antes de que exista el código. Cuando me lo salto y solo digo \"constrúyelo\", la AI va por lo que funcione hoy, que casi siempre es la decisión equivocada para el mes que viene.",
-          "en": "I decide the direction and how the pieces fit; the AI writes the code and ships it. I don't read it line by line — I couldn't, and it wouldn't help. I review what I can actually judge: does it behave right, is it the correct decision, does it fit the rest. My real job is upstream — deciding what to reuse, what's out of scope, and what must never break — before any code exists. When I skip that and just say \"build it,\" the AI goes for whatever works today, which is usually the wrong call for next month."
+          "es": "«Borra de sistema social media y terminología, no funciona como espero, y no me sirven, gastan tokens.» Dos sistemas que él mismo había encargado, con meses de salida acumulada, borrados sin titubear en cuanto la cuenta dejó de salir. En el mismo mensaje protegió un tercero: «pero continúa professional logs, ese ha sido excelente.»",
+          "en": "«Borra de sistema social media y terminología, no funciona como espero, y no me sirven, gastan tokens.» Two systems he had commissioned himself, with months of accumulated output, deleted without hesitation once the cost stopped adding up. In the same message he protected a third: «pero continúa professional logs, ese ha sido excelente.»"
         }
       ]
     },
     {
-      "slug": "reuse-before-building",
+      "slug": "pide-el-concepto",
+      "date": "2026-08-26",
       "published": true,
-      "title": { "es": "Reusar antes de construir", "en": "Reuse before building" },
+      "title": {
+        "es": "Pide el concepto, no la conclusión",
+        "en": "He asks for the concept, not the conclusion"
+      },
       "blocks": [
         {
           "type": "text",
-          "es": "Cada feature arranca con \"qué ya existe\". La colisión de los edificios se reusó para plataformas, para props, y para el constructor de bloques — cada vez, caminar y saltar salieron gratis. Cuando la AI quiere construir algo desde cero, esa es mi señal de frenarla y encontrar la parte que ya existe.",
-          "en": "Every feature starts with \"what's already here.\" The collision from the buildings got reused for platforms, for props, and for the block-builder — each time, walking and jumping came for free. When the AI wants to build something from scratch, that's my cue to stop it and find the part that already exists."
+          "es": "«Luego me lo explicas un chingo más entendible pero no tan simple, solo quiero entender.» El matiz es la instrucción: no pide que lo protejan del mecanismo, pide que se lo cuenten bien. Simplificar de más falla igual que no explicar.",
+          "en": "«Luego me lo explicas un chingo más entendible pero no tan simple, solo quiero entender.» The qualifier is the instruction: he is not asking to be shielded from the mechanism, he is asking for it stated well. Over-simplifying fails the same way as not explaining."
         }
       ]
     },
     {
-      "slug": "checking-feasibility",
+      "slug": "cansancio-como-dato",
+      "date": "2026-08-26",
       "published": true,
-      "title": { "es": "Revisar viabilidad antes de comprometerme", "en": "Checking feasibility before I commit" },
+      "title": {
+        "es": "Cansancio reportado como dato, no como petición",
+        "en": "Fatigue reported as fact, not as a request"
+      },
       "blocks": [
         {
           "type": "text",
-          "es": "Antes de dar luz verde a algo grande, hago que la AI mapee qué se puede reusar contra qué es genuinamente nuevo — con referencias reales, no un \"claro\" optimista. Para el builder, ese mapa mostró que la mayor parte del cimiento ya existía y que lo nuevo era sobre todo la forma de interactuar con él. Me comprometo con la escala solo cuando entiendo ese mapa.",
-          "en": "Before I greenlight anything big, I make the AI map out what can be reused versus what's genuinely new — with real references, not an optimistic \"sure.\" For the builder, that map showed most of the foundation already existed and the new part was mainly the way you interact with it. I only commit to scale once I understand that map."
+          "es": "«Exhausto, mucho que hacer este día, apenas si avancé con esto.» Sin petición adjunta. La respuesta útil era un resumen de estado con el que pudiera cerrar la laptop, no ánimo.",
+          "en": "«Exhausto, mucho que hacer este día, apenas si avancé con esto.» No ask attached. The useful response was a state summary he could close the laptop on, not encouragement."
         }
       ]
     },
     {
-      "slug": "planning-fragile-files",
+      "slug": "mato-una-arquitectura",
+      "date": "2026-08-25",
       "published": true,
-      "title": { "es": "Planeación extra para los archivos frágiles", "en": "Extra planning for the fragile files" },
+      "title": {
+        "es": "Mató una arquitectura completa en una palabra, y entregó el modelo correcto en el mismo mensaje",
+        "en": "Killed a whole architecture in one word, then handed over the correct model in the same message"
+      },
       "blocks": [
         {
           "type": "text",
-          "es": "Dos archivos cargan a los personajes, y son los más fáciles de romper. Antes de tocarlos hago que la AI haga primero una pasada de planeación — mapeando exactamente dónde va el cambio y las trampas a evitar. Ha valido la pena; una vez cachó un cambio que habría funcionado bien en el editor pero se habría roto en el juego real.",
-          "en": "Two files hold the characters, and they're the easiest to break. Before touching them I have the AI do a planning pass first — mapping exactly where the change goes and the traps to avoid. It's paid off; once it caught a change that would have worked fine in the editor but broken in the actual game."
-        }
-      ]
-    },
-    {
-      "slug": "miscommunication-became-rule",
-      "published": true,
-      "title": { "es": "Un malentendido que se volvió regla", "en": "A miscommunication that became a rule" },
-      "blocks": [
-        {
-          "type": "text",
-          "es": "Pedí una pantalla de selección de personaje. La AI construyó al personaje parado dentro del mundo — una lectura literal de mis palabras, no lo que yo imaginaba. Costó un deploy tirado y varias idas y vueltas. El arreglo no fue mejor redacción; ahora es una regla: para cualquier cosa visual, la AI me muestra un mockup rápido y yo apruebo eso antes de código. La siguiente feature visual salió sin nada desperdiciado.",
-          "en": "I asked for a character-select screen. The AI built the character standing inside the world — a literal reading of my words, not what I pictured. It cost a wasted deploy and several back-and-forths. The fix wasn't better wording; it's a rule now: for anything visual, the AI shows me a quick mockup and I approve that before any code. The next visual feature shipped with nothing wasted."
-        }
-      ]
-    },
-    {
-      "slug": "miscommunication-became-system",
-      "published": true,
-      "title": { "es": "Un malentendido que se volvió todo un sistema", "en": "A miscommunication that became a whole system" },
-      "blocks": [
-        {
-          "type": "text",
-          "es": "Tiendo a mezclar una idea suelta y un requisito duro en la misma frase, y la AI toma mi ejemplo al pie de la letra. Estaba a punto de dejar fijo \"Boss\" como una opción — lo que habría encerrado un juego específico dentro del motor. Cacharlo produjo lo contrario: un sistema general de bandos configurables y reglas simples, del que salen bosses, escoltas y batallas. La regla ahora: nunca nombrar algo por el ejemplo; subirlo a la idea general y confirmar.",
-          "en": "I tend to mix a loose idea and a hard requirement in the same sentence, and the AI takes my example literally. It was about to hardwire \"Boss\" as a fixed option — which would have locked one specific game into the engine. Catching it produced the opposite: a general system of configurable sides and simple rules, from which bosses, escorts and battles all fall out. The rule now: never name something after the example; lift it to the general idea and confirm."
-        }
-      ]
-    },
-    {
-      "slug": "measure-instead-of-guess",
-      "published": true,
-      "title": { "es": "Medir en vez de adivinar", "en": "Measure instead of guess" },
-      "blocks": [
-        {
-          "type": "text",
-          "es": "Los bugs más lentos fueron los que dejé que la AI adivinara. Un bug del terreno tomó como diez sesiones de teorías hasta que abrí la escena en vivo al navegador y fui cambiando piezas una por una. Un puntaje que nunca se guardaba sobrevivió una sesión entera de adivinanzas hasta que observé la llamada de red real y vi que nunca se disparaba. Mi regla ahora: después de dos adivinanzas fallidas, parar y medir.",
-          "en": "The slowest bugs were the ones I let the AI guess at. One terrain bug took about ten sessions of theories until I opened the live scene to the browser and swapped pieces out one by one. A score that never saved survived a whole session of guessing until I watched the actual network call and saw it never fired. My rule now: after two failed guesses, stop and measure."
-        }
-      ]
-    },
-    {
-      "slug": "ai-introduces-bugs",
-      "published": true,
-      "title": { "es": "La AI mete bugs — lo planeo", "en": "The AI introduces bugs — I plan for it" },
-      "blocks": [
-        {
-          "type": "text",
-          "es": "El código escrito por AI se rompe de formas reconocibles, y cacharlas es parte del trabajo: algo que se reconstruía cada frame y mataba el frame rate en silencio; un valor leído en el momento equivocado que reseteaba la vida de un enemigo para siempre; un elemento visual que elegí sin verificar y que deformaba una barra de vida. Ninguno era exótico. Conocer el patrón es cómo los cacho rápido.",
-          "en": "AI-written code breaks in recognizable ways, and catching those is part of the job: something rebuilt every frame that quietly killed the frame rate; a value read at the wrong moment that reset an enemy's health forever; a display element I picked without checking that it distorted a health bar. None were exotic. Knowing the pattern is how I catch them fast."
-        }
-      ]
-    },
-    {
-      "slug": "ship-then-check-phone",
-      "published": true,
-      "title": { "es": "Publicar, luego probarlo en el teléfono", "en": "Ship, then check it on the phone" },
-      "blocks": [
-        {
-          "type": "text",
-          "es": "Los tests automáticos de la AI son necesarios pero no bastan. Los bugs que me llegan viven en el pegamento entre sistemas — la parte con casi cero tests. Así que publicar es la prueba real: lo pruebo en mi teléfono y entre navegadores, porque el táctil, la caché stale y los crashes de gráficos solo aparecen en dispositivos reales.",
-          "en": "The AI's automated tests are necessary but not enough. The bugs that reach me live in the glue between systems — the part with almost no tests. So publishing is the real test: I check it on my phone and across browsers, because touch, stale cache and graphics crashes only show up on real devices."
-        }
-      ]
-    },
-    {
-      "slug": "publish-to-both",
-      "published": true,
-      "title": { "es": "Publicar a los dos, tras uno que se desfasó", "en": "Publish to both, after one drifted" },
-      "blocks": [
-        {
-          "type": "text",
-          "es": "Dos productos comparten el motor. Por un rato solo publiqué uno y nunca espejeé el otro; se fue quedando atrás en silencio y me costó una hora de limpieza cuando lo noté. Ahora cada publicación va a los dos, sin excepción. Un script que haga los dos de una sigue en mi lista.",
-          "en": "Two products share the engine. For a while I only published one and never mirrored the other; it quietly fell behind and cost me an hour of cleanup when I noticed. Now every publish goes to both, no exceptions. A script to do both at once is still on my list."
-        }
-      ]
-    },
-    {
-      "slug": "avoid-database-changes",
-      "published": true,
-      "title": { "es": "Evitar cambios a la base de datos cuando puedo", "en": "Avoid database changes when I can" },
-      "blocks": [
-        {
-          "type": "text",
-          "es": "La mayoría de los ajustes por-cosa viven dentro de un campo flexible, así que una feature nueva normalmente no necesita cambiar la estructura de la base de datos. Cuando un cambio es inevitable solo agrega, nunca quita, y sale con un test que prueba que la data vieja se sigue comportando igual. Esa disciplina es lo que me deja moverme rápido sin romper los mundos que ya están en vivo.",
-          "en": "Most per-thing settings live inside a flexible field, so a new feature usually needs no change to the database's structure. When a change is unavoidable it only adds, never removes, and it ships with a test proving old data still behaves the same. That discipline is what lets me move fast without breaking the worlds already live."
-        }
-      ]
-    },
-    {
-      "slug": "decisions-reversed",
-      "published": true,
-      "title": { "es": "Decisiones que reversé a propósito", "en": "Decisions I reversed on purpose" },
-      "blocks": [
-        {
-          "type": "list",
-          "es": [
-            "Los ajustes de calidad pasaron de por-usuario a por-proyecto — un sistema que se comportaba distinto para gente logueada y anónima era el modelo equivocado.",
-            "El modelador de sólidos pasó de un enfoque rápido a uno bien hecho, aunque fuera más trabajo.",
-            "Los controles pasaron de fijos a configurables por mundo — nada del input debería estar horneado.",
-            "El comportamiento de enemigos pasó de la lógica de un juego específico a un sistema general de reglas."
-          ],
-          "en": [
-            "Quality settings went from per-user to per-project — a system that behaved differently for logged-in and anonymous people was the wrong model.",
-            "The solid modeler went from a quick approach to a proper one, even though it was more work.",
-            "Controls went from fixed to configurable per world — nothing about input should be baked in.",
-            "Enemy behavior went from one specific game's logic to a general rule system."
-          ]
+          "es": "Después de que la IA entregara una cámara de conversación construida sobre el sistema equivocado: «MAL. No es lo que se buscó nunca. Desde el panel del personaje, se asigna la toma… esta no es una toma, es un acercamiento seteado por developer, este acercamiento existe solo durante la conversación, si se cierra o termina se aleja la toma nuevamente.»",
+          "en": "After the AI shipped a conversation camera built on the wrong system: «MAL. No es lo que se buscó nunca. Desde el panel del personaje, se asigna la toma… esta no es una toma, es un acercamiento seteado por developer, este acercamiento existe solo durante la conversación, si se cierra o termina se aleja la toma nuevamente.»"
         },
         {
           "type": "text",
-          "es": "Ninguno tiró el trabajo previo; cada uno fue un replanteo construido encima. Reversar sin encariñarse es parte del método.",
-          "en": "None of these threw away the earlier work; each was a rethink built on top of it. Reversing without getting attached is part of the method."
+          "es": "Cinco frases, y cada una es una restricción de diseño: dónde se autora, qué es, cuánto dura, quién más tiene una, y qué es un diálogo en el fondo. Segunda sesión consecutiva en que el rechazo trae la respuesta correcta adentro.",
+          "en": "Five sentences, and every one is a design constraint: where it's authored, what it is, how long it lives, who else has one, and what a dialogue fundamentally is. Second consecutive session where the rejection carries the correct answer inside it."
         }
       ]
     },
     {
-      "slug": "tests-floor-under-speed",
+      "slug": "nombro-como-lee",
+      "date": "2026-08-25",
       "published": true,
-      "title": { "es": "Los tests son el piso bajo la velocidad", "en": "Tests are the floor under the speed" },
+      "title": {
+        "es": "Encuadró la petición según cómo lee en realidad",
+        "en": "Framed the request around how he actually reads"
+      },
       "blocks": [
         {
           "type": "text",
-          "es": "Hay como 2,300 tests automáticos en el motor, posibles por un hábito: cuando algo riesgoso necesita test, saco la lógica de la parte visual a una pieza plana e independiente y pruebo eso. También fuerza separaciones más limpias que las que sacaría de otra forma.",
-          "en": "There are around 2,300 automated tests on the engine, kept possible by one habit: when something risky needs testing, I pull the logic out of the visual part into a plain, standalone piece and test that. It also forces cleaner separations than I'd get otherwise."
+          "es": "«estás en plan mode, normalmente leo de pasada y medio entiendo, ahora genera el plan y al final dime de la manera mas sencilla, así como yo te explico mis ideas de implementaciones.» Nombró su propia forma de leer como una restricción de salida, y fijó el registro señalando el suyo. El objetivo no era «más simple»: era su voz.",
+          "en": "«estás en plan mode, normalmente leo de pasada y medio entiendo, ahora genera el plan y al final dime de la manera mas sencilla, así como yo te explico mis ideas de implementaciones.» He named his own reading behavior as a constraint on the output, and set the register by pointing at his own. The target wasn't «simpler» — it was his voice."
         }
       ]
     },
     {
-      "slug": "tools-catch-mistakes",
+      "slug": "dedujo-el-bug-sin-verlo",
+      "date": "2026-08-25",
       "published": true,
-      "title": { "es": "Hacer que las herramientas cachen mis propios errores", "en": "Making the tools catch my own mistakes" },
+      "title": {
+        "es": "Sospechó un mecanismo que no tenía forma de leer, y acertó",
+        "en": "Suspected a mechanism he had no way to read, and was right"
+      },
       "blocks": [
         {
           "type": "text",
-          "es": "Algunos ajustes hay que conectarlos en varios lugares a la vez, y olvidar uno fallaba en silencio. Ahora el motor se niega a compilar hasta que todos los lugares están resueltos. Cuando una decisión se riega en muchos puntos, hago que el sistema la haga cumplir en vez de depender de mi memoria.",
-          "en": "Some settings have to be connected in several places at once, and forgetting one used to fail silently. Now the engine refuses to build until every place is handled. When a decision is spread across many spots, I make the system enforce it instead of relying on memory."
+          "es": "Sobre las reglas de comportamiento: «estuve seteando un when someone of team player within 2m then face pero tengo varias chinacas merodeando, esto implicaría que se voltearían a ver entre ellas no es así?» Dedujo, solo de la semántica del control, que una condición de proximidad por bando no distingue entre aliados. Tenía razón.",
+          "en": "On behavior rules: «estuve seteando un when someone of team player within 2m then face pero tengo varias chinacas merodeando, esto implicaría que se voltearían a ver entre ellas no es así?» He inferred, from the semantics of the control alone, that a side-scoped proximity condition can't tell allies apart. He was right."
         }
       ]
     },
     {
-      "slug": "how-i-talk-to-ai",
+      "slug": "interfaz-que-no-existia",
+      "date": "2026-08-25",
       "published": true,
-      "title": { "es": "Cómo he tenido que hablarle a la AI", "en": "How I've had to talk to the AI" },
+      "title": {
+        "es": "Cachó que las instrucciones describían una interfaz que no existía",
+        "en": "Called out instructions describing an interface that didn't exist"
+      },
       "blocks": [
         {
           "type": "text",
-          "es": "Dos cosas me cuestan tiempo. Una: la AI contesta una pregunta de diseño en términos de ingeniero que me sacan de mi flow — la necesito en términos planos, o con un default sensato. Dos: cuando un sistema tiene un editor general y un uso específico de él, la AI publica el uso específico y lo llama el feature — tiene que decirme qué capa está entregando en realidad. Los dos son bugs de comunicación, y los dos produjeron trabajo equivocado hasta que los nombré.",
-          "en": "Two things cost me time. One: the AI answers a design question in engineer's terms that pull me out of my flow — I need it in plain terms, or a sensible default. Two: when a system has both a general editor and one specific use of it, the AI ships the specific use and calls it the feature — it has to tell me which layer it's actually delivering. Both are communication bugs, and both produced wrong work until I named them."
+          "es": "«cómo voy a duplicar esta caja y cómo le asigno sus nombres? o es duplicar el screen entero? esa no es la idea.» Tenía razón en las dos cosas: no había forma de duplicar, y las réplicas salían idénticas sin manera de distinguirlas. Abrió con «vamos paso a paso porque no eres muy descriptivo», que era la lectura exacta: la IA venía narrando resultados en vez de pasos.",
+          "en": "«cómo voy a duplicar esta caja y cómo le asigno sus nombres? o es duplicar el screen entero? esa no es la idea.» He was right on both counts: there was no way to duplicate, and the replicas came out identical with no way to tell them apart. He opened with «vamos paso a paso porque no eres muy descriptivo» — the accurate read: the AI had been narrating outcomes instead of steps."
         }
       ]
     },
     {
-      "slug": "staying-honest",
+      "slug": "rechazo-y-especifico",
+      "date": "2026-08-25",
       "published": true,
-      "title": { "es": "Mantenerme honesto sobre lo que sí funciona", "en": "Staying honest about what actually works" },
+      "title": {
+        "es": "Rechazó una arquitectura entera en una frase, y nombró la correcta en el mismo aliento",
+        "en": "Rejected an entire architecture in one sentence, and named the right one in the same breath"
+      },
       "blocks": [
         {
           "type": "text",
-          "es": "Cualquier cosa que pongo frente a alguien técnico, hago que la AI la separe limpio en lo que funciona hoy y lo que solo está diseñado. Sobredimensionar una cosa ante alguien que se da cuenta mata la credibilidad de todo lo demás. El motor va muy por delante de cualquier pitch; la disciplina es no dejar que el pitch se adelante al motor.",
-          "en": "Anything I put in front of someone technical, I make the AI split cleanly into what works today and what's only designed. Overstating one thing to someone who can tell kills the credibility of everything else. The engine is well ahead of any pitch; the discipline is not letting the pitch get ahead of the engine."
+          "es": "«se vé terrible, revierte esa implementación, la función original era la adecuada, solo lo hace de golpe, solo era fadear bien cabrón player cam to cinematic cam and back, solo eso.» Un veredicto, la razón, y el requisito real. La última frase es toda la especificación: el modelo original estaba bien y solo le faltaba duración. No necesitaba conocer ningún parámetro para saber que era un corte y no una transición.",
+          "en": "«se vé terrible, revierte esa implementación, la función original era la adecuada, solo lo hace de golpe, solo era fadear bien cabrón player cam to cinematic cam and back, solo eso.» A verdict, the reason, and the actual requirement. The last clause is the whole spec: the original model was right and only lacked duration. He didn't need to know any parameter to know it was a cut and not a transition."
         }
       ]
     },
     {
-      "slug": "running-several-ais",
+      "slug": "bug-a-resolucion-de-frame",
+      "date": "2026-08-25",
       "published": true,
-      "title": { "es": "Correr varias AIs a la vez", "en": "Running several AIs at once" },
+      "title": {
+        "es": "Describió un bug a resolución de frame",
+        "en": "Described a bug at frame resolution"
+      },
       "blocks": [
         {
           "type": "text",
-          "es": "Corro más de una AI en paralelo — una en los sitios, una en la historia, una en el código — y mi trabajo es darle a cada una el contexto correcto. La del código revisa el trabajo de otra antes de que aterrice, así no tengo que re-leer todo yo. Es el mismo rol de productor, apuntado a un stack chico de AIs en vez de a un stack de herramientas.",
-          "en": "I run more than one AI in parallel — one on the sites, one on the story, one on the code — and my job is feeding each the right context. The code one reviews another's work before it lands, so I don't have to re-read everything myself. It's the same producer role, aimed at a small stack of AIs instead of tools."
+          "es": "«alcancé a detectar que es el turno dos el que aparece de putazo por 0.3s antes de que termine de desaparecer turno 1, desaparece y luego ya fade in de turno 2.» Esa secuencia — aparece, desaparece, luego entra — aisló el mecanismo solo con la vista. Quinta sesión seguida en que su reporte de bug es la mejor pista disponible.",
+          "en": "«alcancé a detectar que es el turno dos el que aparece de putazo por 0.3s antes de que termine de desaparecer turno 1, desaparece y luego ya fade in de turno 2.» That sequence — appears, disappears, then fades in — isolated the mechanism from the visuals alone. Fifth consecutive session where his bug report is the strongest lead available."
+        }
+      ]
+    },
+    {
+      "slug": "deuda-vieja-con-recibo",
+      "date": "2026-08-25",
+      "published": true,
+      "title": {
+        "es": "Cobró una deuda vieja con el recibo adjunto",
+        "en": "Called in an old debt with the receipt attached"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "es": "«desde que integramos el primer personaje hardcodeaste una pinche ficha toda horrible que nunca hemos quitado… es descriptiva del personaje que se acerca al player, sucede con todos.» Identificó cuándo entró, qué es y a quiénes afecta: un andamio provisional que llevaba 111 sesiones tolerando, y que salió a la luz en cuanto algo real aterrizó encima.",
+          "en": "«desde que integramos el primer personaje hardcodeaste una pinche ficha toda horrible que nunca hemos quitado… es descriptiva del personaje que se acerca al player, sucede con todos.» He identified when it entered, what it is and its scope: a piece of scaffolding he had tolerated for 111 sessions, surfaced the moment something real landed on top of it."
+        }
+      ]
+    },
+    {
+      "slug": "no-hornear-decisiones",
+      "date": "2026-08-25",
+      "published": true,
+      "title": {
+        "es": "Se negó a que el motor horneara una decisión de diseño",
+        "en": "Refused to let the engine bake in a design decision"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "es": "Le dijeron que la caja de diálogo se ancla a la cabeza y de inmediato vio el caso que falla: la cabeza de un soldado hincado no está a la altura de una cabeza. En vez de pedir que se levantara solo, pidió composición: «debo contar con un within Nm, the action y poder añadir otra acción de posición: and then Idle, esto obligará a pararse y face to player.»",
+          "en": "Told the dialogue box anchors to the head, he immediately saw the failure case — a kneeling soldier's head isn't at head height. Instead of asking to auto-stand him, he asked for composition: «debo contar con un within Nm, the action y poder añadir otra acción de posición: and then Idle, esto obligará a pararse y face to player.»"
+        },
+        {
+          "type": "text",
+          "es": "Cuando la IA ofreció «se vuelve a sentar» como comportamiento por defecto al alejarse, interrumpió: «no espera, si el personaje se aleja y termina la conversación, arquitecto define cuál será la acción… eso es seteable por arquitecto.» Cachó que estaban a punto de hornear la otra mitad de la regla.",
+          "en": "When the AI offered «se vuelve a sentar» as the default on walking away, he interrupted: «no espera, si el personaje se aleja y termina la conversación, arquitecto define cuál será la acción… eso es seteable por arquitecto.» He caught the other half of the rule about to be hard-coded."
+        }
+      ]
+    },
+    {
+      "slug": "su-medicion-mato-el-atajo",
+      "date": "2026-08-24",
+      "published": true,
+      "title": {
+        "es": "Su medición mató la mitigación obvia",
+        "en": "His measurement killed the obvious mitigation"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "es": "Tras un colapso de rendimiento en móvil, la IA le ofreció dos pruebas para discriminar. Volvió con la que importaba: «en extensión a 100 igual se llegó a trabar.» Ese número invalidó el arreglo barato — achicar el plano — y forzó el modelo correcto: el costo son píxeles en pantalla, no metros en el mundo. No discutió la teoría; produjo el dato que la rompía.",
+          "en": "After a mobile performance collapse, the AI offered two discriminating tests. He came back with the one that mattered: «en extensión a 100 igual se llegó a trabar.» That number invalidated the cheap fix — shrink the plane — and forced the correct model: the cost is pixels on screen, not meters in the world. He didn't argue the theory; he produced the datum that broke it."
+        },
+        {
+          "type": "text",
+          "es": "Y en el mismo mensaje derivó la solución: «Me diste una idea excelente: ¿qué tal si no quiero el espejo sobre todo el bioma, quiero trazarlo?» Convirtió la explicación física en una función que es a la vez el arreglo de rendimiento y la mejor composición.",
+          "en": "And in the same message he derived the solution: «Me diste una idea excelente: ¿qué tal si no quiero el espejo sobre todo el bioma, quiero trazarlo?» He turned the physical explanation into a feature that is simultaneously the performance fix and the better composition."
+        }
+      ]
+    },
+    {
+      "slug": "un-control-dos-preguntas",
+      "date": "2026-08-24",
+      "published": true,
+      "title": {
+        "es": "Partió un control en dos porque respondían preguntas distintas",
+        "en": "Split one control in two because they answer different questions"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "es": "«Dame control de resolución… de manera individual: desktop y mobile, de esa manera aseguro max comp quality para desktop, y enough quality para mobile.» No pidió «hazlo configurable»: nombró las dos intenciones distintas y exigió que dejaran de compartir perilla. Un solo número que obliga a un tradeoff es una falla de diseño, no una simplificación.",
+          "en": "«Dame control de resolución… de manera individual: desktop y mobile, de esa manera aseguro max comp quality para desktop, y enough quality para mobile.» Not «make it configurable»: he named the two distinct intents and demanded they stop sharing a knob. A single number that forces a tradeoff is a design flaw, not a simplification."
+        }
+      ]
+    },
+    {
+      "slug": "restriccion-y-delegacion",
+      "date": "2026-08-25",
+      "published": true,
+      "title": {
+        "es": "Nombró la restricción y pidió la solución en la misma frase",
+        "en": "Named the constraint and asked for the solution in the same breath"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "es": "«tal vez no sea eficiente ya que un cielo que dura desde las 8pm hasta las 5am no podría visualmente acomodarse manualmente no es así? resuélvelo inteligentemente.» Identificó que un rango que da la vuelta al día rompe un deslizador lineal, admitió que no tenía la respuesta y delegó explícitamente. De ahí salió un dial circular; un «dame un deslizador» habría entregado el lineal roto.",
+          "en": "«tal vez no sea eficiente ya que un cielo que dura desde las 8pm hasta las 5am no podría visualmente acomodarse manualmente no es así? resuélvelo inteligentemente.» He identified that a range wrapping past midnight breaks a linear slider, admitted he didn't have the answer, and delegated explicitly. A circular dial came out of that; «give me a slider» would have shipped the broken linear one."
+        },
+        {
+          "type": "text",
+          "es": "En la misma sesión revirtió su propia decisión por costo, en un solo turno: eligió ocho materiales de cielo y de inmediato — «al parecer 8 texturas seteadas va a ser un peso considerable… reconsidero mi decisión a solo cuatro para optimización.»",
+          "en": "In the same session he reversed his own decision on cost, within one turn: he chose eight sky materials and immediately — «al parecer 8 texturas seteadas va a ser un peso considerable… reconsidero mi decisión a solo cuatro para optimización.»"
+        }
+      ]
+    },
+    {
+      "slug": "verbosidad-fuera-del-producto",
+      "date": "2026-08-25",
+      "published": true,
+      "title": {
+        "es": "Rechazó la verbosidad en el producto, no solo en la conversación",
+        "en": "Rejected verbosity in the product, not just in conversation"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "es": "«borra el texto descriptivo indicativo que integraste en ese control» — el párrafo explicativo que la IA había puesto debajo de un deslizador del editor. Quiere controles que se lean de un vistazo; explicar es trabajo de la conversación, no del panel.",
+          "en": "«borra el texto descriptivo indicativo que integraste en ese control» — the explanatory paragraph the AI had put under an editor slider. He wants controls that read at a glance; explaining is the conversation's job, not the panel's."
+        }
+      ]
+    },
+    {
+      "slug": "la-confusion-es-senal",
+      "date": "2026-08-25",
+      "published": true,
+      "title": {
+        "es": "Su confusión es una señal sobre el sistema, no sobre él",
+        "en": "His confusion is a signal about the system, not about him"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "es": "«ando muy confundido con los controles» y después «explícame las horas, no le hallo». Los dos apuntaban a huecos reales: el segundo destapó que el reloj del editor estaba clavado en una hora fija, así que anclar cielos a horas que no podía ver era adivinar. Hace la pregunta aclaratoria en vez de asumir que la función está rota, y la pregunta aterriza en el defecto real.",
+          "en": "«ando muy confundido con los controles» and later «explícame las horas, no le hallo». Both pointed at real gaps: the second surfaced that the editor clock was pinned to a fixed hour, so anchoring skies to hours he couldn't see was guesswork. He asks the clarifying question instead of assuming the feature is broken, and the question lands on the actual defect."
+        }
+      ]
+    },
+    {
+      "slug": "pies-hundidos",
+      "date": "2026-08-25",
+      "published": true,
+      "title": {
+        "es": "Dos mitades de la misma clase de bug, cerradas con dieciséis sesiones de diferencia",
+        "en": "Two halves of the same bug class, closed sixteen sessions apart"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "es": "Reportó que los pies de los personajes se hundían en el suelo. El síntoma ya se había cerrado dos veces, dieciséis sesiones antes, pero esta vez el mecanismo era otro. Se midió en su bioma antes de tocar nada: 27 cm de media, 1.08 m en el peor punto — el 60% de la altura del personaje. Apareció justo ahora porque él bajó el detalle del terreno persiguiendo el look low-poly de sus capturas.",
+          "en": "He reported that character feet were sinking into the ground. The symptom had already been closed twice, sixteen sessions earlier, but this time the mechanism was different. It was measured on his biome before touching anything: 27 cm average, 1.08 m at the worst point — 60% of the character's height. It surfaced now because he lowered the terrain detail chasing the low-poly look of his screenshots."
+        }
+      ]
+    },
+    {
+      "slug": "entrego-el-navegador",
+      "date": "2026-08-25",
+      "published": true,
+      "title": {
+        "es": "Entregó su navegador en el momento exacto",
+        "en": "Handed over his browser at exactly the right moment"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "es": "«smoke tests paso a paso o... puedes hacerlo tú? te acabo de dar accesos a chrome.» Cuatro sesiones de pruebas aplazadas, y un mensaje que las convierte en trabajo que la IA puede hacer. La delegación quedó acotada por la herramienta que concedió.",
+          "en": "«smoke tests paso a paso o... puedes hacerlo tú? te acabo de dar accesos a chrome.» Four sessions of deferred tests, and one message that converts them into work the AI can do. The delegation was scoped by the tool he granted."
+        },
+        {
+          "type": "text",
+          "es": "Y cuando decidió no probar, lo dijo: «arre testeo en la siguiente sesión». Cerró la sesión sabiendo que quedaban cinco funciones sin verificar. Eso es una decisión, no un olvido.",
+          "en": "And when he decided not to test, he said so: «arre testeo en la siguiente sesión». He closed the session knowing five features were unverified. That is a decision, not an omission."
         }
       ]
     }

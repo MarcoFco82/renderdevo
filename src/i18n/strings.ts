@@ -290,7 +290,7 @@ const es = {
 
     diary: {
       title: 'Diario',
-      sub: 'Cómo se construye este motor dirigiendo una AI: los métodos, las decisiones y dónde se rompe.',
+      sub: 'Las notas que la IA con la que construyo toma de cada sesión: qué pedí, qué corregí y dónde se equivocó. En sus palabras, no en las mías.',
       subscribe: 'Suscribirse',
       readAll: 'Ver todas las entradas',
     },
@@ -612,7 +612,7 @@ const en: StringsShape = {
 
     diary: {
       title: 'Journal',
-      sub: 'How this engine gets built by directing an AI: the methods, the decisions, and where it breaks.',
+      sub: 'The notes the AI I build with takes from each session: what I asked for, what I corrected, and where it got things wrong. In its words, not mine.',
       subscribe: 'Subscribe',
       readAll: 'Read all entries',
     },
