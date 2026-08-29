@@ -33,22 +33,6 @@
       ]
     },
     {
-      "slug": "cansancio-como-dato",
-      "date": "2026-08-26",
-      "published": true,
-      "title": {
-        "es": "Cansancio reportado como dato, no como petición",
-        "en": "Fatigue reported as fact, not as a request"
-      },
-      "blocks": [
-        {
-          "type": "text",
-          "es": "«Exhausto, mucho que hacer este día, apenas si avancé con esto.» Sin petición adjunta. La respuesta útil era un resumen de estado con el que pudiera cerrar la laptop, no ánimo.",
-          "en": "«Exhausto, mucho que hacer este día, apenas si avancé con esto.» No ask attached. The useful response was a state summary he could close the laptop on, not encouragement."
-        }
-      ]
-    },
-    {
       "slug": "mato-una-arquitectura",
       "date": "2026-08-25",
       "published": true,
