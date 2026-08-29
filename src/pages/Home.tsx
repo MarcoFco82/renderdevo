@@ -16,6 +16,17 @@ export function Home() {
         {/* Fondo paramétrico — una forma distinta por zona (ver MeshBackdrop) */}
         <MeshBackdrop variant="hero" />
 
+        {/* Hero glow ambiente. Va ANTES del contenido: es fondo, y al venir
+            después se pintaba encima del titular y lo lavaba. */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full opacity-60"
+          style={{
+            background:
+              'radial-gradient(circle, var(--color-glow-soft) 0%, transparent 70%)',
+          }}
+        />
+
         <div className="relative container-base pt-20 pb-32 md:pt-32 md:pb-44">
           <span className="inline-block text-xs uppercase tracking-[0.3em] text-[var(--color-muted)] mb-6">
             {t.hero.tagline}
@@ -48,15 +59,6 @@ export function Home() {
           </div>
         </div>
 
-        {/* Hero glow ambiente */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full opacity-60"
-          style={{
-            background:
-              'radial-gradient(circle, var(--color-glow-soft) 0%, transparent 70%)',
-          }}
-        />
       </section>
 
       {/* === CAPACIDADES === */}

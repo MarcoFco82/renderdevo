@@ -309,6 +309,9 @@ const es = {
     common: {
       loading: 'Cargando…',
       comingSoon: 'Próximamente',
+      openMenu: 'Abrir menú',
+      closeMenu: 'Cerrar menú',
+      menu: 'Menú',
     },
 };
 
@@ -610,6 +613,9 @@ const en: StringsShape = {
     common: {
       loading: 'Loading…',
       comingSoon: 'Coming soon',
+      openMenu: 'Open menu',
+      closeMenu: 'Close menu',
+      menu: 'Menu',
     },
 };
 
