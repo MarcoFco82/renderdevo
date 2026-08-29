@@ -72,25 +72,31 @@ const PRESETS: Record<MeshVariant, FieldPreset & { opacity: number }> = {
     lineWidth: 0.8, nodeEvery: 4, accentEvery: 6, opacity: 0.34,
   },
 
-  /* Presets del handoff, calibrados para ir detrás de grids de cards.
-     Opacidad más baja: el campo asoma sobre todo en las canaletas. */
+  /* Estas tres van detrás de contenido, no de un headline. La retícula y los
+     anillos competían con la lectura, así que usan la MISMA esfera dispersa del
+     Diario (`wide`), variando posición para que no se lean idénticas.
+
+     Ojo con `scale`: el radio es min(ancho, alto) x 0.34 x scale. En una sección
+     baja el lado menor es el ALTO, así que la misma escala da una esfera mucho
+     más chica que en el Diario (que es una página larga). Por eso estas llevan
+     escalas altas: compensan la altura de su sección, no son "más grandes". */
   products: {
-    variant: 'grid3d',
-    density: 130, links: 1, scale: 1.15, speed: 0.06,
-    cx: 0.18, cy: 0.1, glow: 0.55, glowRadius: 10,
-    lineWidth: 0.9, nodeEvery: 9, accentEvery: 23, opacity: 0.2,
+    variant: 'mesh',
+    density: 110, links: 1, scale: 1.55, speed: 0.032,
+    cx: 0.2, cy: 0.34, glow: 0.5, glowRadius: 9,
+    lineWidth: 1.1, nodeEvery: 5, accentEvery: 12, opacity: 0.44,
   },
   work: {
-    variant: 'grid3d',
-    density: 110, links: 2, scale: 0.95, speed: 0.035,
-    cx: 0.5, cy: 0.5, glow: 0.5, glowRadius: 9,
-    lineWidth: 0.85, nodeEvery: 99, accentEvery: 0, opacity: 0.16,
+    variant: 'mesh',
+    density: 105, links: 1, scale: 3.0, speed: 0.03,
+    cx: 0.84, cy: 0.5, glow: 0.5, glowRadius: 9,
+    lineWidth: 1.1, nodeEvery: 5, accentEvery: 13, opacity: 0.44,
   },
   why: {
-    variant: 'moire',
-    density: 150, links: 2, scale: 1.05, speed: 0.055,
-    cx: 0.78, cy: 0.44, glow: 0.6, glowRadius: 11,
-    lineWidth: 0.9, accentEvery: 13, opacity: 0.18,
+    variant: 'mesh',
+    density: 115, links: 1, scale: 1.55, speed: 0.038,
+    cx: 0.16, cy: 0.6, glow: 0.52, glowRadius: 10,
+    lineWidth: 1.1, nodeEvery: 5, accentEvery: 11, opacity: 0.46,
   },
 };
 
