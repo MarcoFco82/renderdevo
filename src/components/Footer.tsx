@@ -44,6 +44,9 @@ export function Footer() {
               <Link to="/ashur" className="hover:text-[var(--color-glow-deep)] transition">
                 {t.nav.ashur}
               </Link>
+              <Link to="/d-anim" className="hover:text-[var(--color-glow-deep)] transition">
+                {t.nav.danim}
+              </Link>
               <Link to="/lo-que-no-hacemos" className="hover:text-[var(--color-glow-deep)] transition">
                 {t.notDoing.title}
               </Link>
