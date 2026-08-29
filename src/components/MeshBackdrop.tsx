@@ -51,7 +51,7 @@ const PRESETS: Record<MeshVariant, FieldPreset & { opacity: number }> = {
     variant: 'mesh',
     density: 110, links: 1, scale: 1.55, speed: 0.035,
     cx: 0.82, cy: 0.28, glow: 0.5, glowRadius: 9,
-    lineWidth: 1.1, nodeEvery: 5, accentEvery: 11, opacity: 0.3,
+    lineWidth: 1.1, nodeEvery: 5, accentEvery: 11, opacity: 0.46,
   },
   corner: {
     variant: 'mesh',

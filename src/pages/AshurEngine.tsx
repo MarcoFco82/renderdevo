@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useLocale } from '@/i18n/LocaleProvider';
 import { ashurScenes, ashurSystem, type AshurShot } from '@/data/ashur';
 import { MeshBackdrop } from '@/components/MeshBackdrop';
+import { BrandMark } from '@/components/BrandMark';
 
 /**
  * AshurEngine — página del producto insignia de RENDERDEVO.
@@ -28,12 +29,14 @@ export function AshurEngine() {
             {a.tagline}
           </span>
 
-          <h1
-            className="font-display tracking-[0.02em] leading-[0.95] text-[clamp(3rem,9vw,7rem)] mb-8"
-            style={{ color: 'var(--color-ink)' }}
-          >
-            {a.headline}
-          </h1>
+          {/* Lockup de marca en vez del título tipográfico: es un producto
+              con identidad propia, no una sección del sitio. */}
+          <BrandMark
+            piece="ashur-lockup"
+            height="clamp(90px, 15vw, 168px)"
+            alt={a.headline}
+            className="mb-8 max-w-full"
+          />
 
           <p className="text-lg md:text-xl text-[var(--color-ink-soft)] max-w-3xl mb-10">
             {a.sub}

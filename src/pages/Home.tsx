@@ -3,6 +3,7 @@ import { useLocale } from '@/i18n/LocaleProvider';
 import { WorkGrid } from '@/components/WorkGrid';
 import { r2 } from '@/lib/r2';
 import { MeshBackdrop } from '@/components/MeshBackdrop';
+import { BrandMark } from '@/components/BrandMark';
 
 export function Home() {
   const { t } = useLocale();
@@ -121,12 +122,13 @@ export function Home() {
               >
                 {t.products.ashur.status}
               </span>
-              <h3
-                className="font-heading text-3xl font-semibold mb-2"
-                style={{ color: 'var(--color-dark-fg)' }}
-              >
-                {t.products.ashur.name}
-              </h3>
+              <BrandMark
+                piece="ashur-lockup"
+                on="onDark"
+                height={44}
+                alt={t.products.ashur.name}
+                className="mb-3"
+              />
               <p
                 className="font-heading mb-3"
                 style={{ color: 'var(--color-dark-fg)' }}
@@ -156,9 +158,12 @@ export function Home() {
             <span className="inline-block self-start text-xs uppercase tracking-[0.2em] text-[var(--color-muted)] mb-4">
               {t.products.danimgator.status}
             </span>
-            <h3 className="font-heading text-2xl font-semibold mb-2">
-              {t.products.danimgator.name}
-            </h3>
+            <BrandMark
+              piece="danimgator-lockup"
+              height={44}
+              alt={t.products.danimgator.name}
+              className="mb-3"
+            />
             <p className="font-heading text-[var(--color-ink)] mb-3">
               {t.products.danimgator.tagline}
             </p>

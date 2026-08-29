@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Wordmark } from './Wordmark';
+import { BrandMark } from './BrandMark';
 import { useLocale } from '@/i18n/LocaleProvider';
 
 export function Footer() {
@@ -17,6 +18,16 @@ export function Footer() {
           <div className="flex flex-col gap-3">
             <Wordmark size="md" />
             <p className="text-sm text-[var(--color-muted)] max-w-xs">{t.footer.tagline}</p>
+            {/* Atribución canónica: motor acreditado + estudio acreditado.
+                Literal, sin traducir (regla de marca). */}
+            <div className="flex items-center gap-3 mt-2">
+              <BrandMark piece="ashur-emblem" height={26} mono />
+              <span className="text-xs leading-tight text-[var(--color-muted)]">
+                Made with Ashur Engine
+                <br />
+                A RENDERDEVO Game
+              </span>
+            </div>
           </div>
 
           <div className="grid grid-cols-2 gap-8 text-sm sm:grid-cols-3">
