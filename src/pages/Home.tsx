@@ -187,9 +187,7 @@ export function Home() {
       <WorkGrid />
 
       {/* === POR QUÉ === */}
-      <section className="relative overflow-hidden py-[var(--spacing-section)]">
-        <MeshBackdrop variant="why" />
-        <div className="relative container-base">
+      <section className="container-base py-[var(--spacing-section)]">
         <h2 className="font-display text-4xl md:text-5xl mb-12 max-w-3xl">
           {t.whyUs.title}
         </h2>
@@ -201,7 +199,6 @@ export function Home() {
               <p className="text-[var(--color-ink-soft)]">{item.body}</p>
             </div>
           ))}
-        </div>
         </div>
       </section>
 
