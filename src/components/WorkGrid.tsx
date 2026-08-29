@@ -193,6 +193,32 @@ export function WorkGrid() {
   );
 }
 
+/* === Reloj virtual de las piezas === */
+
+/**
+ * Al rotar la pestaña se desmontan sus videos, así que al volver el elemento es
+ * NUEVO y arrancaría en 0: siempre se verían los mismos primeros segundos de
+ * cada loop. Aquí se guarda cuándo empezó a correr cada pieza y al montarla se
+ * la adelanta al punto donde estaría si nunca se hubiera pausado.
+ *
+ * El video no gasta recursos mientras no se ve — sigue pausado — pero se
+ * comporta como si hubiera seguido corriendo, así que cada vuelta cae en un
+ * punto distinto del material en vez de repetir siempre la misma entrada.
+ *
+ * Vive fuera del componente a propósito: tiene que sobrevivir al desmontaje.
+ */
+const relojes = new Map<string, number>();
+
+function posicionVirtual(id: string, duracion: number): number {
+  if (!Number.isFinite(duracion) || duracion <= 0) return 0;
+  let epoca = relojes.get(id);
+  if (epoca === undefined) {
+    epoca = Date.now();
+    relojes.set(id, epoca);
+  }
+  return ((Date.now() - epoca) / 1000) % duracion;
+}
+
 /* === Celda: video en loop o imagen === */
 
 function WorkCell({
@@ -209,22 +235,54 @@ function WorkCell({
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
+
+    let enPantalla = false;
+
+    /* Salta al punto donde el loop estaría si nunca se hubiera pausado. El
+       margen evita reposicionar cuando ya viene corriendo bien: un seek
+       innecesario se ve como un tirón. */
+    const sincronizar = () => {
+      const pos = posicionVirtual(item.id, video.duration);
+      if (Math.abs(video.currentTime - pos) > 0.15) video.currentTime = pos;
+    };
+
+    const arrancar = () => {
+      sincronizar();
+      video.play().catch(() => {
+        /* algunos navegadores bloquean autoplay; se ignora */
+      });
+    };
+
+    /* Si el elemento se montó con los metadatos ya en caché el evento no vuelve
+       a dispararse, así que hay que mirar el readyState además de escucharlo. */
+    if (video.readyState >= 1) arrancar();
+    video.addEventListener('loadedmetadata', arrancar);
+
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
-          if (entry.isIntersecting) {
-            video.play().catch(() => {
-              /* algunos navegadores bloquean autoplay; se ignora */
-            });
-          } else {
-            video.pause();
-          }
+          enPantalla = entry.isIntersecting;
+          if (enPantalla) arrancar();
+          else video.pause();
         }
       },
       { threshold: 0.25 }
     );
     observer.observe(video);
-    return () => observer.disconnect();
+
+    /* El navegador congela el video cuando su pestaña pasa a segundo plano: al
+       volver quedó atrasado y hay que re-sincronizarlo. Solo si además está a
+       la vista, para no reproducir algo que quedó fuera de cuadro. */
+    const alVolverAlNavegador = () => {
+      if (!document.hidden && enPantalla) arrancar();
+    };
+    document.addEventListener('visibilitychange', alVolverAlNavegador);
+
+    return () => {
+      observer.disconnect();
+      video.removeEventListener('loadedmetadata', arrancar);
+      document.removeEventListener('visibilitychange', alVolverAlNavegador);
+    };
   }, [item.id]);
 
   const aspectClass: Record<WorkItem['aspect'], string> = {
