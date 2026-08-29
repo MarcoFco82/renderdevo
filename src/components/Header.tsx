@@ -23,7 +23,6 @@ export function Header() {
     { to: '/casos', label: t.nav.cases },
     { to: '/ashur', label: t.nav.ashur },
     { to: '/d-anim', label: t.nav.danim },
-    { to: '/diario', label: t.nav.diary },
     { to: '/sobre', label: t.nav.about },
   ];
 

@@ -20,7 +20,6 @@ const es = {
       cases: 'Casos',
       ashur: 'Ashur Engine',
       danim: 'D-Anim-Gator',
-      diary: 'Diario',
       about: 'Sobre',
       contact: 'Contacto',
     },
@@ -288,13 +287,6 @@ const es = {
       },
     },
 
-    diary: {
-      title: 'Diario',
-      sub: 'Las notas que la IA con la que construyo toma de cada sesión: qué pedí, qué corregí y dónde se equivocó. En sus palabras, no en las mías.',
-      subscribe: 'Suscribirse',
-      readAll: 'Ver todas las entradas',
-    },
-
     notDoing: {
       title: 'Lo que no hacemos',
       sub: 'Honestidad antes que upsell. Si tu proyecto cae fuera, te recomendamos a alguien que sí lo haga.',
@@ -343,7 +335,6 @@ const en: StringsShape = {
       cases: 'Work',
       ashur: 'Ashur Engine',
       danim: 'D-Anim-Gator',
-      diary: 'Journal',
       about: 'About',
       contact: 'Contact',
     },
@@ -608,13 +599,6 @@ const en: StringsShape = {
           },
         ],
       },
-    },
-
-    diary: {
-      title: 'Journal',
-      sub: 'The notes the AI I build with takes from each session: what I asked for, what I corrected, and where it got things wrong. In its words, not mine.',
-      subscribe: 'Subscribe',
-      readAll: 'Read all entries',
     },
 
     notDoing: {

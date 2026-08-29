@@ -6,7 +6,6 @@ import { Casos } from '@/pages/Casos';
 import { AshurEngine } from '@/pages/AshurEngine';
 import { DAnimGator } from '@/pages/DAnimGator';
 import { Metodo } from '@/pages/Metodo';
-import { Diario } from '@/pages/Diario';
 import { Sobre } from '@/pages/Sobre';
 import { Contacto } from '@/pages/Contacto';
 import { LoQueNoHacemos } from '@/pages/LoQueNoHacemos';
@@ -22,7 +21,6 @@ export function App() {
         <Route path="/d-anim" element={<DAnimGator />} />
         {/* /metodo se conserva como redirect a /ashur (compat de links viejos) */}
         <Route path="/metodo" element={<Metodo />} />
-        <Route path="/diario" element={<Diario />} />
         <Route path="/sobre" element={<Sobre />} />
         <Route path="/contacto" element={<Contacto />} />
         <Route path="/lo-que-no-hacemos" element={<LoQueNoHacemos />} />

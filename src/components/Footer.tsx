@@ -54,11 +54,8 @@ export function Footer() {
 
             <div className="flex flex-col gap-2">
               <span className="text-[var(--color-muted)] uppercase tracking-wider text-xs">
-                {t.nav.diary}
+                {t.nav.about}
               </span>
-              <Link to="/diario" className="hover:text-[var(--color-glow-deep)] transition">
-                {t.diary.title}
-              </Link>
               <Link to="/sobre" className="hover:text-[var(--color-glow-deep)] transition">
                 {t.nav.about}
               </Link>
