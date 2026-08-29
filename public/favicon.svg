@@ -1,20 +1,10 @@
-<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="renderdevo">
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="renderdevo">
   <defs>
-    <!-- Tile navy: mismo gradient diagonal que el header/CTA del sitio -->
     <linearGradient id="tile" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#232a38"/>
-      <stop offset="0.5" stop-color="#171d28"/>
-      <stop offset="1" stop-color="#10141c"/>
+      <stop offset="0" stop-color="#232a38"/><stop offset="0.5" stop-color="#171d28"/><stop offset="1" stop-color="#10141c"/>
     </linearGradient>
   </defs>
-
-  <!-- Tile con esquinas muy redondeadas (dialecto neo-tactile) -->
   <rect x="2" y="2" width="60" height="60" rx="16" fill="url(#tile)"/>
-  <!-- Relieve táctil sutil en el borde superior -->
-  <rect x="2.5" y="2.5" width="59" height="59" rx="15.5" fill="none" stroke="#ffffff" stroke-opacity="0.07" stroke-width="1"/>
-
-  <!-- Monograma R en Impact (eco del wordmark) -->
-  <text x="32" y="46" text-anchor="middle"
-        font-family="Impact, 'Haettenschweiler', 'Arial Narrow', 'Franklin Gothic Bold', sans-serif"
-        font-size="48" fill="#f4f0e9" letter-spacing="0.5">R</text>
+  <rect x="2.5" y="2.5" width="59" height="59" rx="15.5" fill="none" stroke="#ffffff" stroke-opacity="0.07"/>
+  <path d="M2.13 0L2.13 -36.4L10.61 -36.4Q15.03 -36.4 17.06 -34.35Q19.08 -32.29 19.08 -28.03L19.08 -28.03L19.08 -25.79Q19.08 -20.12 15.34 -18.62L15.34 -18.62L15.34 -18.51Q17.42 -17.89 18.28 -15.96Q19.14 -14.04 19.14 -10.82L19.14 -10.82L19.14 -4.42Q19.14 -2.86 19.24 -1.9Q19.34 -0.94 19.76 0L19.76 0L13.94 0Q13.62 -0.88 13.52 -1.66Q13.42 -2.44 13.42 -4.47L13.42 -4.47L13.42 -11.13Q13.42 -13.62 12.61 -14.61Q11.8 -15.6 9.83 -15.6L9.83 -15.6L7.85 -15.6L7.85 0L2.13 0M7.85 -20.8L9.93 -20.8Q11.65 -20.8 12.51 -21.68Q13.36 -22.57 13.36 -24.65L13.36 -24.65L13.36 -27.46Q13.36 -29.43 12.66 -30.32Q11.96 -31.2 10.45 -31.2L10.45 -31.2L7.85 -31.2L7.85 -20.8" fill="#f4f0e9" transform="translate(21.52 50.20)"/>
 </svg>
