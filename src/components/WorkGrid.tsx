@@ -17,12 +17,12 @@ import {
  * Así las pestañas se sienten la misma composición aunque tengan material
  * muy distinto.
  *
- * Las pestañas rotan solas cada 5 s. La rotación se detiene en cuanto el
+ * Las pestañas rotan solas cada 4 s. La rotación se detiene en cuanto el
  * visitante elige una pestaña, y se pausa mientras el puntero está encima o
  * si el sistema pide menos movimiento.
  */
 
-const ROTACION_MS = 5000;
+const ROTACION_MS = 4000;
 
 export function WorkGrid() {
   const { t, locale } = useLocale();
