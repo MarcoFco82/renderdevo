@@ -60,10 +60,10 @@ const es = {
       },
       danimgator: {
         name: 'D-Anim-Gator',
-        tagline: 'Motor de motion multi-formato.',
-        body: 'Producción de piezas de motion en múltiples formatos y proporciones en una sola pasada, con dialecto visual consistente.',
-        cta: 'Próximamente',
-        status: 'En desarrollo',
+        tagline: 'Motor de animación multi-formato.',
+        body: 'Piezas de motion en 60+ formatos y relaciones de aspecto en una sola pasada — un mismo dialecto visual, sin rehacer nada. Ahora con modo de visuales en vivo audio-reactivo para eventos e instalaciones.',
+        cta: 'Explorar D-Anim-Gator',
+        status: 'En operación',
       },
     },
 
@@ -222,6 +222,52 @@ const es = {
       },
     },
 
+    alf: {
+      eyebrow: 'Caso · Producto Digital',
+      name: 'Aparta La Fecha VIP',
+      tagline: 'Invitaciones digitales premium para México.',
+      body: 'Cada invitación es un microsite vivo: confirmación de asistencia, mapas, mesa de regalos, asignación de mesas y avisos de último minuto, todo detrás de un link. Debajo: un motor de plantillas propio que genera más de 200 diseños desde un solo sistema visual.',
+      invitationsTitle: 'Tres tonos, un mismo sistema',
+      panelTitle: 'Panel de control',
+      panelPending: 'Captura pendiente',
+      visit: 'Ver en vivo',
+      metrics: [
+        { value: '200+', label: 'plantillas de un solo sistema' },
+        { value: '21', label: 'tipos de módulo' },
+        { value: '108', label: 'endpoints en el edge' },
+        { value: 'Desde $449', label: 'MXN · 3 planes + gratis' },
+      ],
+      stack: 'React · TypeScript · Cloudflare (Pages, Functions, D1, R2, KV) · Stripe · Mercado Pago',
+    },
+
+    danim: {
+      tagline: 'Producto de RENDERDEVO',
+      sub: 'Piezas de motion en 60+ formatos y relaciones de aspecto en una sola pasada — un mismo dialecto visual, sin rehacer nada. Ahora con modo de visuales en vivo audio-reactivo para eventos e instalaciones.',
+      ctaPrimary: 'Hablar de un proyecto',
+      capabilities: {
+        title: 'Qué hace',
+        subtitle: 'Solo lo que está construido y funcionando.',
+        items: [
+          {
+            title: 'Una pasada, todos los formatos',
+            body: '60+ formatos social, broadcast y signage desde una sola composición. Escalado proporcional integrado — de 9:16 a signage 4K, idéntico.',
+          },
+          {
+            title: 'Un dialecto visual, no un template',
+            body: 'Motion generativo sobre motor propio. El cliente recibe una pieza única, no un archivo editable de After Effects.',
+          },
+          {
+            title: 'Audio-reactivo y en vivo',
+            body: 'Sonido, beat y MIDI controlan cualquier parámetro. De un spot rendereado a un set de VJ en vivo — el mismo motor.',
+          },
+          {
+            title: 'WYSIWYG, propietario',
+            body: 'Un solo motor de render: lo que previsualizas es exactamente lo que se entrega. Sin lock-in de terceros, sin sorpresas al exportar.',
+          },
+        ],
+      },
+    },
+
     diary: {
       title: 'Diario',
       sub: 'Cómo se construye este motor dirigiendo una AI: los métodos, las decisiones y dónde se rompe.',
@@ -315,9 +361,9 @@ const en: StringsShape = {
       danimgator: {
         name: 'D-Anim-Gator',
         tagline: 'Multi-format motion engine.',
-        body: 'Motion pieces produced across multiple formats and aspect ratios in a single pass, with a consistent visual dialect.',
-        cta: 'Coming soon',
-        status: 'In development',
+        body: 'Motion pieces across 60+ formats and aspect ratios in a single pass — one visual dialect, zero re-work. Now with an audio-reactive live-visuals mode for events and installations.',
+        cta: 'Explore D-Anim-Gator',
+        status: 'Operational',
       },
     },
 
@@ -473,6 +519,52 @@ const en: StringsShape = {
         title: 'We don\'t do the same thing cheaper.',
         body: 'We remove the barrier that made the project impossible: the install, the hardware and the dependency.',
         cta: 'Discuss a project',
+      },
+    },
+
+    alf: {
+      eyebrow: 'Case · Digital Product',
+      name: 'Aparta La Fecha VIP',
+      tagline: 'Premium digital invitations for Mexico.',
+      body: 'Every invitation is a living microsite: RSVP, maps, gift registry, table seating and last-minute updates, all behind a single link. Underneath: a proprietary template engine that generates 200+ designs from one visual system.',
+      invitationsTitle: 'Three tones, one system',
+      panelTitle: 'Control panel',
+      panelPending: 'Capture pending',
+      visit: 'See it live',
+      metrics: [
+        { value: '200+', label: 'templates from one system' },
+        { value: '21', label: 'module types' },
+        { value: '108', label: 'edge endpoints' },
+        { value: 'From $449', label: 'MXN · 3 plans + free tier' },
+      ],
+      stack: 'React · TypeScript · Cloudflare (Pages, Functions, D1, R2, KV) · Stripe · Mercado Pago',
+    },
+
+    danim: {
+      tagline: 'A RENDERDEVO product',
+      sub: 'Motion pieces across 60+ formats and aspect ratios in a single pass — one visual dialect, zero re-work. Now with an audio-reactive live-visuals mode for events and installations.',
+      ctaPrimary: 'Discuss a project',
+      capabilities: {
+        title: 'What it does',
+        subtitle: 'Only what is built and working.',
+        items: [
+          {
+            title: 'One pass, every format',
+            body: '60+ social, broadcast and signage formats rendered from a single composition. Proportional scaling built in — 9:16 to 4K signage, identical.',
+          },
+          {
+            title: 'A visual dialect, not a template',
+            body: 'Generative motion built on our own engine. The client gets a unique piece, not an editable After Effects file.',
+          },
+          {
+            title: 'Audio-reactive & live',
+            body: 'Sound, beat and MIDI drive any parameter. From a rendered spot to a live VJ set — same engine.',
+          },
+          {
+            title: 'WYSIWYG, proprietary',
+            body: 'One render engine: what you preview is exactly what ships. No third-party lock-in, no surprises at export.',
+          },
+        ],
       },
     },
 
