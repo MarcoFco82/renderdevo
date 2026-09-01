@@ -4,6 +4,43 @@ Newest first.
 
 ---
 
+## [2026-09-01]
+
+### Sesión nocturna: quota Fable — CV + páginas + SEO + wishlist Ashur + tracker
+
+**Objetivo:** gastar la quota de Fable 5 antes del reset en trabajo autónomo
+aprobado por Marco (durmiendo): perfil profesional + sitio + presencia.
+
+- **docs(cv):** CV bilingüe ES/EN + one-pager para convocatorias (.md + PDF) en
+  `docs/estrategia-agosto-2026/cv/`. Encuadre locked (motion designer +
+  desarrollador creativo). Fechas/puestos de Envato-HBO-Natura quedan como
+  campos por completar — no se inventaron.
+- **feat(pages):** Capacidades, Casos, Sobre y Lo Que No Hacemos dejan de ser
+  stubs — copy real ES-MX/EN en strings.ts, mallas por página. (`41fba19`)
+- **feat(seo):** og_image v2 (la anterior era de la era "Estrategias
+  Digitales"), og absoluto + twitter card + JSON-LD, sitemap.xml que robots.txt
+  prometía, y usePageMeta con título/canonical por ruta. (`6466181`)
+- **feat(work):** rotación de tabs a 4 s (`67e166b`) y reloj virtual para que
+  los loops continúen donde estarían al volver a una pestaña (`bf931f5`).
+- **fix(routing):** 404 real — no había catch-all y las URLs muertas daban
+  página en blanco, también en producción. (`d009f7b`)
+- **feat(brand):** Aparta La Fecha entra al kit vectorizado con 4 variantes
+  reconstruidas con <mask> (las letras del sello no calaban). (`4f0e281`)
+- **deploy:** renderdevo.com actualizado y verificado en producción.
+- **[repo ashurengine] feat(wishlist):** early access D-003 implementado —
+  sección en Home, POST /api/wishlist con honeypot + rate limit sobre la D1
+  del devlog, GET con sesión de /studio. Probado contra preview real y
+  deployado. CLAUDE.md de ese repo actualizado (regla vieja derogada).
+- **docs(estrategia):** tracker y estrategia verificados contra la web el
+  01-sep: IGF confirmado (waiver 7-sep, submit 13-sep), A MAZE confirmado
+  (31-oct), Pictoplasma resuelto (1-feb-2027, sin fee), EVA Play cerró sin
+  prórroga (objetivo pasa a 2027), ONX sin call visible.
+
+**Pendiente de Marco:** campos naranjas del CV; IGF fee waiver antes del
+7-sep (quedan 6 días); decidir si el Diario lote 3 se queda completo.
+
+---
+
 ## [2026-05-28]
 
 ### Sesion 002: Mail setup + wipe Next.js + reescritura v2 + Home vestido + deploy
