@@ -4,9 +4,11 @@ import { WorkGrid } from '@/components/WorkGrid';
 import { r2 } from '@/lib/r2';
 import { MeshBackdrop } from '@/components/MeshBackdrop';
 import { BrandMark } from '@/components/BrandMark';
+import { usePageMeta } from '@/lib/seo';
 
 export function Home() {
   const { t } = useLocale();
+  usePageMeta(t.seo.home.title, t.seo.home.description);
 
   return (
     <>

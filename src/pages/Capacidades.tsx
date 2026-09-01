@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { MeshBackdrop } from '@/components/MeshBackdrop';
 import { useLocale } from '@/i18n/LocaleProvider';
+import { usePageMeta } from '@/lib/seo';
 
 /**
  * Capacidades — expande las tres capacidades del home a página completa.
@@ -8,6 +9,7 @@ import { useLocale } from '@/i18n/LocaleProvider';
  */
 export function Capacidades() {
   const { t } = useLocale();
+  usePageMeta(t.seo.capabilities.title, t.seo.capabilities.description);
   const p = t.capabilitiesPage;
 
   return (

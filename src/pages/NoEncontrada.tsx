@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { MeshBackdrop } from '@/components/MeshBackdrop';
 import { useLocale } from '@/i18n/LocaleProvider';
+import { usePageMeta } from '@/lib/seo';
 
 /**
  * 404 — cualquier ruta que no exista.
@@ -13,6 +14,7 @@ import { useLocale } from '@/i18n/LocaleProvider';
  */
 export function NoEncontrada() {
   const { t } = useLocale();
+  usePageMeta(t.seo.notFound.title, t.seo.notFound.description);
 
   return (
     <section className="relative overflow-hidden min-h-[60vh]">

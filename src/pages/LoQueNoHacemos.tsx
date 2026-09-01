@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { MeshBackdrop } from '@/components/MeshBackdrop';
 import { useLocale } from '@/i18n/LocaleProvider';
+import { usePageMeta } from '@/lib/seo';
 
 /**
  * Lo que no hacemos — honestidad antes que upsell. Lista de fuera-de-alcance
@@ -8,6 +9,7 @@ import { useLocale } from '@/i18n/LocaleProvider';
  */
 export function LoQueNoHacemos() {
   const { t } = useLocale();
+  usePageMeta(t.seo.notDoing.title, t.seo.notDoing.description);
   const p = t.notDoingPage;
 
   return (

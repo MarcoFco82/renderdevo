@@ -4,6 +4,7 @@ import { useLocale } from '@/i18n/LocaleProvider';
 import { ashurScenes, ashurSystem, type AshurShot } from '@/data/ashur';
 import { MeshBackdrop } from '@/components/MeshBackdrop';
 import { BrandMark } from '@/components/BrandMark';
+import { usePageMeta } from '@/lib/seo';
 
 /**
  * AshurEngine — página del producto insignia de RENDERDEVO.
@@ -16,6 +17,7 @@ import { BrandMark } from '@/components/BrandMark';
  */
 export function AshurEngine() {
   const { t, locale } = useLocale();
+  usePageMeta(t.seo.ashur.title, t.seo.ashur.description);
   const a = t.ashur;
   const [lightbox, setLightbox] = useState<AshurShot | null>(null);
 

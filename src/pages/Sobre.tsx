@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { MeshBackdrop } from '@/components/MeshBackdrop';
 import { useLocale } from '@/i18n/LocaleProvider';
+import { usePageMeta } from '@/lib/seo';
 
 /**
  * Sobre — la voz honesta del estudio: motion designer que construye
@@ -8,6 +9,7 @@ import { useLocale } from '@/i18n/LocaleProvider';
  */
 export function Sobre() {
   const { t } = useLocale();
+  usePageMeta(t.seo.about.title, t.seo.about.description);
   const p = t.aboutPage;
 
   return (

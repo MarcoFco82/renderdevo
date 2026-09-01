@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { useLocale } from '@/i18n/LocaleProvider';
 import { MeshBackdrop } from '@/components/MeshBackdrop';
 import { BrandMark } from '@/components/BrandMark';
+import { usePageMeta } from '@/lib/seo';
 
 /**
  * D-Anim-Gator — página del segundo motor propio.
@@ -15,6 +16,7 @@ import { BrandMark } from '@/components/BrandMark';
  */
 export function DAnimGator() {
   const { t } = useLocale();
+  usePageMeta(t.seo.danim.title, t.seo.danim.description);
   const d = t.danim;
 
   return (

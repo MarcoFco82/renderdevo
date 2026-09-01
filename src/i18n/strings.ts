@@ -442,6 +442,45 @@ const es = {
       yesCta: 'Ver capacidades',
     },
 
+    seo: {
+      home: {
+        title: 'renderdevo — Interactive Motion Studio',
+        description: 'Estudio de Interactive Motion con tecnología propia. Experiencias web, motion sistémico multi-formato y producto digital para marcas e instituciones.',
+      },
+      capabilities: {
+        title: 'Capacidades — renderdevo',
+        description: 'Experiencias interactivas en navegador, motion sistémico multi-formato y producto digital end-to-end. Tres capacidades sobre tecnología construida en casa.',
+      },
+      cases: {
+        title: 'Casos — renderdevo',
+        description: 'Trabajo real en producción: Defensa de Puebla, Aparta La Fecha VIP, El Jardín Perdido y piezas de motion con IA dirigida.',
+      },
+      ashur: {
+        title: 'Ashur Engine — renderdevo',
+        description: 'Motor de mundos y juegos 3D que corre 100% en el navegador. Se entrega por link o QR: sin instalación, sin app store, sin hardware especial.',
+      },
+      danim: {
+        title: 'D-Anim-Gator — renderdevo',
+        description: 'Motor de animación multi-formato: piezas de motion en 60+ formatos en una sola pasada, con modo de visuales en vivo audio-reactivo.',
+      },
+      about: {
+        title: 'Sobre — renderdevo',
+        description: 'Motion designer senior construyendo tecnología propia dirigiendo IA. 15 años de trayectoria con Envato, HBO y Natura México, desde Guadalajara.',
+      },
+      contact: {
+        title: 'Contacto — renderdevo',
+        description: 'Cuéntanos qué quieres construir. Empezamos con un discovery pagado con entrega real, sin compromiso de continuar.',
+      },
+      notDoing: {
+        title: 'Lo que no hacemos — renderdevo',
+        description: 'Honestidad antes que upsell: lo que no vas a encontrar en renderdevo, y qué hacer si es lo que necesitas.',
+      },
+      notFound: {
+        title: 'Página no encontrada — renderdevo',
+        description: 'La página que buscas se movió o no existe.',
+      },
+    },
+
     cta: {
       title: '¿Tienes un proyecto en mente?',
       sub: 'Empezamos con un Discovery pagado. Entrega real, sin compromiso de continuar.',
@@ -911,6 +950,45 @@ const en: StringsShape = {
       closing: "If your project falls outside, we'll point you to someone who does it. Seriously.",
       yesTitle: 'What we do',
       yesCta: 'See capabilities',
+    },
+
+    seo: {
+      home: {
+        title: 'renderdevo — Interactive Motion Studio',
+        description: 'Interactive Motion studio with in-house technology. Web experiences, multi-format systemic motion and digital product for brands and institutions.',
+      },
+      capabilities: {
+        title: 'Capabilities — renderdevo',
+        description: 'In-browser interactive experiences, multi-format systemic motion and end-to-end digital product. Three capabilities on technology built in-house.',
+      },
+      cases: {
+        title: 'Cases — renderdevo',
+        description: 'Real work in production: Defensa de Puebla, Aparta La Fecha VIP, El Jardín Perdido and directed-AI motion pieces.',
+      },
+      ashur: {
+        title: 'Ashur Engine — renderdevo',
+        description: 'A 3D world and game engine that runs 100% in the browser. Delivered by link or QR: no install, no app store, no special hardware.',
+      },
+      danim: {
+        title: 'D-Anim-Gator — renderdevo',
+        description: 'Multi-format animation engine: motion pieces in 60+ formats in a single pass, with an audio-reactive live visuals mode.',
+      },
+      about: {
+        title: 'About — renderdevo',
+        description: 'A senior motion designer building his own technology by directing AI. 15 years of experience with Envato, HBO and Natura México, from Guadalajara.',
+      },
+      contact: {
+        title: 'Contact — renderdevo',
+        description: 'Tell us what you want to build. We start with a paid discovery with a real deliverable, no commitment to continue.',
+      },
+      notDoing: {
+        title: "What we don't do — renderdevo",
+        description: "Honesty over upsell: what you won't find at renderdevo, and what to do if it's what you need.",
+      },
+      notFound: {
+        title: 'Page not found — renderdevo',
+        description: 'The page you are looking for moved or does not exist.',
+      },
     },
 
     cta: {

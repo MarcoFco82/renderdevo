@@ -1,5 +1,6 @@
 import { useLocale } from '@/i18n/LocaleProvider';
 import { MeshBackdrop } from '@/components/MeshBackdrop';
+import { usePageMeta } from '@/lib/seo';
 
 const EMAIL = 'contacto@renderdevo.com';
 const LINKEDIN = 'https://www.linkedin.com/in/marcofranciscoramos/';
@@ -10,6 +11,7 @@ const LINKEDIN = 'https://www.linkedin.com/in/marcofranciscoramos/';
  */
 export function Contacto() {
   const { t } = useLocale();
+  usePageMeta(t.seo.contact.title, t.seo.contact.description);
   const c = t.contact;
 
   return (

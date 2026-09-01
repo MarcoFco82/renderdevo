@@ -1,5 +1,6 @@
 import { MeshBackdrop } from '@/components/MeshBackdrop';
 import { useLocale } from '@/i18n/LocaleProvider';
+import { usePageMeta } from '@/lib/seo';
 
 /**
  * Casos — todo lo listado corre en vivo o se entregó a cliente.
@@ -7,6 +8,7 @@ import { useLocale } from '@/i18n/LocaleProvider';
  */
 export function Casos() {
   const { t } = useLocale();
+  usePageMeta(t.seo.cases.title, t.seo.cases.description);
   const p = t.casesPage;
 
   return (

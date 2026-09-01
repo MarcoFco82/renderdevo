@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Rutas del SPA. robots.txt ya lo referencia; este archivo faltaba. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://renderdevo.com/</loc><priority>1.0</priority></url>
+  <url><loc>https://renderdevo.com/capacidades</loc><priority>0.9</priority></url>
+  <url><loc>https://renderdevo.com/casos</loc><priority>0.9</priority></url>
+  <url><loc>https://renderdevo.com/ashur</loc><priority>0.8</priority></url>
+  <url><loc>https://renderdevo.com/d-anim</loc><priority>0.8</priority></url>
+  <url><loc>https://renderdevo.com/sobre</loc><priority>0.7</priority></url>
+  <url><loc>https://renderdevo.com/contacto</loc><priority>0.7</priority></url>
+  <url><loc>https://renderdevo.com/lo-que-no-hacemos</loc><priority>0.5</priority></url>
+</urlset>

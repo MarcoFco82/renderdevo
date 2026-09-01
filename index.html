@@ -12,15 +12,55 @@
       content="Estudio de Interactive Motion con tecnología propia. Experiencias web y motion sistémico multi-formato para marcas, instituciones y agencias."
     />
 
-    <!-- Open Graph -->
+    <!-- Open Graph — los scrapers (LinkedIn, WhatsApp) no ejecutan JS: esto es
+         lo que ven SIEMPRE, en cualquier ruta. og:image debe ser URL absoluta o
+         la mayoría lo ignora. -->
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="renderdevo" />
+    <meta property="og:locale" content="es_MX" />
+    <meta property="og:locale:alternate" content="en_US" />
     <meta property="og:url" content="https://renderdevo.com" />
     <meta property="og:title" content="renderdevo — Interactive Motion Studio" />
     <meta
       property="og:description"
-      content="Experiencias web y motion sistémico multi-formato. Boutique LATAM con tecnología propia."
+      content="Experiencias web y motion sistémico multi-formato. Estudio LATAM con tecnología propia."
     />
-    <meta property="og:image" content="/og_image.png" />
+    <meta property="og:image" content="https://renderdevo.com/og_image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="renderdevo — Interactive Motion Studio" />
+    <meta
+      name="twitter:description"
+      content="Experiencias web y motion sistémico multi-formato. Estudio LATAM con tecnología propia."
+    />
+    <meta name="twitter:image" content="https://renderdevo.com/og_image.png" />
+
+    <link rel="canonical" href="https://renderdevo.com" />
+
+    <!-- JSON-LD: identidad de la organización para buscadores -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "renderdevo",
+      "url": "https://renderdevo.com",
+      "logo": "https://renderdevo.com/brand/renderdevo-avatar-dark.svg",
+      "description": "Interactive Motion Studio. Experiencias web, motion sistémico multi-formato y producto digital con tecnología propia.",
+      "email": "contacto@renderdevo.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Guadalajara",
+        "addressCountry": "MX"
+      },
+      "sameAs": [
+        "https://ashurengine.com",
+        "https://apartalafecha.vip"
+      ]
+    }
+    </script>
 
     <!-- Fonts: Bebas Neue (wordmark) + General Sans (body/headings) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
