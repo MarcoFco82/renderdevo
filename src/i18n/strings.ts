@@ -292,6 +292,156 @@ const es = {
       sub: 'Honestidad antes que upsell. Si tu proyecto cae fuera, te recomendamos a alguien que sí lo haga.',
     },
 
+    capabilitiesPage: {
+      eyebrow: 'Capacidades',
+      title: 'Tres capacidades, un estudio.',
+      intro:
+        'Cada capacidad corre sobre tecnología construida en casa. No adaptamos tu proyecto a las limitaciones de una herramienta de terceros: la herramienta es nuestra.',
+      sections: [
+        {
+          title: 'Experiencias Interactivas',
+          lead: 'Piezas que el público no ve: juega. Corren 100% en el navegador y se entregan por link o QR — sin instalación, sin app store, sin hardware especial.',
+          deliver: [
+            'Experiencias educativas jugables — aprender jugando desde el navegador',
+            'Microsites inmersivos para campañas y lanzamientos',
+            'Activaciones por QR para espacios físicos, eventos e instituciones',
+          ],
+          engine: 'Motor detrás: Ashur Engine, tecnología propia de la casa.',
+          caseLabel: 'Caso: Defensa de Puebla — minijuegos históricos con batallas de cientos de unidades, jugables por link.',
+        },
+        {
+          title: 'Motion Sistémico',
+          lead: 'Motion que escala sin degradarse: un solo dialecto visual desplegado en todos los formatos que pida la campaña, en una sola pasada.',
+          deliver: [
+            'Campañas multi-formato — social, broadcast y señalización desde una composición',
+            'Motion branding generativo con dialecto visual propio',
+            'Visuales en vivo audio-reactivos para eventos e instalaciones',
+          ],
+          engine: 'Motor detrás: D-Anim-Gator, nuestro motor de animación multi-formato.',
+          caseLabel: 'Caso: piezas en 60+ formatos desde una sola composición, idénticas de 9:16 a señalización 4K.',
+        },
+        {
+          title: 'Producto Digital',
+          lead: 'SaaS y productos digitales completos: frontend, backend, pagos y panel de administración. De idea a producción en semanas, operando en el edge.',
+          deliver: [
+            'Plataformas SaaS end-to-end con pagos integrados (Stripe, Mercado Pago)',
+            'Productos con panel de administración y lógica de planes real',
+            'Infraestructura edge: rápida en todo el continente, sin servidores que mantener',
+          ],
+          engine: 'Stack: React, TypeScript y Cloudflare de punta a punta.',
+          caseLabel: 'Caso: Aparta La Fecha VIP — SaaS de invitaciones en producción, con clientes reales.',
+        },
+      ],
+      deliverTitle: 'Qué entregamos',
+    },
+
+    casesPage: {
+      eyebrow: 'Casos',
+      title: 'Trabajo real, en producción.',
+      intro:
+        'Nada de mockups ni conceptos: todo lo que está aquí corre en vivo o se entregó a un cliente. Donde hay link, puedes verlo tú mismo.',
+      visit: 'Ver en vivo',
+      items: [
+        {
+          category: 'Interactivo · Educación',
+          name: 'Defensa de Puebla',
+          body: 'Colección de minijuegos sobre la Batalla de Puebla construida sobre Ashur Engine. La pieza central es la batalla campal con cientos de unidades en pantalla — y todo corre en el navegador, entregado por link o QR. Sin instalación, sin app store.',
+          metrics: [
+            { value: '100%', label: 'en el navegador' },
+            { value: 'Link o QR', label: 'la única entrega' },
+          ],
+          href: '',
+        },
+        {
+          category: 'Producto Digital · SaaS',
+          name: 'Aparta La Fecha VIP',
+          body: 'Plataforma de invitaciones digitales premium para México, en producción y con clientes reales. Cada invitación es un microsite vivo: confirmación de asistencia, mapas, mesa de regalos y avisos de último minuto. Debajo, un motor de plantillas que genera más de 200 diseños desde un solo sistema visual.',
+          metrics: [
+            { value: '200+', label: 'plantillas de un sistema' },
+            { value: '2', label: 'pasarelas de pago' },
+          ],
+          href: 'https://apartalafecha.vip',
+        },
+        {
+          category: 'Interactivo · Mundo demo',
+          name: 'El Jardín Perdido',
+          body: 'El mundo público donde se prueba Ashur Engine: terreno, atmósfera, personajes y cámaras cinematográficas corriendo en vivo. Es el banco de pruebas del motor y la demo que cualquiera puede abrir desde su navegador.',
+          metrics: [
+            { value: 'En vivo', label: 'demo pública del motor' },
+          ],
+          href: 'https://eljardinperdido.com',
+        },
+        {
+          category: 'Motion · IA dirigida',
+          name: 'Book trailers',
+          body: 'Piezas de promoción literaria producidas con generación por IA y montadas con criterio de motion. La IA acelera el material; el ritmo, el corte y la dirección de arte los pongo yo.',
+          metrics: [],
+          href: '',
+        },
+      ],
+      note: 'Los casos con material visual completo están en la portada, en Trabajo seleccionado.',
+    },
+
+    aboutPage: {
+      eyebrow: 'Sobre renderdevo',
+      title: 'Un estudio con motor propio.',
+      whoTitle: 'Quién está detrás',
+      whoBody:
+        'Soy Marco Ramos: motion graphics designer y desarrollador creativo, con 15 años de trayectoria y clientes como Envato, HBO y Natura México. Trabajo desde Guadalajara para LATAM y el mundo. renderdevo es mi estudio: aquí convergen el motion, lo interactivo y el producto digital.',
+      thesisTitle: 'La tesis',
+      thesisBody:
+        'La IA comoditizó la técnica: hoy cualquiera genera un video aceptable. Lo que no se comoditiza es el criterio — saber qué se ve excelente, por qué, y cómo sostenerlo en un sistema completo. renderdevo construye su propia tecnología dirigiendo IA: la arquitectura, la dirección de arte y las decisiones de producto son nuestras; la IA ejecuta bajo dirección. El resultado son productos en producción, no demos.',
+      methodTitle: 'Cómo trabajamos',
+      method: [
+        {
+          title: 'Discovery primero',
+          body: 'Todo proyecto empieza con un discovery pagado, con entrega real. Ahí definimos alcance, riesgo y presupuesto — antes de comprometer nada.',
+        },
+        {
+          title: 'Dirección en lenguaje visual',
+          body: 'El proyecto se dirige en términos de encuadre, capas, ritmo y composición — no de tickets. Eso mantiene la pieza fiel a lo que se aprobó.',
+        },
+        {
+          title: 'Producción documentada',
+          body: 'Cada sesión de trabajo queda registrada: decisiones, cambios y por qué. El proyecto es auditable de principio a fin.',
+        },
+      ],
+      stackTitle: 'El estudio',
+      stackBody:
+        'Tecnología propia (Ashur Engine y D-Anim-Gator), infraestructura edge de Cloudflare y un sistema de diseño tokenizado. Bilingüe ES/EN, en zona horaria de LATAM, con estándar global.',
+    },
+
+    notDoingPage: {
+      eyebrow: 'Alcance honesto',
+      intro:
+        'Decir que hacemos de todo sería mentirte. Esto es lo que no vas a encontrar aquí — y qué hacer si es lo que necesitas.',
+      items: [
+        {
+          title: 'Sitios sobre constructores de plantillas',
+          body: 'No armamos ni mantenemos sitios en constructores de terceros. Si tu proyecto vive ahí, un especialista en esa plataforma te va a servir mejor y más barato.',
+        },
+        {
+          title: 'Apps nativas de tienda',
+          body: 'No publicamos en App Store ni en Play Store. Nuestra apuesta es el navegador: sin descarga, sin revisión de tienda, accesible por link. Si necesitas una app nativa, no somos el estudio.',
+        },
+        {
+          title: 'Modelado 3D como servicio',
+          body: 'No vendemos modelado ni escultura 3D por encargo. Nuestras experiencias pueden incluir 3D en el resultado, pero como parte de una pieza completa — no como servicio suelto.',
+        },
+        {
+          title: 'Gestión de redes sociales',
+          body: 'Producimos las piezas; no operamos calendarios, community management ni pauta. Tu agencia de social media puede usar lo que hacemos — encantados de coordinar con ella.',
+        },
+        {
+          title: 'Video corporativo por volumen',
+          body: 'No competimos por precio en video genérico. Si lo que necesitas es volumen a bajo costo, hay quien lo hace mejor que nosotros; si necesitas una pieza con sistema detrás, hablemos.',
+        },
+      ],
+      closing: 'Si tu proyecto cae fuera, te recomendamos a alguien que sí lo haga. En serio.',
+      yesTitle: 'Lo que sí hacemos',
+      yesCta: 'Ver capacidades',
+    },
+
     cta: {
       title: '¿Tienes un proyecto en mente?',
       sub: 'Empezamos con un Discovery pagado. Entrega real, sin compromiso de continuar.',
@@ -611,6 +761,156 @@ const en: StringsShape = {
     notDoing: {
       title: 'What we don\'t do',
       sub: 'Honesty over upsell. If your project falls outside, we\'ll point you to someone who does it.',
+    },
+
+    capabilitiesPage: {
+      eyebrow: 'Capabilities',
+      title: 'Three capabilities, one studio.',
+      intro:
+        "Every capability runs on technology built in-house. We don't bend your project to a third-party tool's limits: the tool is ours.",
+      sections: [
+        {
+          title: 'Interactive Experiences',
+          lead: "Pieces your audience doesn't watch: it plays them. They run 100% in the browser and ship as a link or QR code — no install, no app store, no special hardware.",
+          deliver: [
+            'Playable educational experiences — learning by playing, from the browser',
+            'Immersive microsites for campaigns and launches',
+            'QR activations for physical spaces, events and institutions',
+          ],
+          engine: 'Engine behind it: Ashur Engine, our own in-house technology.',
+          caseLabel: 'Case: Defensa de Puebla — historical minigames with hundreds of units on screen, playable by link.',
+        },
+        {
+          title: 'Systemic Motion',
+          lead: 'Motion that scales without degrading: one visual dialect deployed to every format the campaign needs, in a single pass.',
+          deliver: [
+            'Multi-format campaigns — social, broadcast and signage from one composition',
+            'Generative motion branding with its own visual dialect',
+            'Audio-reactive live visuals for events and installations',
+          ],
+          engine: 'Engine behind it: D-Anim-Gator, our multi-format animation engine.',
+          caseLabel: 'Case: pieces in 60+ formats from a single composition, identical from 9:16 to 4K signage.',
+        },
+        {
+          title: 'Digital Product',
+          lead: 'Complete SaaS and digital products: frontend, backend, payments and admin panel. From idea to production in weeks, running on the edge.',
+          deliver: [
+            'End-to-end SaaS platforms with integrated payments (Stripe, Mercado Pago)',
+            'Products with admin panels and real plan enforcement',
+            'Edge infrastructure: fast across the continent, no servers to maintain',
+          ],
+          engine: 'Stack: React, TypeScript and Cloudflare end to end.',
+          caseLabel: 'Case: Aparta La Fecha VIP — an invitation SaaS in production, with real clients.',
+        },
+      ],
+      deliverTitle: 'What we deliver',
+    },
+
+    casesPage: {
+      eyebrow: 'Cases',
+      title: 'Real work, in production.',
+      intro:
+        "No mockups, no concepts: everything here runs live or shipped to a client. Where there's a link, you can see it yourself.",
+      visit: 'View live',
+      items: [
+        {
+          category: 'Interactive · Education',
+          name: 'Defensa de Puebla',
+          body: 'A collection of minigames about the Battle of Puebla built on Ashur Engine. The centerpiece is the open-field battle with hundreds of units on screen — and it all runs in the browser, delivered by link or QR. No install, no app store.',
+          metrics: [
+            { value: '100%', label: 'in the browser' },
+            { value: 'Link or QR', label: 'the only delivery' },
+          ],
+          href: '',
+        },
+        {
+          category: 'Digital Product · SaaS',
+          name: 'Aparta La Fecha VIP',
+          body: 'A premium digital invitation platform for Mexico, in production with real clients. Every invitation is a living microsite: RSVP, maps, gift registry and last-minute notices. Underneath, a template engine that generates 200+ designs from a single visual system.',
+          metrics: [
+            { value: '200+', label: 'templates from one system' },
+            { value: '2', label: 'payment gateways' },
+          ],
+          href: 'https://apartalafecha.vip',
+        },
+        {
+          category: 'Interactive · Demo world',
+          name: 'El Jardín Perdido',
+          body: "The public world where Ashur Engine is tested: terrain, atmosphere, characters and cinematic cameras running live. It's the engine's proving ground and a demo anyone can open from their browser.",
+          metrics: [
+            { value: 'Live', label: 'public engine demo' },
+          ],
+          href: 'https://eljardinperdido.com',
+        },
+        {
+          category: 'Motion · Directed AI',
+          name: 'Book trailers',
+          body: 'Literary promotion pieces produced with AI generation and edited with motion judgment. AI speeds up the material; the rhythm, the cut and the art direction are mine.',
+          metrics: [],
+          href: '',
+        },
+      ],
+      note: 'Cases with full visual material are on the home page, under Selected Work.',
+    },
+
+    aboutPage: {
+      eyebrow: 'About renderdevo',
+      title: 'A studio with its own engine.',
+      whoTitle: "Who's behind it",
+      whoBody:
+        "I'm Marco Ramos: motion graphics designer and creative developer, with 15 years of experience and clients like Envato, HBO and Natura México. I work from Guadalajara for LATAM and the world. renderdevo is my studio: motion, interactive and digital product converge here.",
+      thesisTitle: 'The thesis',
+      thesisBody:
+        "AI commoditized technique: today anyone can generate an acceptable video. What doesn't commoditize is judgment — knowing what looks excellent, why, and how to sustain it across a complete system. renderdevo builds its own technology by directing AI: the architecture, the art direction and the product decisions are ours; AI executes under direction. The result is products in production, not demos.",
+      methodTitle: 'How we work',
+      method: [
+        {
+          title: 'Discovery first',
+          body: 'Every project starts with a paid discovery with a real deliverable. That is where scope, risk and budget get defined — before committing to anything.',
+        },
+        {
+          title: 'Direction in visual language',
+          body: 'The project is directed in terms of framing, layers, rhythm and composition — not tickets. That keeps the piece faithful to what was approved.',
+        },
+        {
+          title: 'Documented production',
+          body: 'Every working session is logged: decisions, changes and why. The project is auditable from start to finish.',
+        },
+      ],
+      stackTitle: 'The studio',
+      stackBody:
+        'In-house technology (Ashur Engine and D-Anim-Gator), Cloudflare edge infrastructure and a tokenized design system. Bilingual ES/EN, on LATAM time, at a global standard.',
+    },
+
+    notDoingPage: {
+      eyebrow: 'Honest scope',
+      intro:
+        "Saying we do everything would be lying to you. This is what you won't find here — and what to do if it's what you need.",
+      items: [
+        {
+          title: 'Sites on template builders',
+          body: "We don't build or maintain sites on third-party site builders. If your project lives there, a specialist in that platform will serve you better and cheaper.",
+        },
+        {
+          title: 'Native store apps',
+          body: "We don't publish to the App Store or Play Store. Our bet is the browser: no download, no store review, reachable by link. If you need a native app, we're not the studio.",
+        },
+        {
+          title: '3D modeling as a service',
+          body: "We don't sell modeling or 3D sculpture on commission. Our experiences can include 3D in the result, but as part of a complete piece — not as a standalone service.",
+        },
+        {
+          title: 'Social media management',
+          body: "We produce the pieces; we don't run calendars, community management or ad spend. Your social agency can use what we make — happy to coordinate with them.",
+        },
+        {
+          title: 'High-volume corporate video',
+          body: "We don't compete on price for generic video. If you need volume at low cost, others do it better; if you need a piece with a system behind it, let's talk.",
+        },
+      ],
+      closing: "If your project falls outside, we'll point you to someone who does it. Seriously.",
+      yesTitle: 'What we do',
+      yesCta: 'See capabilities',
     },
 
     cta: {
