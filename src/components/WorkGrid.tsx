@@ -17,9 +17,12 @@ import {
  * Así las pestañas se sienten la misma composición aunque tengan material
  * muy distinto.
  *
- * Las pestañas rotan solas cada 4 s. La rotación se detiene en cuanto el
- * visitante elige una pestaña, y se pausa mientras el puntero está encima o
- * si el sistema pide menos movimiento.
+ * Las pestañas rotan solas cada 4 s — es un showcase, no un menú: quien llega
+ * ve las cuatro categorías sin tocar nada.
+ *
+ * La rotación se pausa mientras el puntero está sobre las pestañas o las piezas
+ * (no sobre toda la sección), mientras el lightbox está abierto, y si el sistema
+ * pide menos movimiento. Al elegir pestaña a mano se detiene 15 s y se reanuda.
  */
 
 const ROTACION_MS = 4000;
@@ -31,6 +34,11 @@ const ROTACION_MS = 4000;
 const SALIDA_MS = 190; /* desvanecido de la pestaña que se va */
 const ENTRADA_MS = 300; /* revelado de cada celda que entra */
 const ESCALON_MS = 55; /* retardo entre celdas: da dirección de lectura */
+
+/* Tras elegir pestaña a mano, la rotación se reanuda pasado este plazo. Antes
+   se apagaba PARA SIEMPRE: bastaba un clic para que la sección dejara de ser
+   showcase y quedara manual el resto de la visita. */
+const REANUDA_MS = 15000;
 
 export function WorkGrid() {
   const { t, locale } = useLocale();
@@ -93,10 +101,17 @@ export function WorkGrid() {
     return () => window.clearTimeout(id);
   }, [active, mostrada]);
 
+  /* El control manual gana, pero solo un rato: se apaga la rotación y se
+     vuelve a encender sola. Así el visitante puede detenerse a mirar una
+     pestaña sin perder el showcase para el resto de la visita. */
+  const reanudarRef = useRef<number | undefined>(undefined);
   const elegir = (cat: WorkCategory) => {
     setActive(cat);
-    setAutoOn(false); // el control manual gana: no volver a rotar solo
+    setAutoOn(false);
+    window.clearTimeout(reanudarRef.current);
+    reanudarRef.current = window.setTimeout(() => setAutoOn(true), REANUDA_MS);
   };
+  useEffect(() => () => window.clearTimeout(reanudarRef.current), []);
 
   /* Cuántas columnas ocupan las piezas y cuántas quedan para el texto. */
   const cols = Math.min(items.length, 4);
@@ -104,11 +119,7 @@ export function WorkGrid() {
   const hayTexto = textoCols > 0 && Boolean(blurb.body);
 
   return (
-    <section
-      className="relative overflow-hidden py-[var(--spacing-section)]"
-      onMouseEnter={() => setHover(true)}
-      onMouseLeave={() => setHover(false)}
-    >
+    <section className="relative overflow-hidden py-[var(--spacing-section)]">
       <MeshBackdrop variant="work" />
 
       <div className="relative container-base">
@@ -117,6 +128,14 @@ export function WorkGrid() {
           <p className="text-[var(--color-muted)]">{t.work.subtitle}</p>
         </div>
 
+        {/* Pausa por hover SOLO sobre pestañas y piezas. Antes cubría la
+            sección completa —malla y titulares incluidos—, así que un cursor
+            en reposo en cualquier parte mataba la rotación y el showcase se
+            sentía manual. */}
+        <div
+          onMouseEnter={() => setHover(true)}
+          onMouseLeave={() => setHover(false)}
+        >
         {/* === Pestañas === */}
         <div
           role="tablist"
@@ -224,6 +243,7 @@ export function WorkGrid() {
               </div>
             </div>
           )}
+        </div>
         </div>
       </div>
 
