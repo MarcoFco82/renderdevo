@@ -2,6 +2,17 @@
  * ParametricField — fondo animado paramétrico, tres variantes.
  * Origen: eljardiperdido-proj/docs/branding/parametrico-v5.html
  *
+ * ⚠ ALCANCE DE LA APROBACIÓN — confirmado por Marco el 2026-09-01:
+ *   «parametrico 5 me gustó para detalles gráficos de ashur y renderdevo».
+ *
+ *   O sea: aprobado como lenguaje de detalles gráficos para **ashurengine y
+ *   renderdevo**; para **El Jardín Perdido sigue SIN aprobar** — ese archivo es
+ *   una propuesta de branding que aún espera dirección suya.
+ *
+ *   No inferir aprobación del jardín porque este código esté en producción en
+ *   dos sitios. Es un archivo de exploración cuyo resultado sirvió a dos marcas
+ *   y no a la tercera.
+ *
  *   variant="mesh"    esfera de nodos y aristas   (era MeshGlow)
  *   variant="grid3d"  retícula en fuga            ← cx/cy = PUNTO DE FUGA
  *   variant="moire"   familias de anillos desfasadas
