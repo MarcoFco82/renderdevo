@@ -24,6 +24,14 @@ import {
 
 const ROTACION_MS = 4000;
 
+/* Transición entre pestañas. El cambio era un corte seco: `key` remontaba la
+   rejilla y el contenido aparecía de golpe. Ahora sale en dos tiempos —se va la
+   anterior, entra la nueva escalonada— para que se lea como un cambio de plano
+   y no como un parpadeo. */
+const SALIDA_MS = 190; /* desvanecido de la pestaña que se va */
+const ENTRADA_MS = 300; /* revelado de cada celda que entra */
+const ESCALON_MS = 55; /* retardo entre celdas: da dirección de lectura */
+
 export function WorkGrid() {
   const { t, locale } = useLocale();
   const [active, setActive] = useState<WorkCategory>(populatedCategories[0]);
@@ -31,7 +39,13 @@ export function WorkGrid() {
   const [autoOn, setAutoOn] = useState(true);
   const [hover, setHover] = useState(false);
 
-  const items = worksByCategory(active);
+  /* `active` es la pestaña elegida; `mostrada` la que está en pantalla. Se
+     separan para poder desvanecer la saliente ANTES de intercambiar el
+     contenido — con una sola variable el cambio es instantáneo por definición. */
+  const [mostrada, setMostrada] = useState<WorkCategory>(populatedCategories[0]);
+  const [entrando, setEntrando] = useState(true);
+
+  const items = worksByCategory(mostrada);
 
   const tabLabel: Record<WorkCategory, string> = {
     'motion-design': t.work.tabs.motionDesign,
@@ -45,7 +59,7 @@ export function WorkGrid() {
     interactive: 'interactive',
     'digital-product': 'digitalProduct',
   };
-  const blurb = t.work.blurbs[blurbKey[active]];
+  const blurb = t.work.blurbs[blurbKey[mostrada]];
   const link = 'linkHref' in blurb ? blurb : null;
 
   /* Rotación automática. Se frena con hover, con el lightbox abierto, si el
@@ -61,6 +75,23 @@ export function WorkGrid() {
     }, ROTACION_MS);
     return () => window.clearInterval(id);
   }, [autoOn, hover, lightboxItem]);
+
+  /* Dos tiempos: desvanece lo que hay, intercambia, y deja que las celdas
+     entren solas (la animación va en CSS, escalonada por índice). Con
+     movimiento reducido el intercambio es directo, sin fundido. */
+  useEffect(() => {
+    if (active === mostrada) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setMostrada(active);
+      return;
+    }
+    setEntrando(false);
+    const id = window.setTimeout(() => {
+      setMostrada(active);
+      setEntrando(true);
+    }, SALIDA_MS);
+    return () => window.clearTimeout(id);
+  }, [active, mostrada]);
 
   const elegir = (cat: WorkCategory) => {
     setActive(cat);
@@ -132,16 +163,29 @@ export function WorkGrid() {
 
         {/* === Composición: piezas + texto === */}
         <div
-          key={active} /* remonta al cambiar: evita ver el frame de la anterior */
+          /* Remonta al cambiar `mostrada`, no `active`: así el desvanecido de
+             salida ocurre ANTES de que el contenido se intercambie. */
+          key={mostrada}
           className="grid gap-3 md:gap-4 grid-cols-2 lg:grid-cols-4"
+          style={{
+            opacity: entrando ? 1 : 0,
+            transition: `opacity ${SALIDA_MS}ms ease-out`,
+          }}
         >
-          {items.map((item) => (
-            <WorkCell
+          {items.map((item, i) => (
+            <div
               key={item.id}
-              item={item}
-              caption={item.caption?.[locale]}
-              onClick={() => setLightboxItem(item)}
-            />
+              style={{
+                animation: `wg-entra ${ENTRADA_MS}ms cubic-bezier(0.22, 1, 0.36, 1) both`,
+                animationDelay: `${i * ESCALON_MS}ms`,
+              }}
+            >
+              <WorkCell
+                item={item}
+                caption={item.caption?.[locale]}
+                onClick={() => setLightboxItem(item)}
+              />
+            </div>
           ))}
 
           {hayTexto && (
@@ -153,6 +197,10 @@ export function WorkGrid() {
                     ? 'lg:col-span-2'
                     : 'lg:col-span-1'
               }`}
+              style={{
+                animation: `wg-entra ${ENTRADA_MS}ms cubic-bezier(0.22, 1, 0.36, 1) both`,
+                animationDelay: `${items.length * ESCALON_MS}ms`,
+              }}
             >
               <div className={textoCols >= 3 ? 'max-w-2xl' : 'max-w-md'}>
                 {blurb.title && (
@@ -188,7 +236,16 @@ export function WorkGrid() {
         />
       )}
 
-      <style>{`@keyframes wg-progreso { from { transform: scaleX(0) } to { transform: scaleX(1) } }`}</style>
+      <style>{`
+        @keyframes wg-progreso { from { transform: scaleX(0) } to { transform: scaleX(1) } }
+        @keyframes wg-entra {
+          from { opacity: 0; transform: translateY(12px) scale(0.985); }
+          to   { opacity: 1; transform: none; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          [style*="wg-entra"] { animation: none !important; }
+        }
+      `}</style>
     </section>
   );
 }
@@ -231,6 +288,11 @@ function WorkCell({
   onClick: () => void;
 }) {
   const videoRef = useRef<HTMLVideoElement>(null);
+  /* El video se monta vacío y tarda en pintar: hay que descargar metadatos y,
+     por el reloj virtual, además BUSCAR una posición. Ese hueco se veía como
+     un rectángulo negro en cada cambio de pestaña. Se revela cuando ya hay
+     frame, no cuando el elemento existe. */
+  const [conImagen, setConImagen] = useState(false);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -258,6 +320,14 @@ function WorkCell({
     if (video.readyState >= 1) arrancar();
     video.addEventListener('loadedmetadata', arrancar);
 
+    /* HAVE_CURRENT_DATA: ya hay un frame que mostrar. Se escucha 'seeked'
+       además de 'loadeddata' porque tras el salto del reloj virtual el frame
+       bueno llega con el seek, no con la carga. */
+    const revelar = () => setConImagen(true);
+    if (video.readyState >= 2) revelar();
+    video.addEventListener('loadeddata', revelar);
+    video.addEventListener('seeked', revelar);
+
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
@@ -281,6 +351,8 @@ function WorkCell({
     return () => {
       observer.disconnect();
       video.removeEventListener('loadedmetadata', arrancar);
+      video.removeEventListener('loadeddata', revelar);
+      video.removeEventListener('seeked', revelar);
       document.removeEventListener('visibilitychange', alVolverAlNavegador);
     };
   }, [item.id]);
@@ -310,13 +382,22 @@ function WorkCell({
             playsInline
             preload="metadata"
             className="absolute inset-0 w-full h-full object-cover"
+            style={{
+              opacity: conImagen ? 1 : 0,
+              transition: 'opacity 320ms ease-out',
+            }}
           />
         ) : (
           <img
             src={item.src}
             alt={caption ?? ''}
             loading="lazy"
+            onLoad={() => setConImagen(true)}
             className="absolute inset-0 w-full h-full object-cover object-top"
+            style={{
+              opacity: conImagen ? 1 : 0,
+              transition: 'opacity 320ms ease-out',
+            }}
           />
         )}
         <span
