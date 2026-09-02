@@ -26,11 +26,28 @@ la cláusula "sin early access ni captura de emails" de D-002.
 construyen audiencia que aterriza en las demos jugables y se apunta al early access. Sin un
 objeto de captura, el alcance no se convierte en nada medible.
 
-**Pendiente:** definir mecanismo/ubicación y construir la captura.
+**Resuelto — 2026-09-01.** Implementado en ashurengine.com (commit `6762456` del
+repo `Apps/ashurengine`): sección "Early access" en el Home, `POST /api/wishlist`
+sobre la D1 existente con honeypot y rate-limit por IP hasheada, y lectura protegida
+con el login de `/studio`, que quedó convertido en panel del wishlist.
+
+Dos desvíos respecto a lo planeado arriba, ambos a la baja y a propósito: se usó la
+**D1 que ya existía** en vez de KV —no ameritaba un binding nuevo— y **no hay doble
+opt-in vía Resend**. Sin doble opt-in un tercero puede inscribir un correo ajeno;
+se aceptó porque el único envío previsto es un aviso puntual cuando abra el early
+access, no una lista recurrente. Si eso cambia, el doble opt-in vuelve a la mesa.
 
 ---
 
 ## D-002 — 2026-06-12 — Ashur Engine y D-Anim-Gator pasan a ser productos públicos
+
+> **Acta histórica — dos cláusulas ya no aplican.** El texto de abajo se conserva
+> tal cual porque registra lo que se decidió ese día; reescribirlo borraría cuándo
+> se supo qué. Lo vigente:
+> - La línea de atribución cambió el 2026-08-28. **No usar la de aquí** —
+>   ver `Playground/canon/CANON.md` §1.
+> - "SIN waitlist, SIN early access, SIN captura de emails" quedó derogado por
+>   **D-003**, ya implementado (wishlist en vivo en ashurengine.com, 2026-09-01).
 
 **Contexto:** la regla locked original decía que los nombres internos de los
 engines no iban al cliente ("tecnología propia" únicamente). Marco decidió
