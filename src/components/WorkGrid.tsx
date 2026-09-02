@@ -294,6 +294,15 @@ function WorkCell({
      frame, no cuando el elemento existe. */
   const [conImagen, setConImagen] = useState(false);
 
+  /* Red de seguridad para las imágenes: si `onLoad` no llega (venía de caché
+     y el evento se perdió, o falló la descarga), la pieza no puede quedarse
+     invisible. Ver la nota equivalente del video más abajo. */
+  useEffect(() => {
+    if (item.kind !== 'image') return;
+    const id = window.setTimeout(() => setConImagen(true), 1200);
+    return () => window.clearTimeout(id);
+  }, [item.kind, item.id]);
+
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
@@ -328,6 +337,14 @@ function WorkCell({
     video.addEventListener('loadeddata', revelar);
     video.addEventListener('seeked', revelar);
 
+    /* RED DE SEGURIDAD. Ocultar hasta que haya frame mejora el caso normal,
+       pero si esos eventos NUNCA llegan —autoplay bloqueado, ahorro de datos,
+       códec no soportado, un headless sin decodificador— la pieza se quedaría
+       invisible PARA SIEMPRE, que es peor que el negro que vinimos a evitar.
+       Pasado el plazo se revela igual: en el peor caso se ve un frame negro,
+       como antes; nunca una tarjeta vacía. */
+    const red = window.setTimeout(revelar, 1200);
+
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
@@ -351,6 +368,7 @@ function WorkCell({
     return () => {
       observer.disconnect();
       video.removeEventListener('loadedmetadata', arrancar);
+      window.clearTimeout(red);
       video.removeEventListener('loadeddata', revelar);
       video.removeEventListener('seeked', revelar);
       document.removeEventListener('visibilitychange', alVolverAlNavegador);
